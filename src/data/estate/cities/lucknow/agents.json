@@ -1,0 +1,63 @@
+[
+  {
+    "id": "lko-a-001",
+    "name": "[SAMPLE] Estate Advisor 1",
+    "role": "Property Advisor (sample profile)",
+    "phone": "6389144470",
+    "specializations": ["residential", "investment"],
+    "areasServed": ["gomti-nagar", "gomti-nagar-extension", "shaheed-path"],
+    "languages": ["Hindi", "English"],
+    "isSample": true
+  },
+  {
+    "id": "lko-a-002",
+    "name": "[SAMPLE] Estate Advisor 2",
+    "role": "Plots & Land Advisor (sample profile)",
+    "phone": "9579662353",
+    "specializations": ["land", "residential"],
+    "areasServed": ["sultanpur-road", "gosainganj", "sushant-golf-city"],
+    "languages": ["Hindi", "English"],
+    "isSample": true
+  },
+  {
+    "id": "lko-a-003",
+    "name": "[SAMPLE] Estate Advisor 3",
+    "role": "Regional Land Advisor (sample profile)",
+    "phone": "6389144470",
+    "specializations": ["land", "investment"],
+    "areasServed": ["mohanlalganj", "bakshi-ka-talab"],
+    "languages": ["Hindi"],
+    "isSample": true
+  },
+  {
+    "id": "lko-a-004",
+    "name": "[SAMPLE] Estate Advisor 4",
+    "role": "Commercial Property Advisor (sample profile)",
+    "phone": "9579662353",
+    "specializations": ["commercial"],
+    "areasServed": ["hazratganj", "faizabad-road", "indira-nagar"],
+    "languages": ["Hindi", "English"],
+    "isSample": true
+  },
+  {
+    "id": "lko-a-005",
+    "name": "[SAMPLE] Estate Advisor 5",
+    "role": "Residential Sales Advisor (sample profile)",
+    "phone": "6389144470",
+    "specializations": ["residential"],
+    "areasServed": ["aliganj", "jankipuram", "vikas-nagar"],
+    "languages": ["Hindi", "English"],
+    "isSample": true
+  },
+  {
+    "id": "lko-a-006",
+    "name": "[SAMPLE] Estate Advisor 6",
+    "role": "Senior Property Consultant (sample profile)",
+    "phone": "9579662353",
+    "specializations": ["residential", "commercial", "investment"],
+    "areasServed": ["lucknow"],
+    "languages": ["Hindi", "English"],
+    "featured": true,
+    "isSample": true
+  }
+]

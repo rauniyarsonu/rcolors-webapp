@@ -1,0 +1,74 @@
+[
+  {
+    "id": "rainbow-housing-pune",
+    "name": "Rainbow Housing",
+    "location": "Pune",
+    "business": "construction",
+    "category": "residential",
+    "status": "completed",
+    "coverImage": "/images/R Colors Company Profile Final (2)_page-0012.jpg",
+    "gallery": [],
+    "description": "Premium residential construction project executed with high standards.",
+    "year": null
+  },
+  {
+    "id": "sahu-city-lucknow",
+    "name": "Sahu City",
+    "location": "Lucknow",
+    "business": "construction",
+    "category": "residential",
+    "status": "completed",
+    "coverImage": "/images/R Colors Company Profile Final (2)_page-0012.jpg",
+    "gallery": [],
+    "description": "Large scale residential development.",
+    "year": null
+  },
+  {
+    "id": "rudra-group-varanasi",
+    "name": "Rudra Group",
+    "location": "Varanasi (VNS)",
+    "business": "construction",
+    "category": "residential",
+    "status": "completed",
+    "coverImage": "/images/R Colors Company Profile Final (2)_page-0012.jpg",
+    "gallery": [],
+    "description": "Residential building and development.",
+    "year": null
+  },
+  {
+    "id": "balaji-construction-company",
+    "name": "Balaji Construction Company",
+    "location": "",
+    "business": "construction",
+    "category": "commercial",
+    "status": "completed",
+    "coverImage": "/images/R Colors Company Profile Final (2)_page-0013.jpg",
+    "gallery": [],
+    "description": "Commercial development project.",
+    "year": null
+  },
+  {
+    "id": "shalimar-lucknow",
+    "name": "Shalimar",
+    "location": "Lucknow",
+    "business": "construction",
+    "category": "residential",
+    "status": "completed",
+    "coverImage": "/images/R Colors Company Profile Final (2)_page-0013.jpg",
+    "gallery": [],
+    "description": "Luxury residential apartment complex.",
+    "year": null
+  },
+  {
+    "id": "paras-group-prayagraj",
+    "name": "Paras Group (Paras Greens)",
+    "location": "Prayagraj",
+    "business": "construction",
+    "category": "residential",
+    "status": "completed",
+    "coverImage": "/images/R Colors Company Profile Final (2)_page-0013.jpg",
+    "gallery": [],
+    "description": "Modern residential greens project.",
+    "year": null
+  }
+]

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<!--
+  Netlify Forms registration. Netlify scans this static file at deploy time
+  to create the "estate-enquiry" form; the site posts to /__forms.html with
+  fetch (src/components/estate/EnquiryForm.tsx). Keep the field names in sync.
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <title>Forms</title>
+  </head>
+  <body>
+    <form name="estate-enquiry" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="estate-enquiry" />
+      <input name="bot-field" />
+      <input name="name" />
+      <input name="phone" />
+      <input name="email" />
+      <input name="interest" />
+      <textarea name="message"></textarea>
+      <input name="listing" />
+      <input name="city" />
+      <input name="page" />
+    </form>
+  </body>
+</html>

@@ -1,0 +1,380 @@
+[
+  {
+    "id": "uttar-pradesh",
+    "slug": "uttar-pradesh",
+    "name": "Uttar Pradesh",
+    "type": "state",
+    "parentId": null,
+    "enabled": true,
+    "order": 1
+  },
+  {
+    "id": "lucknow",
+    "slug": "lucknow",
+    "name": "Lucknow",
+    "type": "city",
+    "parentId": "uttar-pradesh",
+    "enabled": true,
+    "order": 1,
+    "aliases": [
+      "LKO"
+    ],
+    "coordinates": {
+      "lat": 26.8467,
+      "lng": 80.9462
+    }
+  },
+  {
+    "id": "gomti-nagar",
+    "slug": "gomti-nagar",
+    "name": "Gomti Nagar",
+    "type": "locality",
+    "parentId": "lucknow",
+    "enabled": true,
+    "order": 1,
+    "aliases": [
+      "GN"
+    ],
+    "landmarks": [
+      "Ambedkar Memorial Park"
+    ],
+    "nearby": [
+      "gomti-nagar-extension",
+      "indira-nagar",
+      "chinhat"
+    ],
+    "toConfirm": true
+  },
+  {
+    "id": "gomti-nagar-extension",
+    "slug": "gomti-nagar-extension",
+    "name": "Gomti Nagar Extension",
+    "type": "locality",
+    "parentId": "lucknow",
+    "enabled": true,
+    "order": 2,
+    "aliases": [
+      "GNE"
+    ],
+    "landmarks": [
+      "Ekana Stadium"
+    ],
+    "nearby": [
+      "gomti-nagar",
+      "shaheed-path",
+      "sultanpur-road"
+    ],
+    "toConfirm": true
+  },
+  {
+    "id": "hazratganj",
+    "slug": "hazratganj",
+    "name": "Hazratganj",
+    "type": "locality",
+    "parentId": "lucknow",
+    "enabled": true,
+    "order": 3,
+    "nearby": [
+      "mahanagar",
+      "aliganj"
+    ],
+    "toConfirm": true
+  },
+  {
+    "id": "aliganj",
+    "slug": "aliganj",
+    "name": "Aliganj",
+    "type": "locality",
+    "parentId": "lucknow",
+    "enabled": true,
+    "order": 4,
+    "nearby": [
+      "vikas-nagar",
+      "jankipuram",
+      "mahanagar"
+    ],
+    "toConfirm": true
+  },
+  {
+    "id": "indira-nagar",
+    "slug": "indira-nagar",
+    "name": "Indira Nagar",
+    "type": "locality",
+    "parentId": "lucknow",
+    "enabled": true,
+    "order": 5,
+    "nearby": [
+      "gomti-nagar",
+      "mahanagar",
+      "faizabad-road"
+    ],
+    "toConfirm": true
+  },
+  {
+    "id": "jankipuram",
+    "slug": "jankipuram",
+    "name": "Jankipuram",
+    "type": "locality",
+    "parentId": "lucknow",
+    "enabled": true,
+    "order": 6,
+    "nearby": [
+      "aliganj",
+      "vikas-nagar"
+    ],
+    "toConfirm": true
+  },
+  {
+    "id": "vikas-nagar",
+    "slug": "vikas-nagar",
+    "name": "Vikas Nagar",
+    "type": "locality",
+    "parentId": "lucknow",
+    "enabled": true,
+    "order": 7,
+    "nearby": [
+      "aliganj",
+      "jankipuram"
+    ],
+    "toConfirm": true
+  },
+  {
+    "id": "mahanagar",
+    "slug": "mahanagar",
+    "name": "Mahanagar",
+    "type": "locality",
+    "parentId": "lucknow",
+    "enabled": true,
+    "order": 8,
+    "nearby": [
+      "hazratganj",
+      "indira-nagar",
+      "aliganj"
+    ],
+    "toConfirm": true
+  },
+  {
+    "id": "aashiana",
+    "slug": "aashiana",
+    "name": "Aashiana",
+    "type": "locality",
+    "parentId": "lucknow",
+    "enabled": true,
+    "order": 9,
+    "aliases": [
+      "Ashiana"
+    ],
+    "nearby": [
+      "kanpur-road",
+      "telibagh",
+      "alambagh"
+    ],
+    "toConfirm": true
+  },
+  {
+    "id": "alambagh",
+    "slug": "alambagh",
+    "name": "Alambagh",
+    "type": "locality",
+    "parentId": "lucknow",
+    "enabled": true,
+    "order": 10,
+    "landmarks": [
+      "Alambagh Bus Station"
+    ],
+    "nearby": [
+      "aashiana",
+      "rajajipuram",
+      "kanpur-road"
+    ],
+    "toConfirm": true
+  },
+  {
+    "id": "rajajipuram",
+    "slug": "rajajipuram",
+    "name": "Rajajipuram",
+    "type": "locality",
+    "parentId": "lucknow",
+    "enabled": true,
+    "order": 11,
+    "nearby": [
+      "alambagh"
+    ],
+    "toConfirm": true
+  },
+  {
+    "id": "chinhat",
+    "slug": "chinhat",
+    "name": "Chinhat",
+    "type": "locality",
+    "parentId": "lucknow",
+    "enabled": true,
+    "order": 12,
+    "nearby": [
+      "faizabad-road",
+      "gomti-nagar"
+    ],
+    "toConfirm": true
+  },
+  {
+    "id": "faizabad-road",
+    "slug": "faizabad-road",
+    "name": "Faizabad Road",
+    "type": "locality",
+    "parentId": "lucknow",
+    "enabled": true,
+    "order": 13,
+    "nearby": [
+      "chinhat",
+      "indira-nagar"
+    ],
+    "toConfirm": true
+  },
+  {
+    "id": "sultanpur-road",
+    "slug": "sultanpur-road",
+    "name": "Sultanpur Road",
+    "type": "locality",
+    "parentId": "lucknow",
+    "enabled": true,
+    "order": 14,
+    "nearby": [
+      "shaheed-path",
+      "gomti-nagar-extension",
+      "sushant-golf-city",
+      "gosainganj"
+    ],
+    "toConfirm": true
+  },
+  {
+    "id": "shaheed-path",
+    "slug": "shaheed-path",
+    "name": "Shaheed Path",
+    "type": "locality",
+    "parentId": "lucknow",
+    "enabled": true,
+    "order": 15,
+    "nearby": [
+      "sultanpur-road",
+      "gomti-nagar-extension",
+      "sushant-golf-city"
+    ],
+    "toConfirm": true
+  },
+  {
+    "id": "kanpur-road",
+    "slug": "kanpur-road",
+    "name": "Kanpur Road",
+    "type": "locality",
+    "parentId": "lucknow",
+    "enabled": true,
+    "order": 16,
+    "nearby": [
+      "aashiana",
+      "alambagh"
+    ],
+    "toConfirm": true
+  },
+  {
+    "id": "raebareli-road",
+    "slug": "raebareli-road",
+    "name": "Raebareli Road",
+    "type": "locality",
+    "parentId": "lucknow",
+    "enabled": true,
+    "order": 17,
+    "aliases": [
+      "Rae Bareli Road"
+    ],
+    "nearby": [
+      "telibagh",
+      "vrindavan-yojana"
+    ],
+    "toConfirm": true
+  },
+  {
+    "id": "vrindavan-yojana",
+    "slug": "vrindavan-yojana",
+    "name": "Vrindavan Yojana",
+    "type": "locality",
+    "parentId": "lucknow",
+    "enabled": true,
+    "order": 18,
+    "nearby": [
+      "raebareli-road",
+      "telibagh"
+    ],
+    "toConfirm": true
+  },
+  {
+    "id": "sushant-golf-city",
+    "slug": "sushant-golf-city",
+    "name": "Sushant Golf City",
+    "type": "locality",
+    "parentId": "lucknow",
+    "enabled": true,
+    "order": 19,
+    "landmarks": [
+      "Lulu Mall"
+    ],
+    "nearby": [
+      "shaheed-path",
+      "sultanpur-road"
+    ],
+    "toConfirm": true
+  },
+  {
+    "id": "telibagh",
+    "slug": "telibagh",
+    "name": "Telibagh",
+    "type": "locality",
+    "parentId": "lucknow",
+    "enabled": true,
+    "order": 20,
+    "nearby": [
+      "raebareli-road",
+      "vrindavan-yojana"
+    ],
+    "toConfirm": true
+  },
+  {
+    "id": "mohanlalganj",
+    "slug": "mohanlalganj",
+    "name": "Mohanlalganj",
+    "type": "town",
+    "parentId": "lucknow",
+    "enabled": true,
+    "order": 100,
+    "nearby": [
+      "gosainganj"
+    ],
+    "toConfirm": true
+  },
+  {
+    "id": "bakshi-ka-talab",
+    "slug": "bakshi-ka-talab",
+    "name": "Bakshi Ka Talab",
+    "type": "town",
+    "parentId": "lucknow",
+    "enabled": true,
+    "order": 101,
+    "aliases": [
+      "BKT"
+    ],
+    "toConfirm": true
+  },
+  {
+    "id": "gosainganj",
+    "slug": "gosainganj",
+    "name": "Gosainganj",
+    "type": "town",
+    "parentId": "lucknow",
+    "enabled": true,
+    "order": 102,
+    "nearby": [
+      "mohanlalganj",
+      "sultanpur-road"
+    ],
+    "toConfirm": true
+  }
+]

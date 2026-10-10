@@ -1,0 +1,20 @@
+[
+  { "id": "shalimar", "name": "Shalimar", "logo": "" },
+  { "id": "sahu-city", "name": "Sahu City", "logo": "" },
+  { "id": "ssb", "name": "SSB (Stay Blessed)", "logo": "" },
+  { "id": "kasturi", "name": "Kasturi", "logo": "" },
+  { "id": "ramk-group", "name": "RAMK Group", "logo": "" },
+  { "id": "rohan-builders", "name": "Rohan Builders & Developers", "logo": "" },
+  { "id": "global-group", "name": "Global Group", "logo": "" },
+  { "id": "vascon", "name": "Vascon", "logo": "" },
+  { "id": "balaji-construction", "name": "Balaji Construction Company", "logo": "" },
+  { "id": "amit-enterprises", "name": "Amit Enterprises Housing", "logo": "" },
+  { "id": "omaxe", "name": "Omaxe", "logo": "" },
+  { "id": "roma", "name": "Roma", "logo": "" },
+  { "id": "raj-heramba", "name": "RajHeramba", "logo": "" },
+  { "id": "dka", "name": "DKA (Dheeraj Kapoor & Associates)", "logo": "" },
+  { "id": "rudra", "name": "Rudra (Builders & Developers)", "logo": "" },
+  { "id": "nip", "name": "NIP Housing Credit & Development", "logo": "" },
+  { "id": "kgr", "name": "KGR Developers & Builders", "logo": "" },
+  { "id": "shree-tridev", "name": "Shree Tridev", "logo": "" }
+]

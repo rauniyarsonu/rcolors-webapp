@@ -1,0 +1,220 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #1E1E1E;
+
+  /* Construction & Developers design tokens (RGB channels so Tailwind
+     opacity modifiers work, e.g. bg-cx-ink/80). Mapped in tailwind.config.ts. */
+  --cx-ink: 32 37 34;           /* #202522 deep charcoal */
+  --cx-graphite: 48 54 50;      /* #303632 */
+  --cx-paper: 247 247 243;      /* #F7F7F3 warm white */
+  --cx-concrete: 230 231 226;   /* #E6E7E2 */
+  --cx-muted: 95 100 95;        /* #5F645F, AA on paper (5.6:1) */
+  --cx-accent: 40 169 220;      /* #28A9DC brand-sky, buttons/lines/markers */
+  --cx-accent-strong: 3 105 161; /* #0369A1 sky-700, high-contrast text on light (5.6:1) */
+
+  /* Estate design tokens: the site's white + sky theme. Mapped in tailwind.config.ts as es-*.
+     brand-sky (#28A9DC) is 2.7:1 on white, so text, buttons and indicators on light
+     surfaces use accent-strong; plain accent is for navy/dark surfaces only. */
+  --es-ink: 15 60 99;           /* #0F3C63 brand-navy: headings, dark surfaces (11.4:1 on white) */
+  --es-body: 55 65 81;          /* #374151 body copy (10.3:1) */
+  --es-muted: 75 85 99;         /* #4B5563 secondary copy (7.5:1) */
+  --es-surface: 243 249 253;    /* #F3F9FD light sky tint for alternate sections */
+  --es-line: 226 232 240;       /* #E2E8F0 hairline borders */
+  --es-accent: 40 169 220;      /* #28A9DC brand-sky: accents on navy (4.2:1) */
+  --es-accent-strong: 3 105 161; /* #0369A1 sky-700: buttons, links, active states on white (5.9:1) */
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .cx-container {
+    @apply mx-auto w-full max-w-[1320px] px-5 md:px-10;
+  }
+
+  /* Visible focus ring for the construction page and its chrome */
+  .cx :focus-visible,
+  .cx-focus:focus-visible {
+    outline: 2px solid rgb(var(--cx-accent-strong));
+    outline-offset: 3px;
+  }
+  .cx-on-dark :focus-visible,
+  .cx-on-dark.cx-focus:focus-visible {
+    outline-color: rgb(var(--cx-accent));
+  }
+
+  /* Anchored sections clear the fixed header */
+  .cx [id] {
+    scroll-margin-top: 5rem;
+  }
+
+  /* Estate portal */
+  .es-container {
+    @apply mx-auto w-full max-w-[1280px] px-4 md:px-8;
+  }
+  .es :focus-visible {
+    outline: 2px solid rgb(var(--es-accent-strong));
+    outline-offset: 2px;
+  }
+  .es .es-on-dark :focus-visible {
+    outline-color: #fff;
+  }
+  .es [id] {
+    scroll-margin-top: 6rem;
+  }
+  .es-scroll-x {
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+  }
+  .es-scroll-x::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Estate dual-handle range slider: two overlapping inputs, only the thumbs take pointer events */
+.es-range {
+  -webkit-appearance: none;
+  appearance: none;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 44px;
+  margin: 0;
+  background: transparent;
+  pointer-events: none;
+}
+.es-range::-webkit-slider-runnable-track {
+  background: transparent;
+}
+.es-range::-moz-range-track {
+  background: transparent;
+}
+.es-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  pointer-events: auto;
+  width: 22px;
+  height: 22px;
+  border-radius: 9999px;
+  background: #fff;
+  border: 2px solid rgb(var(--es-accent-strong));
+  cursor: grab;
+}
+.es-range::-moz-range-thumb {
+  pointer-events: auto;
+  width: 18px;
+  height: 18px;
+  border-radius: 9999px;
+  background: #fff;
+  border: 2px solid rgb(var(--es-accent-strong));
+  cursor: grab;
+}
+.es-range:focus-visible {
+  outline: none;
+}
+.es-range:focus-visible::-webkit-slider-thumb {
+  box-shadow: 0 0 0 3px #fff, 0 0 0 5px rgb(var(--es-accent-strong));
+}
+.es-range:focus-visible::-moz-range-thumb {
+  box-shadow: 0 0 0 3px #fff, 0 0 0 5px rgb(var(--es-accent-strong));
+}
+
+/* Estate tab panel swap: short fade, skipped for reduced motion */
+@keyframes es-fade {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.es-fade {
+  animation: es-fade 220ms ease-out both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .es-fade {
+    animation: none;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+}
+
+/* Scroll reveal: content is visible by default. The Reveal component only
+   adds .reveal-pending after hydration, so nothing hides if JS fails. */
+.reveal-pending {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 500ms ease-out, transform 500ms ease-out;
+}
+.reveal-pending.reveal-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Hero entrance (pure CSS, no JS dependency) */
+@keyframes cx-rise {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes cx-scroll-line {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  50% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  50.1% {
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+.cx-rise {
+  animation: cx-rise 600ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.cx-scroll-line {
+  animation: cx-scroll-line 2.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cx-rise,
+  .cx-scroll-line {
+    animation: none;
+  }
+  .reveal-pending {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
