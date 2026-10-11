@@ -5,7 +5,7 @@ import { ArrowRight, type LucideIcon } from "lucide-react";
 export interface BusinessCardProps {
   href: string;
   title: string;
-  description: string;
+  description?: string;
   /** Three short selling points, each with a small icon */
   highlights: { icon: LucideIcon; label: string }[];
   /** Short CTA text, rendered as "Explore {cta}" */
@@ -66,7 +66,7 @@ export default function BusinessCard({
         </div>
 
         <h3 className="text-balance font-heading text-xl font-extrabold leading-snug text-brand-navy sm:text-2xl">{title}</h3>
-        <p className="mt-3 text-base leading-relaxed text-gray-600">{description}</p>
+        {description && <p className="mt-3 text-base leading-relaxed text-gray-600">{description}</p>}
 
         <ul className="mt-5 space-y-2.5">
           {highlights.map(({ icon: Icon, label }) => (
