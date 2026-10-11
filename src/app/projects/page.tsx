@@ -10,7 +10,7 @@ import projectsData from "@/data/projects.json";
 function ProjectsContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
-  
+
   const initialBusiness = searchParams.get("business") || "all";
   const [activeFilter, setActiveFilter] = useState(initialBusiness);
 
@@ -27,22 +27,28 @@ function ProjectsContent() {
     }
   };
 
-  const filteredProjects = activeFilter === "all" 
-    ? projectsData 
+  const filteredProjects = activeFilter === "all"
+    ? projectsData
     : projectsData.filter(p => p.business === activeFilter);
+
+  const businessNames: Record<string, string> = {
+    construction: "R Colors Construction & Developers",
+    "r-colors": "R Colors Finishing Works",
+    estate: "R Colors Estate",
+  };
 
   const filters = [
     { id: "all", label: "All Projects" },
-    { id: "construction", label: "Construction & Developers" },
-    { id: "r-colors", label: "R Colors (Finishing)" },
-    { id: "estate", label: "Estate" }
+    { id: "construction", label: "R Colors Construction & Developers" },
+    { id: "r-colors", label: "R Colors Finishing Works" },
+    { id: "estate", label: "R Colors Estate" }
   ];
 
   return (
     <main className="flex min-h-screen flex-col items-center pb-24">
-      <PageHeader 
-        titlePart1="OUR" 
-        titlePart2="PROJECTS" 
+      <PageHeader
+        titlePart1="OUR"
+        titlePart2="PROJECTS"
       />
 
       <section data-aos="fade-up" data-aos-duration="1000" className="w-full py-12 px-4 max-w-7xl mx-auto">
@@ -52,11 +58,10 @@ function ProjectsContent() {
             <button
               key={filter.id}
               onClick={() => handleFilterChange(filter.id)}
-              className={`px-6 py-2 rounded-full font-semibold transition-colors text-sm md:text-base ${
-                activeFilter === filter.id 
-                  ? "bg-brand-sky text-white shadow-md" 
+              className={`px-6 py-2 rounded-full font-semibold transition-colors text-sm md:text-base ${activeFilter === filter.id
+                  ? "bg-brand-sky text-white shadow-md"
                   : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-              }`}
+                }`}
             >
               {filter.label}
             </button>
@@ -79,7 +84,7 @@ function ProjectsContent() {
                   <div>
                     <h3 className="font-heading font-bold text-xl text-brand-navy mb-1">{project.name}</h3>
                     <div className="flex items-center text-gray-500 text-sm mb-4">
-                      <span className="capitalize">{project.business.replace('-', ' ')}</span>
+                      <span>{businessNames[project.business] || project.business}</span>
                       {project.location && (
                         <>
                           <span className="mx-2">•</span>
@@ -90,7 +95,7 @@ function ProjectsContent() {
                     <p className="text-gray-600 text-sm line-clamp-3 mb-4">{project.description}</p>
                   </div>
                   <div className="mt-auto">
-                     <span className="text-brand-sky font-bold text-sm group-hover:underline">View Details →</span>
+                    <span className="text-brand-sky font-bold text-sm group-hover:underline">View Details →</span>
                   </div>
                 </div>
               </Link>

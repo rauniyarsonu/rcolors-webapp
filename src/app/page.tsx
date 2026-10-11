@@ -179,7 +179,15 @@ export default function Home() {
                 <div className="p-6">
                   <h3 className="font-heading font-bold text-xl text-brand-navy mb-1">{project.name}</h3>
                   <div className="flex items-center text-gray-500 text-sm mb-3">
-                    <span className="capitalize">{project.business.replace('-', ' ')}</span>
+                    <span>
+                      {project.business === "construction"
+                        ? "R Colors Construction & Developers"
+                        : project.business === "r-colors"
+                          ? "R Colors Finishing Works"
+                          : project.business === "estate"
+                            ? "R Colors Estate"
+                            : project.business}
+                    </span>
                     {project.location && (
                       <>
                         <span className="mx-2">•</span>

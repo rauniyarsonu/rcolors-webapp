@@ -27,14 +27,6 @@ export default function Hero() {
 
       <div className="cx-container relative pb-20 pt-32 md:pb-28 lg:pb-32">
 
-        <p
-          className="cx-rise mt-10 flex items-center gap-4 text-xs font-semibold uppercase tracking-[0.18em] text-white/90 md:mt-14 md:tracking-[0.24em]"
-          style={rise(80)}
-        >
-          <span aria-hidden="true" className="h-px w-6 shrink-0 bg-cx-accent md:w-10" />
-          R Colors Construction &amp; Developers
-        </p>
-
         <h1
           id="hero-title"
           className="cx-rise mt-6 font-display text-[clamp(2.5rem,5.6vw,4.75rem)] font-semibold leading-[1.02] tracking-[-0.025em]"
@@ -62,16 +54,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Decorative edge details, desktop only */}
-      <p
-        aria-hidden="true"
-        className="absolute bottom-32 right-10 hidden rotate-180 text-[11px] font-semibold uppercase tracking-[0.32em] text-white/60 [writing-mode:vertical-rl] lg:block xl:right-12"
-      >
-        Construction &bull; Development &bull; Project Management
-      </p>
-      <div aria-hidden="true" className="absolute bottom-0 right-10 hidden h-20 w-px overflow-hidden bg-white/15 lg:block xl:right-12">
-        <span className="cx-scroll-line block h-full w-full bg-cx-accent" />
-      </div>
     </section>
   );
 }

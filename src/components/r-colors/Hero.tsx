@@ -25,13 +25,6 @@ export default function Hero() {
       <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-r from-cx-ink/75 via-cx-ink/25 to-transparent" />
 
       <div className="cx-container relative pb-20 pt-32 md:pb-28 lg:pb-32">
-        <p
-          className="cx-rise mt-10 flex items-center gap-4 text-xs font-semibold uppercase tracking-[0.18em] text-brand-sky md:mt-14 md:tracking-[0.24em]"
-          style={rise(80)}
-        >
-          <span aria-hidden="true" className="h-px w-6 shrink-0 bg-cx-accent md:w-10" />
-          R Colors Finishing Works
-        </p>
 
         <h1
           id="hero-title"
@@ -60,16 +53,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Decorative edge details, desktop only */}
-      <p
-        aria-hidden="true"
-        className="absolute bottom-32 right-10 hidden rotate-180 text-[11px] font-semibold uppercase tracking-[0.32em] text-white/60 [writing-mode:vertical-rl] lg:block xl:right-12"
-      >
-        Painting &bull; Interiors &bull; Renovation
-      </p>
-      <div aria-hidden="true" className="absolute bottom-0 right-10 hidden h-20 w-px overflow-hidden bg-white/15 lg:block xl:right-12">
-        <span className="cx-scroll-line block h-full w-full bg-cx-accent" />
-      </div>
     </section>
   );
 }
