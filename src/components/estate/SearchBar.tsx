@@ -98,7 +98,7 @@ export default function SearchBar({ bundle, ctx, keyword, onKeyword, onPick, dis
           onBlur={() => setTimeout(() => setOpen(false), 120)}
           onKeyDown={onKeyDown}
           placeholder="Search by locality, village, landmark or project"
-          className="h-[52px] w-full rounded-md border border-es-line bg-white pl-11 pr-4 text-[15px] text-es-ink outline-none transition-colors placeholder:text-es-muted hover:border-slate-400 focus:border-es-accent-strong focus:ring-2 focus:ring-es-accent-strong/25 disabled:bg-slate-50"
+          className="h-[52px] w-full rounded-md border border-es-line bg-white pl-11 pr-4 text-base text-es-ink outline-none transition-colors placeholder:text-es-muted hover:border-slate-400 focus:border-es-accent-strong focus:ring-2 focus:ring-es-accent-strong/25 disabled:bg-slate-50"
         />
         <ul
           id={listId}

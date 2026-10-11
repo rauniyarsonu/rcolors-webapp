@@ -55,8 +55,8 @@ function FilterField(props: { def: FilterDef } & FilterPanelProps) {
 
 const Section = ({ legend, children, aside }: { legend: string; children: React.ReactNode; aside?: React.ReactNode }) => (
   <fieldset className="min-w-0 py-5 first:pt-0">
-    <legend className="float-left flex min-h-[36px] items-center text-sm font-bold text-es-ink">{legend}</legend>
-    {aside && <div className="float-right flex min-h-[36px] items-center">{aside}</div>}
+    <legend className="float-left flex min-h-11 items-center text-sm font-bold text-es-ink">{legend}</legend>
+    {aside && <div className="float-right flex min-h-11 items-center">{aside}</div>}
     <div className="clear-both pt-2">{children}</div>
   </fieldset>
 );
@@ -96,7 +96,7 @@ function LocationField({ def, bundle, ctx, state, update }: { def: LocationFilte
           const id = `${uid}-${a.location.slug}`;
           return (
             <li key={a.location.slug}>
-              <label htmlFor={id} className="flex min-h-[40px] cursor-pointer items-center gap-3 rounded px-1.5 hover:bg-es-surface">
+              <label htmlFor={id} className="flex min-h-11 cursor-pointer items-center gap-3 rounded px-1.5 hover:bg-es-surface">
                 <input id={id} type="checkbox" checked={checked} onChange={() => toggle(a.location.slug)} className="peer sr-only" />
                 <CheckBox checked={checked} />
                 <span className={`flex-1 text-sm ${a.count ? "text-es-body" : "text-es-muted"}`}>
@@ -118,7 +118,7 @@ function LocationField({ def, bundle, ctx, state, update }: { def: LocationFilte
       legend={def.label}
       aside={
         state.loc.length ? (
-          <button type="button" onClick={() => update((s) => ({ ...s, loc: [] }))} className="min-h-[32px] text-xs font-semibold text-es-accent-strong hover:underline">
+          <button type="button" onClick={() => update((s) => ({ ...s, loc: [] }))} className="min-h-11 min-w-11 px-1 text-xs font-semibold text-es-accent-strong hover:underline">
             Clear
           </button>
         ) : null
@@ -135,7 +135,7 @@ function LocationField({ def, bundle, ctx, state, update }: { def: LocationFilte
           value={filter}
           onChange={(e) => setFilter(e.target.value)}
           placeholder="Find a locality or village"
-          className="h-11 w-full rounded-md border border-es-line pl-9 pr-3 text-sm outline-none focus:border-es-accent-strong focus:ring-2 focus:ring-es-accent-strong/25"
+          className="h-11 w-full rounded-md border border-es-line pl-9 pr-3 text-base outline-none focus:border-es-accent-strong focus:ring-2 focus:ring-es-accent-strong/25"
         />
       </div>
       <div className="max-h-72 overflow-y-auto pr-1">{renderLevel(ctx.citySlug, 0) ?? <p className="py-2 text-sm text-es-muted">No matching areas</p>}</div>
@@ -179,7 +179,7 @@ function MultiField({ def, bundle, ctx, state, update }: { def: MultiFilterDef }
               <input id={id} type="checkbox" checked={on} onChange={() => toggle(o.value)} className="peer sr-only" />
               <label
                 htmlFor={id}
-                className={`flex min-h-[40px] cursor-pointer items-center gap-1.5 rounded-full border px-3.5 text-sm transition-colors peer-focus-visible:ring-2 peer-focus-visible:ring-es-accent-strong peer-focus-visible:ring-offset-2 ${
+                className={`flex min-h-11 cursor-pointer items-center gap-1.5 rounded-full border px-3.5 text-sm transition-colors peer-focus-visible:ring-2 peer-focus-visible:ring-es-accent-strong peer-focus-visible:ring-offset-2 ${
                   on
                     ? "border-es-accent-strong bg-es-accent-strong/10 font-semibold text-es-accent-strong"
                     : `border-es-line bg-white hover:border-es-accent-strong ${o.count ? "text-es-body" : "text-es-muted"}`
@@ -278,7 +278,7 @@ function RangeField({ def, bundle, ctx, state, update }: { def: RangeFilterDef }
       return { ...s, unit, range };
     });
 
-  const inputCls = "h-11 w-full rounded-md border border-es-line px-3 text-sm outline-none focus:border-es-accent-strong focus:ring-2 focus:ring-es-accent-strong/25";
+  const inputCls = "h-11 w-full rounded-md border border-es-line px-3 text-base outline-none focus:border-es-accent-strong focus:ring-2 focus:ring-es-accent-strong/25";
   const hint = def.format === "currency" ? "e.g. 45 L or 1.2 Cr" : undefined;
 
   return (
@@ -294,7 +294,7 @@ function RangeField({ def, bundle, ctx, state, update }: { def: RangeFilterDef }
               id={`${uid}-unit`}
               value={state.unit}
               onChange={(e) => changeUnit(e.target.value as AreaUnit)}
-              className="h-9 rounded-md border border-es-line bg-white px-2 text-sm font-medium text-es-ink outline-none focus:border-es-accent-strong"
+              className="h-11 rounded-md border border-es-line bg-white px-2 text-base font-medium text-es-ink outline-none focus:border-es-accent-strong"
             >
               {unitChoices.map((u) => (
                 <option key={u} value={u}>
@@ -390,7 +390,7 @@ function SearchField({ def, state, update }: { def: SearchFilterDef } & FilterPa
             commitSoon(e.target.value);
           }}
           placeholder={def.placeholder}
-          className="h-11 w-full rounded-md border border-es-line pl-9 pr-3 text-sm outline-none focus:border-es-accent-strong focus:ring-2 focus:ring-es-accent-strong/25"
+          className="h-11 w-full rounded-md border border-es-line pl-9 pr-3 text-base outline-none focus:border-es-accent-strong focus:ring-2 focus:ring-es-accent-strong/25"
         />
       </div>
     </Section>

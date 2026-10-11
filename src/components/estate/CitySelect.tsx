@@ -24,7 +24,7 @@ export default function CitySelect({ cities, value, onChange, requireSelection, 
         id={id}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="h-[52px] w-full appearance-none rounded-md border border-es-line bg-white pl-11 pr-10 text-[15px] font-semibold text-es-ink outline-none transition-colors hover:border-slate-400 focus:border-es-accent-strong focus:ring-2 focus:ring-es-accent-strong/25"
+        className="h-[52px] w-full appearance-none rounded-md border border-es-line bg-white pl-11 pr-10 text-base font-semibold text-es-ink outline-none transition-colors hover:border-slate-400 focus:border-es-accent-strong focus:ring-2 focus:ring-es-accent-strong/25"
       >
         {requireSelection && (
           <option value="" disabled>

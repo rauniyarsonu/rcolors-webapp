@@ -9,7 +9,7 @@ interface EstateHeroProps {
 }
 
 /** Full-bleed photo with a navy overlay; the search card overlaps its lower edge */
-export default function EstateHero({ cityName, title }: EstateHeroProps) {
+export default function EstateHero({ title }: EstateHeroProps) {
   return (
     <section aria-labelledby="es-hero-title" className="es-on-dark relative isolate overflow-hidden bg-es-ink text-white">
       <Image src={ESTATE.heroImage.src} alt={ESTATE.heroImage.alt} fill priority sizes="100vw" className="-z-20 object-cover object-[50%_40%]" />

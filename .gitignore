@@ -7,3 +7,6 @@ target/
 .env.local
 .DS_Store
 .idea/
+
+# Local responsive QA screenshots
+.screenshots/

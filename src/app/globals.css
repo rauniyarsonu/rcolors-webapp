@@ -39,7 +39,52 @@ body {
   }
 }
 
+/* Default keyboard focus ring for any element without its own focus-visible style.
+   currentColor keeps it visible on both the white sections and the navy/sky bands.
+   Scoped .cx/.es rules and focus-visible: utilities override it. */
+@layer base {
+  :focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+  }
+}
+
+/* Responsive safety net. Preflight already caps img/video at max-width: 100%.
+   No overflow-x: hidden here on purpose: overflow is fixed at its source. */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 @layer components {
+  /* Site-wide layout primitives (mobile-first). Every new section should use these
+     instead of ad hoc max-w/px combinations.
+     .site-container: centered, capped at max-w-7xl (1280px), gutters 16/24/32px,
+     and never narrower than the notch safe area in landscape. */
+  .site-container {
+    --gutter: theme("spacing.4");
+    margin-inline: auto;
+    width: 100%;
+    max-width: theme("maxWidth.7xl");
+    padding-left: max(var(--gutter), env(safe-area-inset-left));
+    padding-right: max(var(--gutter), env(safe-area-inset-right));
+  }
+  @screen sm {
+    .site-container {
+      --gutter: theme("spacing.6");
+    }
+  }
+  @screen lg {
+    .site-container {
+      --gutter: theme("spacing.8");
+    }
+  }
+
+  /* Vertical rhythm for page sections: 48 / 64 / 96px */
+  .section-y {
+    @apply py-12 sm:py-16 lg:py-24;
+  }
+
   .cx-container {
     @apply mx-auto w-full max-w-[1320px] px-5 md:px-10;
   }

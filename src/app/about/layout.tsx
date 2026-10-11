@@ -1,18 +1,4 @@
-"use client";
-
-import { usePathname } from "next/navigation";
-import Link from "next/link";
-
+// The root layout already provides <main>; this only groups the About pages
 export default function AboutLayout({ children }: { children: React.ReactNode }) {
-  const pathname = usePathname();
-
-  return (
-    <div className="flex flex-col min-h-screen">
-
-      {/* Content */}
-      <main className="flex-grow w-full pb-24">
-        {children}
-      </main>
-    </div>
-  );
+  return <div className="flex w-full flex-col">{children}</div>;
 }

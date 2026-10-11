@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import ButtonLink from "./ButtonLink";
 
 const rise = (delayMs: number) => ({ animationDelay: `${delayMs}ms` });

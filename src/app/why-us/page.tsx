@@ -1,74 +1,76 @@
 import Image from "next/image";
-import Link from "next/link";
-import { CheckCircle, Shield, Award, Users, Target, Zap } from "lucide-react";
+import { CheckCircle, Shield, Award, Users, Zap } from "lucide-react";
+import SectionHeading from "@/components/ui/SectionHeading";
+import CtaBanner from "@/components/ui/CtaBanner";
+import { hoverShadow } from "@/components/ui/styles";
+
+const promises = [
+  {
+    icon: Award,
+    title: "Commitment to Excellence",
+    desc: "We are driven by a strong dedication to deliver superior results in every project. Our focus on precision and quality ensures lasting and reliable structures.",
+  },
+  {
+    icon: Zap,
+    title: "On-Time Project Delivery",
+    desc: "We value your time. Every project is planned and executed efficiently to ensure completion within committed timelines.",
+  },
+  {
+    icon: Shield,
+    title: "Quality Craftsmanship",
+    desc: "Our skilled team and experienced professionals ensure high standards of workmanship with careful attention to every detail.",
+  },
+  {
+    icon: Users,
+    title: "Client-Focused Approach",
+    desc: "Your vision is our priority. We work closely with clients to understand their needs and deliver customized construction solutions.",
+  },
+];
+
+const coreValues = [
+  { title: "Integrity", desc: "Upholding the highest ethical standards, ensuring transparency." },
+  { title: "Excellence", desc: "Delivering top-tier results in every project." },
+  { title: "Innovation", desc: "Embracing modern techniques and sustainable practices." },
+  { title: "Teamwork", desc: "Collaborating seamlessly to achieve shared success." },
+];
 
 export default function WhyUsPage() {
   return (
-    <main className="min-h-screen pt-20">
+    // A div, not <main>: the root layout already provides <main>. The header is sticky here, so no top padding.
+    <div className="w-full">
       {/* Hero Section */}
-      <section className="relative w-full h-[400px] flex items-center justify-center bg-brand-navy overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/home3.jpg"
-            alt="Why Choose R Colors Group"
-            fill
-            className="object-cover opacity-30"
-            priority
-          />
-        </div>
-        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto mt-10">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-black text-white mb-6 drop-shadow-lg">
+      <section className="relative flex min-h-[max(20rem,40vh)] w-full items-center justify-center overflow-hidden bg-brand-navy py-16 supports-[height:100svh]:min-h-[max(20rem,40svh)]">
+        <Image src="/images/home3.jpg" alt="Why Choose R Colors Group" fill priority sizes="100vw" className="z-0 object-cover opacity-30" />
+        <div className="site-container relative z-10 max-w-4xl text-center">
+          <h1 className="mb-4 text-balance font-heading text-[clamp(2.25rem,1.5rem+3.2vw,3.75rem)] font-black leading-tight text-white drop-shadow-lg sm:mb-6">
             Why Choose Us
           </h1>
-          <p className="text-xl md:text-2xl text-gray-200 font-light drop-shadow-md">
+          <p className="text-pretty text-[clamp(1.125rem,1rem+0.8vw,1.5rem)] font-light text-gray-200 drop-shadow-md">
             Building trust through excellence, commitment, and superior craftsmanship.
           </p>
         </div>
       </section>
 
       {/* Commitment to Excellence Section */}
-      <section className="w-full py-24 bg-gray-50 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16" data-aos="fade-up">
-            <h4 className="text-brand-sky font-bold uppercase tracking-wider mb-2">Our Promise</h4>
-            <h2 className="text-4xl font-heading font-black text-brand-navy">Commitment To Excellence</h2>
-            <div className="w-24 h-1 bg-brand-sky mx-auto mt-6 rounded-full"></div>
+      <section className="section-y w-full bg-gray-50">
+        <div className="site-container">
+          <div data-aos="fade-up">
+            <SectionHeading eyebrow="Our Promise" title="Commitment To Excellence" bar className="mb-10 md:mb-16" />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                icon: <Award className="text-brand-sky mb-4" size={40} />,
-                title: "Commitment to Excellence",
-                desc: "We are driven by a strong dedication to deliver superior results in every project. Our focus on precision and quality ensures lasting and reliable structures."
-              },
-              {
-                icon: <Zap className="text-brand-sky mb-4" size={40} />,
-                title: "On-Time Project Delivery",
-                desc: "We value your time. Every project is planned and executed efficiently to ensure completion within committed timelines."
-              },
-              {
-                icon: <Shield className="text-brand-sky mb-4" size={40} />,
-                title: "Quality Craftsmanship",
-                desc: "Our skilled team and experienced professionals ensure high standards of workmanship with careful attention to every detail."
-              },
-              {
-                icon: <Users className="text-brand-sky mb-4" size={40} />,
-                title: "Client-Focused Approach",
-                desc: "Your vision is our priority. We work closely with clients to understand their needs and deliver customized construction solutions."
-              }
-            ].map((item, idx) => (
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:gap-8 xl:grid-cols-4">
+            {promises.map((item, idx) => (
               <div
-                key={idx}
-                className="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border-t-4 border-brand-sky group"
+                key={item.title}
+                className={`group relative rounded-xl border-t-4 border-brand-sky bg-white p-6 shadow-lg after:rounded-xl after:shadow-2xl ${hoverShadow} transition-transform duration-300 hover:-translate-y-2 motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:p-8`}
                 data-aos="fade-up"
                 data-aos-delay={idx * 100}
               >
-                <div className="transform group-hover:scale-110 transition-transform duration-300">
-                  {item.icon}
+                <div className="transition-transform duration-300 group-hover:scale-110 motion-reduce:transition-none">
+                  <item.icon className="mb-4 text-brand-sky" size={40} aria-hidden="true" />
                 </div>
-                <h3 className="font-bold text-xl text-brand-navy mb-3">{item.title}</h3>
-                <p className="text-gray-600">{item.desc}</p>
+                <h3 className="mb-3 text-xl font-bold text-brand-navy">{item.title}</h3>
+                <p className="text-base text-gray-600">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -76,59 +78,43 @@ export default function WhyUsPage() {
       </section>
 
       {/* Core Values Section */}
-      <section className="w-full py-24 bg-brand-navy text-white px-4 relative overflow-hidden">
+      <section className="section-y relative w-full overflow-hidden bg-brand-navy text-white">
         {/* Decorative background element */}
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-brand-sky/10 transform skew-x-12 translate-x-1/4"></div>
+        <div aria-hidden="true" className="absolute right-0 top-0 h-full w-1/2 translate-x-1/4 skew-x-12 bg-brand-sky/10"></div>
 
-        <div className="max-w-7xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="site-container relative z-10 grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <div data-aos="fade-right">
-            <h4 className="text-brand-sky font-bold uppercase tracking-wider mb-2">Our Principles</h4>
-            <h2 className="text-4xl font-heading font-black mb-8">Our Core Values</h2>
-            <p className="text-gray-300 text-lg mb-8 leading-relaxed">
+            <p className="mb-2 font-bold uppercase tracking-wider text-brand-sky">Our Principles</p>
+            <h2 className="mb-6 font-heading text-3xl font-black md:mb-8 md:text-4xl">Our Core Values</h2>
+            <p className="mb-8 max-w-[65ch] text-base leading-relaxed text-gray-300 sm:text-lg">
               Our core values form the foundation of everything we do. They guide our decisions, shape our culture, and ensure we consistently deliver exceptional results to our clients.
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {[
-                { title: "Integrity", desc: "Upholding the highest ethical standards, ensuring transparency." },
-                { title: "Excellence", desc: "Delivering top-tier results in every project." },
-                { title: "Innovation", desc: "Embracing modern techniques and sustainable practices." },
-                { title: "Teamwork", desc: "Collaborating seamlessly to achieve shared success." }
-              ].map((value, idx) => (
-                <div key={idx} className="flex items-start space-x-3">
-                  <CheckCircle className="text-brand-sky shrink-0 mt-1" size={24} />
+            <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+              {coreValues.map((value) => (
+                <li key={value.title} className="flex items-start gap-3">
+                  <CheckCircle className="mt-1 shrink-0 text-brand-sky" size={24} aria-hidden="true" />
                   <div>
-                    <strong className="text-white text-lg block">{value.title}</strong>
-                    <p className="text-gray-400 text-sm mt-1">{value.desc}</p>
+                    <strong className="block text-lg text-white">{value.title}</strong>
+                    <p className="mt-1 text-base text-gray-400 sm:text-sm">{value.desc}</p>
                   </div>
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
 
-          <div className="relative h-[500px] w-full rounded-2xl overflow-hidden shadow-2xl" data-aos="fade-left">
-            <Image
-              src="/images/home2.jpg"
-              alt="Core Values"
-              fill
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-brand-navy/30"></div>
+          {/* 4:3 when stacked; on lg it fills the row height beside the text */}
+          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-2xl lg:aspect-auto lg:h-full lg:min-h-[500px]" data-aos="fade-left">
+            <Image src="/images/home2.jpg" alt="Core Values" fill sizes="(min-width: 1280px) 600px, (min-width: 1024px) 48vw, 100vw" className="object-cover" />
+            <div aria-hidden="true" className="absolute inset-0 bg-brand-navy/30"></div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="w-full py-24 bg-brand-sky text-white px-4 text-center">
-        <div className="max-w-3xl mx-auto space-y-8" data-aos="fade-up">
-          <h2 className="text-4xl md:text-5xl font-heading font-black">Ready To Start Your Project?</h2>
-          <p className="text-xl font-light opacity-90">
-            Partner with us to turn your vision into reality. We are here to answer your questions and provide the best solutions.
-          </p>
-          <Link href="/contact" className="inline-block bg-brand-navy text-white px-10 py-4 rounded font-bold text-lg hover:bg-white hover:text-brand-navy transition-all duration-300 shadow-xl transform hover:-translate-y-1">
-            Contact Us Today
-          </Link>
-        </div>
-      </section>
-    </main>
+      <CtaBanner
+        title="Ready To Start Your Project?"
+        text="Partner with us to turn your vision into reality. We are here to answer your questions and provide the best solutions."
+      />
+    </div>
   );
 }

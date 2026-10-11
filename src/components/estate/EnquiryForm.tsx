@@ -37,7 +37,7 @@ function validate(v: Values): Errors {
 }
 
 const inputClass = (invalid: boolean) =>
-  `w-full min-h-[48px] rounded-md border bg-white px-4 py-3 text-[15px] text-es-ink placeholder:text-es-muted/70 outline-none transition-colors focus:border-es-accent-strong focus:ring-2 focus:ring-es-accent-strong/25 ${
+  `w-full min-h-[48px] rounded-md border bg-white px-4 py-3 text-base text-es-ink placeholder:text-es-muted/70 outline-none transition-colors focus:border-es-accent-strong focus:ring-2 focus:ring-es-accent-strong/25 ${
     invalid ? "border-red-600" : "border-slate-300 hover:border-slate-400"
   }`;
 
