@@ -147,7 +147,7 @@ export default function Navbar() {
       pathname === href ? "text-brand-sky font-semibold" : ""
     }`;
 
-  const navLinkClass = `relative flex min-h-[44px] items-center rounded-sm transition-colors ${hoverClass} ${focusRingClass}`;
+  const navLinkClass = `relative flex min-h-[44px] min-w-11 items-center justify-center rounded-sm transition-colors ${hoverClass} ${focusRingClass}`;
 
   const activeBar = (show: boolean) =>
     show ? <span aria-hidden="true" className={`absolute -bottom-0.5 left-0 right-0 h-0.5 ${indicatorClass}`} /> : null;

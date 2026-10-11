@@ -1,8 +1,9 @@
-"use client";
-
-import Image from "next/image";
 import { Quote, MapPin, Building2 } from "lucide-react";
 import PageHeader from "@/components/PageHeader";
+import ClientLogoMarquee from "@/components/ui/ClientLogoMarquee";
+import Marquee from "@/components/ui/Marquee";
+import SectionHeading from "@/components/ui/SectionHeading";
+import { aboutNav } from "@/config/aboutNav";
 
 export default function ClientsPage() {
   const clientImages = Array.from({ length: 22 }, (_, i) => i + 1);
@@ -110,95 +111,54 @@ export default function ClientsPage() {
     }
   ];
 
+  const testimonialCards = testimonials.map((testimonial) => (
+    <article
+      key={testimonial.id}
+      className="relative flex w-[min(85vw,26rem)] flex-col rounded-2xl border border-gray-200 bg-white p-6 shadow-sm sm:p-8"
+    >
+      <div className="mb-6 flex items-start justify-between gap-3">
+        <span className="inline-flex min-w-0 items-center rounded-md border border-brand-sky/20 bg-brand-sky/10 px-3 py-1.5 text-xs font-semibold text-brand-sky">
+          <MapPin className="mr-1.5 h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+          <span className="truncate">{testimonial.location}</span>
+        </span>
+        <Quote className="-mr-2 -mt-2 h-12 w-12 shrink-0 text-brand-sky/30" aria-hidden="true" />
+      </div>
+
+      <h3 className="mb-4 text-xl font-bold leading-snug text-brand-navy sm:text-[22px]">{testimonial.heading}</h3>
+
+      <p className="relative z-10 mb-8 flex-grow text-base italic leading-relaxed text-gray-600 sm:text-[15px]">&ldquo;{testimonial.content}&rdquo;</p>
+
+      <div className="mt-auto border-t border-gray-100 pt-5">
+        <p className="font-bold text-brand-navy">{testimonial.name}</p>
+        <p className="mt-0.5 text-sm font-medium text-brand-sky">{testimonial.role}</p>
+        <p className="mt-0.5 text-sm text-gray-500">{testimonial.company}</p>
+        <p className="mt-2 flex items-center text-xs text-gray-500">
+          <Building2 className="mr-1.5 h-3.5 w-3.5 shrink-0 text-brand-sky" aria-hidden="true" />
+          {testimonial.project}
+        </p>
+      </div>
+    </article>
+  ));
+
   return (
     <div className="w-full">
-      <PageHeader
-        titlePart1="OUR"
-        titlePart2="CLIENTS"
-        subNavItems={[
-          { name: 'About Company', href: '/about' },
-          { name: 'Mission & Vision', href: '/about/mission' },
-          { name: 'Clients', href: '/about/clients' },
-        ]}
-      />
-      <section data-aos="fade-up" data-aos-duration="1000" className="w-full py-20 px-4 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              We are proud to collaborate with respected clients and development partners. Their trust reflects our commitment to quality, transparency, and long-term relationships.
-            </p>
-          </div>
+      <PageHeader titlePart1="OUR" titlePart2="CLIENTS" subNavItems={aboutNav} subNavLabel="About" />
+      <section data-aos="fade-up" data-aos-duration="1000" className="section-y w-full bg-white">
+        <div className="site-container">
+          <p className="mx-auto mb-8 max-w-2xl text-center text-base text-gray-600 md:mb-12 md:text-lg">
+            We are proud to collaborate with respected clients and development partners. Their trust reflects our commitment to quality, transparency, and long-term relationships.
+          </p>
 
-          {/* Marquee rows */}
-          <div className="relative w-full overflow-hidden max-w-full group py-4">
-            {/* Row 1 — slides left */}
-            <div className="flex w-max animate-marquee-left group-hover:[animation-play-state:paused] mb-6 gap-6 pl-6">
-              {[...clientImages, ...clientImages, ...clientImages].map((imgNum, idx) => (
-                <div key={`r1-${imgNum}-${idx}`} className="bg-white border border-gray-200 p-6 flex flex-col items-center justify-center h-36 w-60 hover:shadow-lg transition-all duration-300 flex-shrink-0">
-                  <div className="relative w-full h-20 mb-2">
-                    <Image src={`/images/${imgNum}.jpg`} alt={`Client ${imgNum}`} fill sizes="240px" className="object-contain transition-all duration-300" />
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Row 2 — slides right */}
-            <div className="flex w-max animate-marquee-right group-hover:[animation-play-state:paused] gap-6 pl-6">
-              {[...clientImages, ...clientImages, ...clientImages].map((imgNum, idx) => (
-                <div key={`r2-${imgNum}-${idx}`} className="bg-white border border-gray-200 p-6 flex flex-col items-center justify-center h-36 w-60 hover:shadow-lg transition-all duration-300 flex-shrink-0">
-                  <div className="relative w-full h-20 mb-2">
-                    <Image src={`/images/${imgNum}.jpg`} alt={`Client ${imgNum}`} fill sizes="240px" className="object-contain transition-all duration-300" />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
+          <ClientLogoMarquee rows={[clientImages, clientImages]} />
 
           {/* Testimonials Section */}
-          <div className="mt-24" data-aos="fade-up" data-aos-duration="1000">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-heading font-bold text-brand-navy mb-4">Client Success Stories</h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
+          <div className="mt-16 md:mt-24" data-aos="fade-up" data-aos-duration="1000">
+            <SectionHeading title="Client Success Stories" className="mb-8 md:mb-12">
+              <p className="mx-auto mt-4 max-w-2xl text-base text-gray-600 md:text-lg">
                 Don&apos;t just take our word for it. Here&apos;s what our esteemed partners have to say about our execution and commitment to quality.
               </p>
-            </div>
-
-            {/* Sliding Testimonials container */}
-            <div className="relative w-full overflow-x-auto max-w-full group py-4" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', WebkitOverflowScrolling: 'touch' }}>
-              <style dangerouslySetInnerHTML={{ __html: `.testimonial-scroll::-webkit-scrollbar { display: none; }` }} />
-              <div className="flex w-max animate-marquee-left group-hover:[animation-play-state:paused] gap-6 pl-6">
-              {[...testimonials, ...testimonials, ...testimonials].map((testimonial, idx) => (
-                <div key={`test-${testimonial.id}-${idx}`} className="w-[320px] md:w-[420px] flex-shrink-0 bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 relative flex flex-col group">
-                  <div className="flex justify-between items-start mb-6">
-                    <span className="inline-flex items-center px-3 py-1.5 rounded-md text-xs font-semibold bg-brand-sky/10 text-brand-sky border border-brand-sky/20">
-                      <MapPin className="w-3.5 h-3.5 mr-1.5" />
-                      {testimonial.location}
-                    </span>
-                    <Quote className="text-brand-sky/30 group-hover:text-brand-sky/50 transition-colors w-12 h-12 -mt-2 -mr-2" />
-                  </div>
-                  
-                  <h3 className="text-[22px] font-bold text-brand-navy mb-4 leading-snug">
-                    {testimonial.heading}
-                  </h3>
-                  
-                  <p className="text-gray-600 italic mb-8 relative z-10 flex-grow text-[15px] leading-relaxed">
-                    &ldquo;{testimonial.content}&rdquo;
-                  </p>
-                  
-                  <div className="mt-auto border-t border-gray-100 pt-5">
-                    <h4 className="font-bold text-brand-navy">{testimonial.name}</h4>
-                    <p className="text-[13px] text-brand-sky font-medium mt-0.5">{testimonial.role}</p>
-                    <p className="text-[12px] text-gray-500 mt-0.5">{testimonial.company}</p>
-                    <p className="text-[11px] text-gray-400 mt-2 flex items-center">
-                      <Building2 className="w-3.5 h-3.5 mr-1.5 text-brand-sky" />
-                      {testimonial.project}
-                    </p>
-                  </div>
-                </div>
-              ))}
-              </div>
-            </div>
+            </SectionHeading>
+            <Marquee name="testimonials" rows={[{ items: testimonialCards }]} secondsPerItem={12} />
           </div>
         </div>
       </section>

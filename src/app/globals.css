@@ -39,6 +39,16 @@ body {
   }
 }
 
+/* Default keyboard focus ring for any element without its own focus-visible style.
+   currentColor keeps it visible on both the white sections and the navy/sky bands.
+   Scoped .cx/.es rules and focus-visible: utilities override it. */
+@layer base {
+  :focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+  }
+}
+
 /* Responsive safety net. Preflight already caps img/video at max-width: 100%.
    No overflow-x: hidden here on purpose: overflow is fixed at its source. */
 html {

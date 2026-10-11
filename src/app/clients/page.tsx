@@ -1,66 +1,82 @@
+import Image from "next/image";
+import Link from "next/link";
 import clientsData from "@/data/clients.json";
 
 export default function ClientsPage() {
   return (
-    <main className="flex min-h-screen flex-col items-center pb-24">
+    // A div, not <main>: the root layout already provides the page's <main> landmark
+    <div className="flex w-full flex-col">
       {/* Header Banner */}
-      <section data-aos="fade-up" data-aos-duration="1000" className="relative w-full h-[40vh] min-h-[300px] flex flex-col justify-center items-center text-center px-4 overflow-hidden bg-brand-navy">
-        <div className="absolute inset-0 bg-[url('/images/R%20Colors%20Company%20Profile%20Final%20(2)_page-0015.jpg')] bg-cover bg-center mix-blend-overlay opacity-30"></div>
-        <div className="relative z-20 max-w-4xl mx-auto space-y-4">
-          <h1 className="text-4xl md:text-6xl font-heading font-black text-white">
+      <section
+        data-aos="fade-up"
+        data-aos-duration="1000"
+        className="relative flex min-h-[max(16rem,40vh)] w-full flex-col items-center justify-center overflow-hidden bg-brand-navy py-12 text-center supports-[height:100svh]:min-h-[max(16rem,40svh)]"
+      >
+        <Image
+          src="/images/R Colors Company Profile Final (2)_page-0015.jpg"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover opacity-30 mix-blend-overlay"
+        />
+        <div className="site-container relative z-20 max-w-4xl space-y-4">
+          <h1 className="text-balance break-words font-heading text-[clamp(2rem,1.2rem+3.6vw,3.75rem)] font-black leading-tight text-white">
             OUR TRUSTED <span className="text-brand-sky">CLIENTS</span>
           </h1>
-          <div className="w-24 h-1 bg-brand-sky mx-auto mt-6"></div>
+          <div aria-hidden="true" className="mx-auto mt-6 h-1 w-24 bg-brand-sky"></div>
         </div>
       </section>
 
       {/* Intro Copy */}
-      <section data-aos="fade-up" data-aos-duration="1000" className="w-full py-16 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <p className="text-gray-700 text-lg md:text-xl leading-relaxed">
+      <section data-aos="fade-up" data-aos-duration="1000" className="section-y w-full">
+        <div className="site-container max-w-4xl text-center">
+          <p className="text-pretty text-lg leading-relaxed text-gray-700 md:text-xl">
             We are proud to collaborate with respected clients and development partners across construction and real estate sectors. Their trust and continued association reflect our commitment to quality, transparency, and long-term professional relationships.
           </p>
         </div>
       </section>
 
       {/* Clients Grid */}
-      <section data-aos="fade-up" data-aos-duration="1000" className="w-full pb-20 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+      <section data-aos="fade-up" data-aos-duration="1000" className="w-full pb-12 sm:pb-16 lg:pb-24">
+        <div className="site-container">
+          <ul className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
             {clientsData.map((client) => (
-              <div 
-                key={client.id} 
-                className="bg-white border border-gray-200 rounded-xl p-6 flex items-center justify-center h-32 md:h-40 shadow-sm hover:shadow-md transition-shadow group"
+              <li
+                key={client.id}
+                className="group flex h-28 items-center justify-center rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:h-32 md:h-36 lg:p-6"
               >
-                {/* 
+                {/*
                   When real logos are available, uncomment this and use it:
                   {client.logo ? (
-                    <Image src={client.logo} alt={client.name} width={120} height={80} className="object-contain grayscale group-hover:grayscale-0 transition-all opacity-70 group-hover:opacity-100" />
+                    <Image src={client.logo} alt={client.name} width={120} height={80} sizes="160px" className="max-h-full w-auto object-contain" />
                   ) : (
                     <span className="font-heading font-bold text-center text-gray-400 group-hover:text-brand-navy transition-colors">{client.name}</span>
                   )}
                 */}
-                <span className="font-heading font-bold text-center text-gray-500 group-hover:text-brand-navy transition-colors">
+                <span className="text-balance break-words text-center font-heading text-base font-bold text-gray-500 transition-colors group-hover:text-brand-navy">
                   {client.name}
                 </span>
-              </div>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section data-aos="fade-up" data-aos-duration="1000" className="w-full py-20 px-4 bg-gray-50 border-t border-gray-200">
-        <div className="max-w-3xl mx-auto text-center space-y-6">
-          <h2 className="text-3xl font-heading font-black text-brand-navy">Become a Partner</h2>
-          <p className="text-gray-600 text-lg">
+      <section data-aos="fade-up" data-aos-duration="1000" className="section-y w-full border-t border-gray-200 bg-gray-50">
+        <div className="site-container max-w-3xl space-y-6 text-center">
+          <h2 className="font-heading text-3xl font-black text-brand-navy">Become a Partner</h2>
+          <p className="text-lg text-gray-600">
             Join our growing list of trusted clients and partners. Let&apos;s build something exceptional together.
           </p>
-          <a href="/contact" className="inline-block bg-brand-sky text-white px-8 py-4 rounded font-bold hover:bg-brand-navy transition-colors">
+          <Link
+            href="/contact"
+            className="flex min-h-12 w-full items-center justify-center rounded bg-brand-sky px-8 py-4 font-bold text-white transition-colors hover:bg-brand-navy sm:inline-flex sm:w-auto"
+          >
             Contact Us Today
-          </a>
+          </Link>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

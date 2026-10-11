@@ -253,7 +253,7 @@ export default function EstatePortal({ bundle, cities, initialState, basePath, h
                                 className="peer sr-only"
                               />
                               <span
-                                className={`flex min-h-[40px] cursor-pointer items-center rounded px-4 text-sm font-semibold transition-colors peer-focus-visible:ring-2 peer-focus-visible:ring-es-accent-strong ${
+                                className={`flex min-h-11 cursor-pointer items-center rounded px-4 text-sm font-semibold transition-colors peer-focus-visible:ring-2 peer-focus-visible:ring-es-accent-strong ${
                                   on ? "bg-es-ink text-white" : "text-es-body hover:bg-es-surface"
                                 }`}
                               >
@@ -272,13 +272,14 @@ export default function EstatePortal({ bundle, cities, initialState, basePath, h
                   <button
                     type="button"
                     onClick={() => setFiltersOpen(true)}
-                    className="flex min-h-[44px] items-center gap-2 rounded-md border border-es-line bg-white px-4 text-sm font-semibold text-es-ink hover:border-es-ink lg:hidden"
+                    className="flex min-h-[44px] shrink-0 items-center gap-2 rounded-md border border-es-line bg-white px-4 text-sm font-semibold text-es-ink hover:border-es-ink lg:hidden"
                   >
                     <SlidersHorizontal size={16} aria-hidden="true" />
                     Filters
                     {activeCount > 0 && <span className="rounded-full bg-es-accent-strong px-2 py-0.5 text-xs text-white">{activeCount}</span>}
                   </button>
-                  <div className="ml-auto flex items-center gap-2">
+                  {/* min-w-0 lets the 16px sort select shrink beside the Filters button on 320px screens */}
+                  <div className="ml-auto flex min-w-0 items-center gap-2">
                     <label htmlFor="es-sort" className="hidden text-sm text-es-muted sm:block">
                       Sort by
                     </label>
@@ -287,7 +288,7 @@ export default function EstatePortal({ bundle, cities, initialState, basePath, h
                       value={state.sort}
                       onChange={(e) => update((s) => ({ ...s, sort: e.target.value }))}
                       aria-label="Sort results"
-                      className="min-h-[44px] rounded-md border border-es-line bg-white px-3 text-sm font-semibold text-es-ink outline-none focus:border-es-accent-strong"
+                      className="min-h-[44px] min-w-0 max-w-full rounded-md border border-es-line bg-white px-3 text-base font-semibold text-es-ink outline-none focus:border-es-accent-strong"
                     >
                       {sorts.map((s) => (
                         <option key={s.value} value={s.value}>
@@ -305,7 +306,7 @@ export default function EstatePortal({ bundle, cities, initialState, basePath, h
                         <button
                           type="button"
                           onClick={() => update(chip.remove)}
-                          className="flex min-h-[36px] items-center gap-1.5 rounded-full border border-es-accent-strong/40 bg-white pl-3.5 pr-2.5 text-sm text-es-ink hover:border-es-accent-strong"
+                          className="flex min-h-11 items-center gap-1.5 rounded-full border border-es-accent-strong/40 bg-white pl-3.5 pr-2.5 text-sm text-es-ink hover:border-es-accent-strong"
                           aria-label={`Remove filter: ${chip.label}`}
                         >
                           {chip.label}
@@ -314,7 +315,7 @@ export default function EstatePortal({ bundle, cities, initialState, basePath, h
                       </li>
                     ))}
                     <li>
-                      <button type="button" onClick={() => update((s) => clearFilters(s))} className="min-h-[36px] px-2 text-sm font-semibold text-es-accent-strong hover:underline">
+                      <button type="button" onClick={() => update((s) => clearFilters(s))} className="min-h-11 px-2 text-sm font-semibold text-es-accent-strong hover:underline">
                         Clear all
                       </button>
                     </li>

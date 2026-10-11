@@ -1,7 +1,7 @@
-"use client";
-
 import Image from "next/image";
 import PageHeader from "@/components/PageHeader";
+import SectionHeading from "@/components/ui/SectionHeading";
+import { aboutNav } from "@/config/aboutNav";
 
 export default function AboutCompanyPage() {
   return (
@@ -9,16 +9,13 @@ export default function AboutCompanyPage() {
       <PageHeader
         titlePart1="ABOUT"
         titlePart2="US"
-        subNavItems={[
-          { name: 'About Company', href: '/about' },
-          { name: 'Mission & Vision', href: '/about/mission' },
-          { name: 'Clients', href: '/about/clients' },
-        ]}
+        subNavItems={aboutNav}
+        subNavLabel="About"
       />
 
-      <section data-aos="fade-up" data-aos-duration="1000" className="w-full py-16 px-6 md:px-12 lg:px-16">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-20 items-start">
-          <div className="space-y-6 text-gray-700 text-lg leading-relaxed">
+      <section data-aos="fade-up" data-aos-duration="1000" className="section-y w-full">
+        <div className="site-container grid grid-cols-1 items-start gap-10 lg:grid-cols-2 lg:gap-12 xl:gap-20">
+          <div className="max-w-[65ch] space-y-6 text-base leading-relaxed text-gray-700 sm:text-lg">
 
             <p>R Colors Group of Companies is a growing organization engaged in construction,
               contracting, real estate development, and property solutions. With a strong commitment
@@ -40,28 +37,42 @@ export default function AboutCompanyPage() {
               continuous improvement and dedication, we strive to deliver projects that reflect
               reliability and lasting quality.
             </p>
-            <blockquote className="border-l-4 border-brand-sky pl-6 py-4 my-10 bg-gray-50 rounded-r-lg shadow-sm">
-              <p className="text-2xl italic font-heading text-brand-navy font-semibold">
+            <blockquote className="my-8 rounded-r-lg border-l-4 border-brand-sky bg-gray-50 py-4 pl-4 pr-4 shadow-sm sm:my-10 sm:pl-6">
+              <p className="text-pretty font-heading text-xl font-semibold italic text-brand-navy sm:text-2xl">
                 &quot;At R Colors Group of Companies, we believe in building more than structures. We build trust, long-term relationships, and spaces that reflect quality, strength, and modern development.&quot;
               </p>
             </blockquote>
           </div>
-          <div className="relative w-full h-[500px] lg:h-[850px] rounded-lg overflow-hidden shadow-2xl">
-            <Image src="/images/aboutus.jpg" alt="About R Colors Group" fill className="object-cover object-center" />
+          {/* 4:3 when stacked; on lg it stretches to the height of the text column */}
+          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg shadow-2xl lg:aspect-auto lg:h-full lg:min-h-[32rem]">
+            <Image
+              src="/images/aboutus.jpg"
+              alt="About R Colors Group"
+              fill
+              sizes="(min-width: 1280px) 600px, (min-width: 1024px) 48vw, 100vw"
+              className="object-cover object-center"
+            />
           </div>
         </div>
       </section>
 
       {/* Director's Message */}
-      <section data-aos="fade-up" data-aos-duration="1000" className="w-full py-20 bg-gray-50 px-6 md:px-12 lg:px-16">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-16 lg:gap-24">
-          <div className="w-64 h-64 md:w-80 md:h-80 lg:w-[400px] lg:h-[400px] rounded-full overflow-hidden border-4 border-brand-sky shrink-0 shadow-xl">
-            <Image src="/images/owner.jpg" alt="Raj Mani Singh - Founder & Director" width={500} height={500} className="w-full h-full object-cover" />
+      <section data-aos="fade-up" data-aos-duration="1000" className="section-y w-full bg-gray-50">
+        <div className="site-container flex flex-col items-center gap-10 md:flex-row md:gap-12 lg:gap-24">
+          <div className="aspect-square w-[min(16rem,70vw)] shrink-0 overflow-hidden rounded-full border-4 border-brand-sky shadow-xl md:w-72 lg:w-[400px]">
+            <Image
+              src="/images/owner.jpg"
+              alt="Raj Mani Singh - Founder & Director"
+              width={500}
+              height={500}
+              sizes="(min-width: 1024px) 400px, (min-width: 768px) 288px, 70vw"
+              className="h-full w-full object-cover"
+            />
           </div>
-          <div className="space-y-4 md:pl-8 lg:pl-12">
-            <h4 className="text-brand-sky font-bold uppercase tracking-wider mb-2">Director&apos;s Message</h4>
-            <h2 className="text-3xl font-heading font-bold text-brand-navy">Raj Mani Singh</h2>
-            <div className="space-y-6 text-gray-700 text-lg leading-relaxed">
+          <div className="max-w-[65ch] space-y-4 md:pl-4 lg:pl-12">
+            <p className="mb-2 font-bold uppercase tracking-wider text-brand-sky">Director&apos;s Message</p>
+            <h2 className="font-heading text-3xl font-bold text-brand-navy">Raj Mani Singh</h2>
+            <div className="space-y-6 text-base leading-relaxed text-gray-700 sm:text-lg">
               <p>
                 Progress for me has never been just a dream; it has always been a vision that turns into reality through dedication and continuous effort. With this belief, I founded R Colors Construction &amp; Developers in 2011, with the aim of contributing to the construction industry through quality work, integrity, and strong professional values.
               </p>
@@ -77,12 +88,9 @@ export default function AboutCompanyPage() {
       </section>
 
       {/* Timeline */}
-      <section data-aos="fade-up" data-aos-duration="1000" className="w-full py-20 px-4 bg-white">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-heading font-black text-brand-navy mb-4">OUR JOURNEY</h2>
-            <div className="w-24 h-1 bg-brand-sky mx-auto"></div>
-          </div>
+      <section data-aos="fade-up" data-aos-duration="1000" className="section-y w-full bg-white">
+        <div className="site-container max-w-4xl">
+          <SectionHeading title="OUR JOURNEY" bar className="mb-12 md:mb-16" />
           <div className="relative border-l-4 md:border-l-0 border-brand-sky ml-6 md:ml-0 md:pl-0">
             {[
               { year: "2011", title: "R Colors Construction & Developers Founded", desc: "Started our journey with a commitment to quality in the construction industry." },
@@ -91,15 +99,15 @@ export default function AboutCompanyPage() {
               { year: "Today", title: "R Colors Group of Companies", desc: "Operating as a unified group with 3 specialized businesses delivering complete infrastructure solutions." }
             ].map((event, idx) => (
               <div key={idx} className={`mb-10 md:mb-16 relative md:w-1/2 ${idx % 2 === 0 ? "md:mr-auto md:pr-12 md:text-right" : "md:ml-auto md:pl-12"} pl-8 md:pl-0`}>
-                <div className={`absolute top-0 w-6 h-6 rounded-full bg-brand-sky border-4 border-white shadow -left-[15px] md:-left-[15px] ${idx % 2 === 0 ? "md:-right-[15px] md:left-auto" : "md:-left-[15px]"}`}></div>
-                <div className="bg-white p-6 rounded-lg shadow-md border-t-4 border-brand-navy">
+                <div aria-hidden="true" className={`absolute top-0 w-6 h-6 rounded-full bg-brand-sky border-4 border-white shadow -left-[15px] md:-left-[15px] ${idx % 2 === 0 ? "md:-right-[15px] md:left-auto" : "md:-left-[15px]"}`}></div>
+                <div className="rounded-lg border-t-4 border-brand-navy bg-white p-5 shadow-md sm:p-6">
                   <span className="text-brand-sky font-bold uppercase tracking-wider text-sm">{event.year}</span>
                   <h3 className="font-heading font-bold text-xl text-brand-navy mt-1 mb-2">{event.title}</h3>
-                  <p className="text-gray-600 text-sm">{event.desc}</p>
+                  <p className="text-base text-gray-600 md:text-sm">{event.desc}</p>
                 </div>
               </div>
             ))}
-            <div className="hidden md:block absolute top-0 bottom-0 left-1/2 -ml-0.5 w-1 bg-brand-sky"></div>
+            <div aria-hidden="true" className="hidden md:block absolute top-0 bottom-0 left-1/2 -ml-0.5 w-1 bg-brand-sky"></div>
           </div>
         </div>
       </section>
