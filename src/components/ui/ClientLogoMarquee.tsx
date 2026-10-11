@@ -1,8 +1,28 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Marquee from "./Marquee";
 
 /** Two rows of client logos (public/images/{n}.jpg), one sliding each way */
-export default function ClientLogoMarquee({ rows }: { rows: [number[], number[]] }) {
+const shuffle = (list: number[]) => {
+  const out = [...list];
+  for (let i = out.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [out[i], out[j]] = [out[j], out[i]];
+  }
+  return out;
+};
+
+export default function ClientLogoMarquee({ rows: initialRows }: { rows: [number[], number[]] }) {
+  const [rows, setRows] = useState(initialRows);
+
+  // Shuffle after mount (not during render) so server and client markup match and every page load gets a new order
+  useEffect(() => {
+    setRows([shuffle(initialRows[0]), shuffle(initialRows[1])]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const tile = (imgNum: number) => (
     <div
       key={imgNum}

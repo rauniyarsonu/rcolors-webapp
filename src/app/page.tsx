@@ -11,7 +11,6 @@ import ClientLogoMarquee from "@/components/ui/ClientLogoMarquee";
 import CtaBanner from "@/components/ui/CtaBanner";
 import Reveal from "@/components/construction/Reveal";
 import StatsStrip from "@/components/home/StatsStrip";
-import Testimonials from "@/components/home/Testimonials";
 
 const businesses = [
   {
@@ -240,13 +239,16 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials (placeholder copy, see Testimonials.tsx) */}
-      <Testimonials />
 
       {/* 8.12 Final CTA */}
       <CtaBanner
-        title="Let's Build Something Great Together"
-        text="Thank you for choosing R Colors Group of Companies. Your vision inspires our work, and your satisfaction remains our highest priority."
+        title={
+          <>
+            Let&apos;s Build Something{" "}
+            <span className="text-brand-sky">Great Together</span>
+          </>
+        }
+        text="Ready to bring your construction, finishing, or real estate vision to life? Speak with our team for transparent estimates and reliable execution."
         showContact
       />
     </div>
