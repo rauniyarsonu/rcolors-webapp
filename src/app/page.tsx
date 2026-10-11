@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, CheckCircle, ChevronRight } from "lucide-react";
 import projects from "@/data/projects.json";
-import clientsData from "@/data/clients.json";
 import HeroSlider from "@/components/HeroSlider";
 
 export default function Home() {

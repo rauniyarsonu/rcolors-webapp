@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Montserrat } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -24,6 +24,13 @@ export const metadata: Metadata = {
   description: "A trusted name in construction, contracting, and infrastructure development — delivering residential, commercial, and industrial projects with quality, precision, and commitment.",
 };
 
+// Explicit viewport; viewport-fit=cover lets env(safe-area-inset-*) work on notched phones
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -32,7 +39,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${montserrat.variable} font-sans antialiased bg-white text-[#1E1E1E] flex flex-col min-h-screen`}
+        className={`${inter.variable} ${montserrat.variable} font-sans antialiased bg-white text-[#1E1E1E] flex flex-col min-h-screen supports-[height:100dvh]:min-h-dvh`}
       >
         <a
           href="#main-content"

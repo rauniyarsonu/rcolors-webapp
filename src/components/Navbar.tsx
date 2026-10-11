@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, useId } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -27,6 +27,15 @@ const overlayRoutes = ["/", "/businesses/construction", "/businesses/r-colors"];
 const cxRoutes = ["/businesses/construction", "/businesses/r-colors"];
 // Prefixes whose every page opens with a full-bleed hero (estate city and locality pages)
 const overlayPrefixes = ["/businesses/estate"];
+
+// Matches Tailwind's lg breakpoint, where the desktop nav takes over from the drawer
+const DESKTOP_QUERY = "(min-width: 1024px)";
+
+// Elements inside the drawer that can currently take focus (skips collapsed accordion links)
+const getFocusable = (root: HTMLElement) =>
+  Array.from(root.querySelectorAll<HTMLElement>("a[href], button:not([disabled])")).filter(
+    (el) => el.getClientRects().length > 0 && getComputedStyle(el).visibility !== "hidden",
+  );
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -61,25 +70,35 @@ export default function Navbar() {
     if (returnFocus) toggleRef.current?.focus();
   }, []);
 
-  // Drawer: lock scroll, move focus in, trap Tab, close on Escape
+  // Drawer: lock scroll, move focus in, trap Tab, close on Escape or when the viewport reaches desktop width
   useEffect(() => {
     if (!isMobileMenuOpen) return;
     const drawer = drawerRef.current;
     if (!drawer) return;
-    const prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    const focusables = () =>
-      Array.from(drawer.querySelectorAll<HTMLElement>("a[href], button:not([disabled])"));
-    focusables()[0]?.focus();
+
+    const html = document.documentElement;
+    const body = document.body;
+    const prev = { html: html.style.overflow, body: body.style.overflow, pad: body.style.paddingRight };
+    // Keep the page from shifting when a desktop-style scrollbar disappears
+    const scrollbar = window.innerWidth - html.clientWidth;
+    html.style.overflow = "hidden";
+    body.style.overflow = "hidden";
+    if (scrollbar > 0) body.style.paddingRight = `${scrollbar}px`;
+
+    getFocusable(drawer)[0]?.focus();
 
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         closeDrawer();
       } else if (e.key === "Tab") {
-        const items = focusables();
+        const items = getFocusable(drawer);
+        if (items.length === 0) return;
         const first = items[0];
         const last = items[items.length - 1];
-        if (e.shiftKey && document.activeElement === first) {
+        if (!drawer.contains(document.activeElement)) {
+          e.preventDefault();
+          first.focus();
+        } else if (e.shiftKey && document.activeElement === first) {
           e.preventDefault();
           last.focus();
         } else if (!e.shiftKey && document.activeElement === last) {
@@ -88,10 +107,17 @@ export default function Navbar() {
         }
       }
     };
+    const desktop = window.matchMedia(DESKTOP_QUERY);
+    const onDesktop = (e: MediaQueryListEvent) => e.matches && closeDrawer(false);
+
     document.addEventListener("keydown", onKeyDown);
+    desktop.addEventListener("change", onDesktop);
     return () => {
-      document.body.style.overflow = prevOverflow;
+      html.style.overflow = prev.html;
+      body.style.overflow = prev.body;
+      body.style.paddingRight = prev.pad;
       document.removeEventListener("keydown", onKeyDown);
+      desktop.removeEventListener("change", onDesktop);
     };
   }, [isMobileMenuOpen, closeDrawer]);
 
@@ -113,43 +139,50 @@ export default function Navbar() {
   const ctaClass = isTransparent
     ? "bg-brand-sky text-white hover:bg-white hover:text-brand-navy shadow-sm"
     : "bg-brand-sky text-white hover:bg-brand-navy shadow-sm";
+  const focusRingClass = isTransparent
+    ? "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+    : "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-navy";
   const dropdownLinkClass = (href: string) =>
-    `flex min-h-[44px] items-center px-6 text-[15px] font-medium transition-colors hover:text-brand-sky ${
+    `flex min-h-[44px] items-center px-6 text-[15px] font-medium transition-colors hover:text-brand-sky focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-brand-navy ${
       pathname === href ? "text-brand-sky font-semibold" : ""
     }`;
 
-  const navLinkClass = `relative flex min-h-[44px] items-center transition-colors ${hoverClass}`;
+  const navLinkClass = `relative flex min-h-[44px] items-center rounded-sm transition-colors ${hoverClass} ${focusRingClass}`;
 
   const activeBar = (show: boolean) =>
     show ? <span aria-hidden="true" className={`absolute -bottom-0.5 left-0 right-0 h-0.5 ${indicatorClass}`} /> : null;
 
   return (
     <header
-      className={`w-full z-50 transition-colors duration-300 ${headerPosClass} ${headerBgClass} ${
+      className={`w-full z-50 pt-[env(safe-area-inset-top)] transition-colors duration-300 ${headerPosClass} ${headerBgClass} ${
         isCx ? "cx" : ""
       } ${isCx && isTransparent ? "cx-on-dark" : ""}`}
     >
-      <div className="mx-auto flex h-16 w-full max-w-[1440px] items-center justify-between px-4 md:px-8 lg:h-20 xl:px-12">
+      <div className="site-container flex h-16 items-center justify-between gap-3 lg:h-20">
         {/* Logo */}
-        <Link href="/" className="flex shrink-0 items-center gap-2 sm:gap-4" aria-label="R Colors Group home">
+        <Link
+          href="/"
+          className={`flex min-w-0 shrink-0 items-center gap-2 rounded-sm sm:gap-3 xl:gap-4 ${focusRingClass}`}
+          aria-label="R Colors Group home"
+        >
           <span
             className={`relative block h-[46px] w-[64px] shrink-0 overflow-hidden rounded-md sm:h-[56px] sm:w-[78px] ${
               isCx ? "bg-white" : ""
             }`}
           >
-            <Image src="/images/icon.png" alt="" fill sizes="78px" className="object-cover" />
+            <Image src="/images/icon.png" alt="" fill priority sizes="(min-width: 640px) 78px, 64px" className="object-cover" />
           </span>
-          <span className="whitespace-nowrap font-heading text-[1.35rem] font-bold tracking-tight sm:text-3xl lg:text-2xl xl:text-3xl 2xl:text-4xl">
+          <span className="whitespace-nowrap font-heading text-[clamp(1.2rem,0.9rem+1.6vw,1.875rem)] font-bold tracking-tight lg:text-2xl xl:text-3xl 2xl:text-4xl">
             <span className={logoRedClass}>R </span>
             <span className={logoGreenClass}>Colors Group</span>
           </span>
         </Link>
 
-        <div className="flex items-center">
+        <div className="flex items-center gap-5 xl:gap-8">
           {/* Desktop Nav */}
           <nav
             aria-label="Main"
-            className={`mr-6 hidden items-center gap-6 whitespace-nowrap text-[15px] font-semibold lg:flex xl:mr-8 xl:gap-8 xl:text-base ${textColorClass}`}
+            className={`hidden items-center gap-5 whitespace-nowrap text-[15px] font-semibold lg:flex xl:gap-8 xl:text-base ${textColorClass}`}
           >
             <Link href="/" className={navLinkClass} aria-current={pathname === "/" ? "page" : undefined}>
               Home
@@ -180,6 +213,7 @@ export default function Navbar() {
               pathname={pathname}
               activeBar={activeBar(isActive("/businesses"))}
               panelClass={isCx ? "border border-cx-ink/10 text-cx-ink" : "shadow-2xl text-black"}
+              align="right"
             />
 
             <Link href="/projects" className={navLinkClass} aria-current={pathname === "/projects" ? "page" : undefined}>
@@ -194,7 +228,7 @@ export default function Navbar() {
 
           <Link
             href="/contact"
-            className={`hidden min-h-[44px] items-center whitespace-nowrap rounded-sm px-5 text-sm font-bold transition-colors xl:inline-flex xl:px-6 xl:text-base ${ctaClass}`}
+            className={`hidden min-h-[44px] items-center whitespace-nowrap rounded-sm px-4 text-sm font-bold transition-colors lg:inline-flex xl:px-6 xl:text-base ${ctaClass} ${focusRingClass}`}
           >
             Discuss Your Project
           </Link>
@@ -203,10 +237,11 @@ export default function Navbar() {
           <button
             ref={toggleRef}
             type="button"
-            className={`-mr-2 flex h-11 w-11 items-center justify-center lg:hidden ${textColorClass}`}
+            className={`-mr-2 flex h-11 w-11 shrink-0 items-center justify-center rounded-sm lg:hidden ${textColorClass} ${focusRingClass}`}
             aria-label="Open menu"
             aria-expanded={isMobileMenuOpen}
             aria-controls="mobile-drawer"
+            aria-haspopup="dialog"
             onClick={() => setIsMobileMenuOpen(true)}
           >
             <Menu size={28} aria-hidden="true" />
@@ -228,7 +263,7 @@ export default function Navbar() {
         role="dialog"
         aria-modal="true"
         aria-label="Site menu"
-        className={`fixed inset-y-0 right-0 z-[70] flex w-[min(88vw,380px)] flex-col overflow-y-auto bg-white shadow-xl duration-300 ease-out motion-reduce:transition-none lg:hidden ${
+        className={`fixed inset-y-0 right-0 z-[70] flex w-[min(88vw,380px)] flex-col overflow-y-auto overscroll-contain bg-white pb-[env(safe-area-inset-bottom)] pr-[env(safe-area-inset-right)] pt-[env(safe-area-inset-top)] shadow-xl duration-300 ease-out motion-reduce:transition-none lg:hidden ${
           // Visibility flips instantly on open (so focus can move in) and waits for the slide on close
           isMobileMenuOpen ? "visible translate-x-0 transition-transform" : "invisible translate-x-full transition-[transform,visibility]"
         } ${isCx ? "text-cx-ink" : "text-brand-navy"}`}
@@ -237,7 +272,7 @@ export default function Navbar() {
           <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-600">Menu</span>
           <button
             type="button"
-            className="-mr-2 flex h-11 w-11 items-center justify-center"
+            className="-mr-2 flex h-11 w-11 items-center justify-center rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-navy"
             aria-label="Close menu"
             onClick={() => closeDrawer()}
           >
@@ -246,27 +281,21 @@ export default function Navbar() {
         </div>
 
         <nav aria-label="Mobile" className="flex flex-col font-semibold">
-          <DrawerLink href="/" current={pathname === "/"} isCx={isCx} onNavigate={() => closeDrawer(false)}>
+          <DrawerLink href="/" current={pathname === "/"} onNavigate={() => closeDrawer(false)}>
             Home
           </DrawerLink>
-          <DrawerGroup title="About Us">
-            {aboutItems.map((item) => (
-              <DrawerLink key={item.href} href={item.href} current={pathname === item.href} isCx={isCx} nested onNavigate={() => closeDrawer(false)}>
-                {item.name}
-              </DrawerLink>
-            ))}
-          </DrawerGroup>
-          <DrawerGroup title="Our Businesses">
-            {businessItems.map((item) => (
-              <DrawerLink key={item.href} href={item.href} current={pathname === item.href} isCx={isCx} nested onNavigate={() => closeDrawer(false)}>
-                {item.name}
-              </DrawerLink>
-            ))}
-          </DrawerGroup>
-          <DrawerLink href="/projects" current={pathname === "/projects"} isCx={isCx} onNavigate={() => closeDrawer(false)}>
+          <DrawerAccordion title="About Us" items={aboutItems} pathname={pathname} active={isActive("/about")} onNavigate={() => closeDrawer(false)} />
+          <DrawerAccordion
+            title="Our Businesses"
+            items={businessItems}
+            pathname={pathname}
+            active={isActive("/businesses")}
+            onNavigate={() => closeDrawer(false)}
+          />
+          <DrawerLink href="/projects" current={isActive("/projects")} onNavigate={() => closeDrawer(false)}>
             Projects
           </DrawerLink>
-          <DrawerLink href="/contact" current={pathname === "/contact"} isCx={isCx} onNavigate={() => closeDrawer(false)}>
+          <DrawerLink href="/contact" current={pathname === "/contact"} onNavigate={() => closeDrawer(false)}>
             Contact
           </DrawerLink>
         </nav>
@@ -275,7 +304,7 @@ export default function Navbar() {
           <Link
             href="/contact"
             onClick={() => closeDrawer(false)}
-            className="flex min-h-[48px] items-center justify-center rounded-sm px-6 font-bold transition-colors bg-brand-sky text-white hover:bg-brand-navy"
+            className="flex min-h-[48px] items-center justify-center rounded-sm bg-brand-sky px-6 font-bold text-white transition-colors hover:bg-brand-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-navy"
           >
             Discuss Your Project
           </Link>
@@ -296,6 +325,7 @@ function NavDropdown({
   pathname,
   activeBar,
   panelClass,
+  align = "left",
 }: {
   id: string;
   label: string;
@@ -307,9 +337,17 @@ function NavDropdown({
   pathname: string;
   activeBar: React.ReactNode;
   panelClass: string;
+  align?: "left" | "right";
 }) {
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
   const panelId = `nav-menu-${id}`;
+
+  // ArrowDown on the trigger opens the menu and moves focus to its first link
+  const focusFirstLink = () => {
+    onOpenChange(true);
+    requestAnimationFrame(() => panelRef.current?.querySelector<HTMLElement>("a")?.focus());
+  };
 
   return (
     <div
@@ -333,6 +371,12 @@ function NavDropdown({
         aria-expanded={open}
         aria-controls={panelId}
         onClick={() => onOpenChange(!open)}
+        onKeyDown={(e) => {
+          if (e.key === "ArrowDown") {
+            e.preventDefault();
+            focusFirstLink();
+          }
+        }}
       >
         {label}
         <ChevronDown size={16} aria-hidden="true" className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`} />
@@ -340,11 +384,17 @@ function NavDropdown({
       </button>
       <div
         id={panelId}
-        className={`absolute left-0 top-full z-50 pt-2 transition-all duration-200 ${
-          open ? "visible translate-y-0 opacity-100" : "invisible -translate-y-1 opacity-0"
+        ref={panelRef}
+        className={`absolute top-full z-50 pt-2 duration-200 motion-reduce:transition-none ${
+          align === "right" ? "right-0 xl:left-0 xl:right-auto" : "left-0"
+        } ${
+          // Visible immediately on open (so ArrowDown can focus a link), hidden only after the fade on close
+          open
+            ? "visible translate-y-0 opacity-100 transition-[opacity,transform]"
+            : "invisible -translate-y-1 opacity-0 transition-[opacity,transform,visibility]"
         }`}
       >
-        <ul className={`min-w-[280px] bg-white py-2 ${panelClass}`}>
+        <ul className={`min-w-[260px] bg-white py-2 xl:min-w-[280px] ${panelClass}`}>
           {items.map((item) => (
             <li key={item.href}>
               <Link
@@ -363,11 +413,63 @@ function NavDropdown({
   );
 }
 
-function DrawerGroup({ title, children }: { title: string; children: React.ReactNode }) {
+/** Tap-to-expand group in the mobile drawer. Starts open when the current page lives inside it. */
+function DrawerAccordion({
+  title,
+  items,
+  pathname,
+  active,
+  onNavigate,
+}: {
+  title: string;
+  items: NavItem[];
+  pathname: string;
+  active: boolean;
+  onNavigate: () => void;
+}) {
+  const [open, setOpen] = useState(active);
+  const panelId = useId();
+
+  useEffect(() => {
+    if (active) setOpen(true);
+  }, [active]);
+
   return (
-    <div className="border-b py-3">
-      <p className="px-6 pb-1 pt-1 text-xs font-semibold uppercase tracking-[0.2em] text-gray-600">{title}</p>
-      {children}
+    <div className="border-b">
+      <button
+        type="button"
+        className={`flex min-h-[52px] w-full items-center justify-between gap-3 px-6 text-left transition-colors hover:bg-gray-50 focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-brand-navy ${
+          active ? "text-brand-sky" : ""
+        }`}
+        aria-expanded={open}
+        aria-controls={panelId}
+        onClick={() => setOpen((v) => !v)}
+      >
+        {title}
+        <ChevronDown
+          size={20}
+          aria-hidden="true"
+          className={`shrink-0 transition-transform duration-200 motion-reduce:transition-none ${open ? "rotate-180" : ""}`}
+        />
+      </button>
+      {/* grid-rows 0fr -> 1fr animates to the content's natural height. Collapsed: invisible keeps links out of the tab order.
+          Open: no `visible` class, so the closed drawer's hidden visibility still applies to these links. */}
+      <div
+        id={panelId}
+        className={`grid transition-[grid-template-rows,visibility] duration-200 ease-out motion-reduce:transition-none ${
+          open ? "grid-rows-[1fr]" : "invisible grid-rows-[0fr]"
+        }`}
+      >
+        <div className="overflow-hidden">
+          <div className="pb-2">
+            {items.map((item) => (
+              <DrawerLink key={item.href} href={item.href} current={pathname === item.href} nested onNavigate={onNavigate}>
+                {item.name}
+              </DrawerLink>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
@@ -375,27 +477,24 @@ function DrawerGroup({ title, children }: { title: string; children: React.React
 function DrawerLink({
   href,
   current,
-  isCx,
   nested = false,
   onNavigate,
   children,
 }: {
   href: string;
   current: boolean;
-  isCx: boolean;
   nested?: boolean;
   onNavigate: () => void;
   children: React.ReactNode;
 }) {
-  const activeColor = "text-brand-sky";
   return (
     <Link
       href={href}
       onClick={onNavigate}
       aria-current={current ? "page" : undefined}
-      className={`flex min-h-[48px] items-center gap-3 px-6 transition-colors hover:bg-gray-50 ${
-        nested ? "pl-10 font-medium" : "border-b"
-      } ${current ? activeColor : ""}`}
+      className={`flex items-center gap-3 px-6 transition-colors hover:bg-gray-50 focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-brand-navy ${
+        nested ? "min-h-[48px] pl-10 font-medium" : "min-h-[52px] border-b"
+      } ${current ? "text-brand-sky" : ""}`}
     >
       {current && <span aria-hidden="true" className="h-4 w-0.5 bg-brand-sky" />}
       {children}

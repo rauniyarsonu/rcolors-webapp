@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { CheckCircle, Shield, Award, Users, Target, Zap } from "lucide-react";
+import { CheckCircle, Shield, Award, Users, Zap } from "lucide-react";
 
 export default function WhyUsPage() {
   return (

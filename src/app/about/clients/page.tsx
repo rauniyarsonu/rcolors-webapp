@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { Quote, MapPin, Building2 } from "lucide-react";
-import clientsData from "@/data/clients.json";
 import PageHeader from "@/components/PageHeader";
 
 export default function ClientsPage() {
