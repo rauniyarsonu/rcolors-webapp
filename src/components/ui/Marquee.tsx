@@ -35,9 +35,8 @@ export default function Marquee({ rows, itemSpacingClass = "mr-4 sm:mr-6", secon
         {rows.map((row, rowIndex) => (
           <div
             key={rowIndex}
-            className={`flex w-max ${row.reverse ? "animate-marquee-right" : "animate-marquee-left"} ${
-              rowIndex < rows.length - 1 ? "mb-4 sm:mb-6" : ""
-            } group-hover:[animation-play-state:paused] group-data-[state=paused]:[animation-play-state:paused] motion-reduce:[animation-play-state:paused]`}
+            className={`flex w-max ${row.reverse ? "animate-marquee-right" : "animate-marquee-left"} ${rowIndex < rows.length - 1 ? "mb-4 sm:mb-6" : ""
+              } group-hover:[animation-play-state:paused] group-data-[state=paused]:[animation-play-state:paused] motion-reduce:[animation-play-state:paused]`}
             style={{ animationDuration: `${row.items.length * secondsPerItem}s` }}
           >
             {[0, 1].map((copy) => (
@@ -52,18 +51,6 @@ export default function Marquee({ rows, itemSpacingClass = "mr-4 sm:mr-6", secon
             ))}
           </div>
         ))}
-      </div>
-
-      {/* Tap/keyboard equivalent of hover-to-pause. Hidden when motion is already off. */}
-      <div className="mt-4 flex justify-center motion-reduce:hidden">
-        <button
-          type="button"
-          onClick={() => setPaused((p) => !p)}
-          className="inline-flex min-h-11 items-center gap-2 rounded-full border border-gray-200 px-4 text-sm font-semibold text-brand-navy transition-colors hover:border-brand-sky hover:text-brand-sky"
-        >
-          {paused ? <Play size={16} aria-hidden="true" /> : <Pause size={16} aria-hidden="true" />}
-          {paused ? `Play ${name}` : `Pause ${name}`}
-        </button>
       </div>
     </div>
   );
