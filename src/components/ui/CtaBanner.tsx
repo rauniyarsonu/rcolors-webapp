@@ -1,26 +1,41 @@
-import Link from "next/link";
+import { MessageCircle, Phone } from "lucide-react";
+import Button from "@/components/ui/Button";
+import { COMPANY, telHref } from "@/config/company";
 
 interface CtaBannerProps {
   title: React.ReactNode;
   text: string;
   href?: string;
   label?: string;
+  /** Adds Call and WhatsApp buttons beside the enquiry button */
+  showContact?: boolean;
 }
 
-/** Full-width sky band with a heading, a line of copy and a navy button (home, why-us) */
-export default function CtaBanner({ title, text, href = "/contact", label = "Contact Us Today" }: CtaBannerProps) {
+/** Full-width sky-700 band (white text passes AA) with copy and enquiry, call and WhatsApp buttons */
+export default function CtaBanner({ title, text, href = "/contact", label = "Contact Us Today", showContact = false }: CtaBannerProps) {
+  const phone = COMPANY.phones[0];
   return (
-    <section data-aos="fade-up" data-aos-duration="1000" className="section-y w-full bg-brand-sky text-center text-white">
+    <section data-aos="fade-up" data-aos-duration="1000" className="section-y w-full bg-es-accent-strong text-center text-white">
       <div className="site-container max-w-3xl space-y-6 md:space-y-8">
         <h2 className="text-balance font-heading text-[clamp(1.875rem,1.25rem+3vw,3rem)] font-black leading-tight">{title}</h2>
-        <p className="text-pretty text-lg font-light opacity-90 md:text-xl">{text}</p>
-        <div className="pt-2 md:pt-4">
-          <Link
-            href={href}
-            className="flex min-h-12 w-full items-center justify-center rounded bg-brand-navy px-8 py-4 text-base font-bold text-white shadow-xl transition-transform duration-300 hover:-translate-y-1 hover:bg-white hover:text-brand-navy motion-reduce:transition-none sm:inline-flex sm:w-auto md:px-10 md:text-lg"
-          >
+        <p className="text-pretty text-lg opacity-95 md:text-xl">{text}</p>
+        <div className="flex flex-col items-stretch justify-center gap-3 pt-2 sm:flex-row sm:flex-wrap sm:items-center md:pt-4">
+          <Button href={href} variant="light" arrow>
             {label}
-          </Link>
+          </Button>
+          {showContact && (
+            <>
+              <Button href={telHref(phone)} variant="outline-light">
+                <Phone size={18} aria-hidden="true" />
+                Call {phone}
+              </Button>
+              <Button href={`https://wa.me/91${phone}`} variant="outline-light" external>
+                <MessageCircle size={18} aria-hidden="true" />
+                WhatsApp
+                <span className="sr-only"> (opens in a new tab)</span>
+              </Button>
+            </>
+          )}
         </div>
       </div>
     </section>

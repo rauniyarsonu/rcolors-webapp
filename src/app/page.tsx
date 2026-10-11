@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronRight, Building2, Clock, Layers, Paintbrush, ShieldCheck, Home as HomeIcon, MapPin, FileCheck, Hammer } from "lucide-react";
 import projects from "@/data/projects.json";
 import HeroSlider from "@/components/HeroSlider";
 import SectionHeading from "@/components/ui/SectionHeading";
@@ -9,11 +9,57 @@ import FeatureCard from "@/components/home/FeatureCard";
 import ProjectCard from "@/components/ui/ProjectCard";
 import ClientLogoMarquee from "@/components/ui/ClientLogoMarquee";
 import CtaBanner from "@/components/ui/CtaBanner";
+import Reveal from "@/components/construction/Reveal";
+import StatsStrip from "@/components/home/StatsStrip";
+import Testimonials from "@/components/home/Testimonials";
 
 const businesses = [
-  { href: "/businesses/construction", photo: "/images/Rcolors2.png", logo: "/images/logo2.jpg", logoAlt: "R Colors Construction & Developers" },
-  { href: "/businesses/r-colors", photo: "/images/Rcolors1.jpg", logo: "/images/logo1.jpeg", logoAlt: "R Colors", logoWidthClass: "w-[90%]" },
-  { href: "/businesses/estate", photo: "/images/Rcolors3.png", logo: "/images/logo3.jpg", logoAlt: "R Colors Estate" },
+  {
+    href: "/businesses/construction",
+    title: "R Colors Construction & Developers",
+    // description: "Residential, commercial and industrial construction, delivered with strict quality control and a focus on safety.",
+    highlights: [
+      { icon: Building2, label: "Residential & Commercial" },
+      { icon: Layers, label: "Quality Materials" },
+      { icon: Clock, label: "On-time Delivery" },
+    ],
+    cta: "Construction",
+    photo: "/images/Rcolors2.png",
+    photoAlt: "Construction site by R Colors Construction & Developers",
+    logo: "/images/logo2.jpg",
+    logoAlt: "R Colors Construction & Developers logo",
+  },
+  {
+    href: "/businesses/r-colors",
+    title: "R Colors Finishing Works",
+    // description: "Interiors, painting and finishing that turn a built space into a polished, ready-to-live-in home.",
+    highlights: [
+      { icon: Paintbrush, label: "Interiors & Painting" },
+      { icon: Hammer, label: "Skilled Craftsmanship" },
+      { icon: ShieldCheck, label: "Durable Finishes" },
+    ],
+    cta: "Finishing Works",
+    photo: "/images/Rcolors1.jpg",
+    photoAlt: "Finished interior by R Colors Finishing Works",
+    logo: "/images/logo1.jpeg",
+    logoAlt: "R Colors logo",
+  },
+  {
+    href: "/businesses/estate",
+    title: "R Colors Estate",
+    // description: "Buy, sell and invest in verified properties with transparent guidance from enquiry to registration.",
+    highlights: [
+      { icon: HomeIcon, label: "Homes, Plots & Commercial" },
+      { icon: FileCheck, label: "Verified Listings" },
+      { icon: Building2, label: "Sales | Purchase | Source Selling" },
+    ],
+    cta: "Estate",
+    photo: "/images/Rcolors3.png",
+    photoAlt: "Residential property listed by R Colors Estate",
+    logo: "/images/logo3.jpg",
+    logoAlt: "R Colors Estate logo",
+  },
+
 ];
 
 const features = [
@@ -50,6 +96,9 @@ export default function Home() {
       {/* 8.1 Hero Section Slider */}
       <HeroSlider />
 
+      {/* Stats (placeholder figures live in StatsStrip) */}
+      <StatsStrip />
+
       {/* 8.4 & 8.5 Welcome & About Us */}
       <section data-aos="fade-up" data-aos-duration="1000" className="section-y w-full">
         <div className="site-container grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-16">
@@ -81,7 +130,7 @@ export default function Home() {
 
             <Link
               href="/about"
-              className="inline-flex min-h-11 items-center gap-2 font-bold text-brand-sky transition-colors hover:text-brand-navy"
+              className="inline-flex min-h-11 items-center gap-2 font-bold text-es-accent-strong transition-colors hover:text-brand-navy"
             >
               <span>Read More About Us</span>
               <ChevronRight size={20} aria-hidden="true" />
@@ -90,23 +139,32 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 8.3 Three Businesses Strip */}
-      <section id="businesses" className="section-y w-full bg-gray-50">
+      {/* 8.3 Three Businesses */}
+      <section id="businesses" aria-labelledby="businesses-heading" className="section-y w-full bg-gray-50">
         <div className="site-container">
-          <SectionHeading title="OUR BUSINESSES" bar className="mb-10 md:mb-16" />
+          <SectionHeading
+            id="businesses-heading"
+            eyebrow="What We Do"
+            title="OUR BUSINESSES"
+            bar
+            subtitle="Three specialised divisions, one trusted group, from the first foundation to the final finish."
+            className="mb-10 md:mb-16"
+          />
 
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+          <div className="grid grid-cols-1 items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
             {businesses.map((business, index) => (
-              <BusinessCard
+              // Staggered entrance; with 2 columns the third card sits centered on its own row
+              <Reveal
                 key={business.href}
-                {...business}
-                // With 2 columns the third card sits centered on its own row
+                delay={index * 120}
                 className={
                   index === businesses.length - 1
                     ? "sm:col-span-2 sm:mx-auto sm:w-[calc(50%-0.75rem)] lg:col-span-1 lg:w-full"
                     : ""
                 }
-              />
+              >
+                <BusinessCard {...business} />
+              </Reveal>
             ))}
           </div>
         </div>
@@ -130,7 +188,7 @@ export default function Home() {
           <div className="mt-12 flex justify-center md:mt-16">
             <Link
               href="/why-us"
-              className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded bg-brand-sky px-8 py-3 font-bold text-white shadow-lg transition-transform duration-300 hover:-translate-y-1 hover:bg-white hover:text-brand-navy motion-reduce:transition-none sm:w-auto"
+              className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded bg-white px-8 py-3 font-bold text-brand-navy shadow-lg transition-transform duration-300 hover:-translate-y-1 hover:bg-brand-sky hover:text-brand-navy motion-reduce:transition-none sm:w-auto"
             >
               <span>Learn More About Us</span>
               <ArrowRight size={18} aria-hidden="true" />
@@ -146,7 +204,7 @@ export default function Home() {
             <SectionHeading eyebrow="Our Portfolio" title="Featured Projects" align="responsive" />
             <Link
               href="/projects"
-              className="hidden min-h-11 items-center gap-2 font-bold text-brand-navy transition-colors hover:text-brand-sky md:inline-flex"
+              className="hidden min-h-11 items-center gap-2 font-bold text-brand-navy transition-colors hover:text-es-accent-strong md:inline-flex"
             >
               <span>View All Projects</span>
               <ArrowRight size={20} aria-hidden="true" />
@@ -182,10 +240,14 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Testimonials (placeholder copy, see Testimonials.tsx) */}
+      <Testimonials />
+
       {/* 8.12 Final CTA */}
       <CtaBanner
         title="Let's Build Something Great Together"
         text="Thank you for choosing R Colors Group of Companies. Your vision inspires our work, and your satisfaction remains our highest priority."
+        showContact
       />
     </div>
   );

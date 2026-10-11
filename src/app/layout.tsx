@@ -20,8 +20,19 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://rcolorgroup.netlify
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "R Colors Group of Companies",
+  title: {
+    default: "R Colors Group of Companies | Construction, Finishing & Real Estate in Lucknow",
+    template: "%s | R Colors Group",
+  },
   description: "A trusted name in construction, contracting, and infrastructure development — delivering residential, commercial, and industrial projects with quality, precision, and commitment.",
+  openGraph: {
+    type: "website",
+    siteName: "R Colors Group of Companies",
+    title: "R Colors Group of Companies",
+    description: "Construction, finishing works and real estate: residential, commercial and industrial projects delivered with quality and precision.",
+    images: [{ url: "/images/home1.jpg", width: 1600, height: 900, alt: "R Colors Group of Companies" }],
+  },
+  twitter: { card: "summary_large_image" },
 };
 
 // Explicit viewport; viewport-fit=cover lets env(safe-area-inset-*) work on notched phones
