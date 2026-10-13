@@ -9,7 +9,7 @@ const slides = [
   { image: "/images/home1.jpg", text: "R Colors Group Of Companies", subtext: "Beyond your Imagination", position: "object-[55%_50%]" },
   { image: "/images/home2.jpg", text: "R Colors Construction and Developers", subtext: "Building & Developement", position: "object-[40%_50%]" },
   { image: "/images/home3.jpg", text: "R Colors", subtext: "Finishing Works", position: "object-[62%_50%]" },
-  { image: "/images/home4.1.jpg", text: "R Colors Estate", subtext: "Sales & Purchase", position: "object-[42%_45%]" },
+  { image: "/images/home4.1.jpg", text: "R Colors Estate", subtext: "Sales | Purchase | Source Selling", position: "object-[42%_45%]" },
 ];
 
 const INTERVAL_MS = 5000; // 5 seconds per slide
@@ -96,9 +96,8 @@ export default function HeroSlider() {
       aria-roledescription="carousel"
       aria-label="R Colors Group highlights - swipe or drag to navigate"
       tabIndex={0}
-      className={`relative isolate flex min-h-[max(32rem,100vh)] w-full touch-pan-y items-end overflow-hidden bg-brand-navy supports-[height:100svh]:min-h-[max(32rem,100svh)] select-none focus-visible:outline-none ${
-        isMouseDown ? "cursor-grabbing" : "cursor-grab"
-      }`}
+      className={`relative isolate flex min-h-[max(32rem,100vh)] w-full touch-pan-y items-end overflow-hidden bg-brand-navy supports-[height:100svh]:min-h-[max(32rem,100svh)] select-none focus-visible:outline-none ${isMouseDown ? "cursor-grabbing" : "cursor-grab"
+        }`}
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
       onMouseDown={onMouseDown}
@@ -114,15 +113,13 @@ export default function HeroSlider() {
           <div
             key={slide.image}
             aria-hidden={!isActive}
-            className={`pointer-events-none absolute inset-0 z-0 transition-opacity duration-1000 ease-in-out motion-reduce:transition-none ${
-              isActive ? "opacity-100" : "opacity-0"
-            }`}
+            className={`pointer-events-none absolute inset-0 z-0 transition-opacity duration-1000 ease-in-out motion-reduce:transition-none ${isActive ? "opacity-100" : "opacity-0"
+              }`}
           >
             {/* Ken Burns effect: scale up slowly while active across 5s interval */}
             <div
-              className={`relative h-full w-full transition-transform duration-[5000ms] ease-linear motion-reduce:scale-100 motion-reduce:transition-none ${
-                isActive ? "scale-105" : "scale-100"
-              }`}
+              className={`relative h-full w-full transition-transform duration-[5000ms] ease-linear motion-reduce:scale-100 motion-reduce:transition-none ${isActive ? "scale-105" : "scale-100"
+                }`}
             >
               <Image
                 src={slide.image}
@@ -159,9 +156,8 @@ export default function HeroSlider() {
                   aria-roledescription="slide"
                   aria-label={`${index + 1} of ${slides.length}`}
                   aria-hidden={!isActive}
-                  className={`self-end transition-all duration-1000 ease-in-out [grid-area:1/1] motion-reduce:transition-none ${
-                    isActive ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-8 opacity-0"
-                  }`}
+                  className={`self-end transition-all duration-1000 ease-in-out [grid-area:1/1] motion-reduce:transition-none ${isActive ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-8 opacity-0"
+                    }`}
                 >
                   <Heading className="text-balance font-heading text-[clamp(1.875rem,1.2rem+3.4vw,4rem)] font-bold leading-tight tracking-wide text-white drop-shadow-lg">
                     {slide.text}

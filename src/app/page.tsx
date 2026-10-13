@@ -33,7 +33,7 @@ const businesses = [
     title: "R Colors Finishing Works",
     // description: "Interiors, painting and finishing that turn a built space into a polished, ready-to-live-in home.",
     highlights: [
-      { icon: Paintbrush, label: "Interiors & Painting" },
+      { icon: Paintbrush, label: "Interiors & Finishing" },
       { icon: Hammer, label: "Skilled Craftsmanship" },
       { icon: ShieldCheck, label: "Durable Finishes" },
     ],
@@ -115,7 +115,7 @@ export default function Home() {
           <div className="max-w-[65ch] space-y-6 lg:col-span-7 lg:max-w-none lg:pl-8">
             <SectionHeading eyebrow="Welcome To Our Business" title="Building Strong Foundations" align="left" />
             <p className="text-base leading-relaxed text-gray-600 md:text-lg">
-              R Colors Group of Companies is a trusted name in construction, contracting, and infrastructure development. We deliver residential, commercial, and industrial projects with quality, precision, and commitment. Our focus is on timely execution, safety standards, and long-term value creation.
+              R Colors Group of Companies is a trusted name in construction, contracting, infrastructure development and real estate. We deliver residential and commercial projects with quality, precision, and commitment. Our focus is on timely execution, safety standards, and long-term value creation.
             </p>
             <p className="text-base leading-relaxed text-gray-600 md:text-lg">
               We combine expertise, innovation, and skilled workmanship to transform ideas into reality. Every project reflects our dedication to excellence, integrity, and client satisfaction.
