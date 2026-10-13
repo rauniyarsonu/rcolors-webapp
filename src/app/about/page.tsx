@@ -94,8 +94,8 @@ export default function AboutCompanyPage() {
           <div className="relative border-l-4 md:border-l-0 border-brand-sky ml-6 md:ml-0 md:pl-0">
             {[
               { year: "2011", title: "R Colors Construction & Developers Founded", desc: "Started our journey with a commitment to quality in the construction industry." },
-              { year: "Expansion", title: "R Colors Estate Launched", desc: "Expanded into real estate and property solutions." },
               { year: "Growth", title: "R Colors Finishing Business Launched", desc: "Added specialized interior, exterior, and finishing services." },
+              { year: "Expansion", title: "R Colors Estate Launched", desc: "Expanded into real estate and property solutions." },
               { year: "Today", title: "R Colors Group of Companies", desc: "Operating as a unified group with 3 specialized businesses delivering complete infrastructure solutions." }
             ].map((event, idx) => (
               <div key={idx} className={`mb-10 md:mb-16 relative md:w-1/2 ${idx % 2 === 0 ? "md:mr-auto md:pr-12 md:text-right" : "md:ml-auto md:pl-12"} pl-8 md:pl-0`}>
