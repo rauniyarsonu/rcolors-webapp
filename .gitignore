@@ -1,12 +1,16 @@
 node_modules/
-.next/
-build/
 dist/
+build/
 target/
-.env
 .env.local
 .DS_Store
 .idea/
+
+# Local H2 database (backend default profile)
+backend/data/
+
+# React build copied into the jar by the Dockerfile
+backend/src/main/resources/static/
 
 # Local responsive QA screenshots
 .screenshots/

@@ -2,18 +2,22 @@
 
 The estate portal (`/businesses/estate`) is driven entirely by data files.
 Adding a city, a locality, a village, a listing, a project or an agent never
-needs a change to a React component.
+needs a change to a React component. The Spring Boot backend serves the data
+(`GET /api/estate/cities`, `GET /api/estate/cities/<slug>`); restart it after
+editing the files (or run it with `app.data-dir` pointing at the folder).
+
+Run the `npm run …` commands below from `frontend/`.
 
 ```
-src/data/estate/
+backend/src/main/resources/data/estate/
   locations.json                 the location tree (states, cities, localities, towns, villages)
   cities/<city-slug>/
     properties.json              land and built property listings
     projects.json                projects
     agents.json                  agents / advisors
   templates/*.csv                CSV templates for bulk import
-public/images/estate/<city-slug>/  photos for that city's records
-src/config/estate/
+frontend/public/images/estate/<city-slug>/  photos for that city's records
+frontend/src/config/estate/
   site.ts                        page settings (REQUIRE_CITY_SELECTION, page size, hero image, form)
   catalog.ts                     property types, statuses, project types, specializations
   filters.ts                     the filter sidebar and sort options
@@ -40,8 +44,8 @@ npm run add-city -- --name "Kanpur" --state "Uttar Pradesh"
 This:
 
 - adds `kanpur` to `locations.json` with `"enabled": false` (creating the state if needed)
-- creates `src/data/estate/cities/kanpur/{properties,projects,agents}.json` (empty)
-- creates `public/images/estate/kanpur/`
+- creates `backend/src/main/resources/data/estate/cities/kanpur/{properties,projects,agents}.json` (empty)
+- creates `frontend/public/images/estate/kanpur/`
 
 Then add localities and records (below). When you are ready to show it, set
 `"enabled": true` on the `kanpur` entry in `locations.json`.
@@ -92,7 +96,7 @@ Either edit `cities/<city>/properties.json` or import a CSV (section 7).
   "locationSlug": "chinhat",         // any area inside the city
   "title": "East-facing plot on 30 ft road",
   "category": "land",                // land | property (must match the type)
-  "type": "residential-plot",        // see src/config/estate/catalog.ts
+  "type": "residential-plot",        // see frontend/src/config/estate/catalog.ts
   "price": 4500000,                  // rupees
   "priceUnit": "total",              // optional: total (default) | per-area (price per areaUnit)
   "areaValue": 150,
@@ -125,7 +129,7 @@ They are published on the website. The schema rejects unknown fields.
 ### Bigha and biswa
 
 These units differ between states and districts. Their size in sq ft is set in
-`src/config/estate/units.ts` → `REGIONAL_UNIT_SIZES`, per state, with optional
+`frontend/src/config/estate/units.ts` → `REGIONAL_UNIT_SIZES`, per state, with optional
 district overrides:
 
 ```ts
@@ -174,7 +178,7 @@ Listings with `"projectId"` appear under "See listings here" on the project.
 
 ## 7. Bulk import from a spreadsheet (CSV)
 
-1. Copy a template from `src/data/estate/templates/` (`properties.csv`, `projects.csv`, `agents.csv`).
+1. Copy a template from `backend/src/main/resources/data/estate/templates/` (`properties.csv`, `projects.csv`, `agents.csv`).
 2. Fill one row per record. Lists (images, specializations, areasServed, languages) use `|`.
    Prices accept `4500000`, `45 L` or `1.2 Cr`. Yes/no columns accept `yes/no`, `true/false`, `1/0`.
    Blank `category` is filled from `type`, blank `postedAt` becomes today.
@@ -203,9 +207,9 @@ languages, featured, isSample`
 
 ## 8. Images
 
-- Put photos in `public/images/estate/<city-slug>/` and reference them as
+- Put photos in `frontend/public/images/estate/<city-slug>/` and reference them as
   `/images/estate/<city-slug>/<file>.jpg` (jpg, png, webp or avif).
-- Landscape 4:3 or 16:9, at least 1600 px wide, under ~500 KB. Next.js resizes them.
+- Landscape 4:3 or 16:9, at least 1600 px wide, under ~500 KB (they are served as-is, so compress them).
 - Name files after the record id: `lko-p-011-1.jpg`, `lko-p-011-2.jpg`.
 - Records without images show a branded "Photos coming soon" placeholder.
 - `validate:data` fails if a referenced image doesn't exist.
@@ -224,13 +228,13 @@ the ones where R Colors sells, delete the rest (or set `"enabled": false`).
 
 | Change | Where |
 | --- | --- |
-| New property type / status / project type / specialization | `src/config/estate/catalog.ts` |
-| New filter, or change a filter's segments | `src/config/estate/filters.ts` |
-| New sort option | `SORTS` in `src/config/estate/filters.ts` |
-| Area units shown per category, bigha sizes | `src/config/estate/units.ts` |
-| Hide results until a city is picked | `REQUIRE_CITY_SELECTION` in `src/config/estate/site.ts` |
-| Hero photo | `heroImage` in `src/config/estate/site.ts` |
-| Move data to a CMS / Sheets / API | write an adapter implementing `DataSource` (`src/lib/estate/datasource.ts`) and return it from `src/lib/estate/adapters/index.ts` |
+| New property type / status / project type / specialization | `frontend/src/config/estate/catalog.ts` |
+| New filter, or change a filter's segments | `frontend/src/config/estate/filters.ts` |
+| New sort option | `SORTS` in `frontend/src/config/estate/filters.ts` |
+| Area units shown per category, bigha sizes | `frontend/src/config/estate/units.ts` |
+| Hide results until a city is picked | `REQUIRE_CITY_SELECTION` in `frontend/src/config/estate/site.ts` |
+| Hero photo | `heroImage` in `frontend/src/config/estate/site.ts` |
+| Move data to a database / CMS | change `EstateService` in the backend; the API response shape (`CityBundle`) stays the same |
 
 ## 11. URLs
 
@@ -257,8 +261,8 @@ Every search is a shareable link. Defaults are omitted:
 
 ## 12. Enquiries
 
-The enquiry form posts to Netlify Forms (form name `estate-enquiry`, declared in
-`public/__forms.html`). In the Netlify dashboard: **Forms → Enable form detection**,
-redeploy, then add an email notification under **Forms → Form notifications**.
-Submissions don't work on `localhost` (there is no Netlify there); the form shows
-its error message with the phone number instead.
+The enquiry form posts to the backend (`POST /api/estate/enquiries`), which saves
+it in the `estate_enquiry` table. The contact page form works the same way
+(`POST /api/contact`, table `contact_message`). To also receive each submission
+by email, set `NOTIFY_EMAIL` and the `MAIL_*` settings described in
+`backend/src/main/resources/application.properties`.
