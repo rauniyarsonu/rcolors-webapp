@@ -58,7 +58,8 @@ export default function Footer() {
         {/* Brand Col */}
         <div className="flex flex-col gap-4" data-aos="fade-up" data-aos-duration="1000">
           <p className="text-balance font-heading text-2xl font-black text-white">
-            <span className="text-brand-sky">R Colors</span> Group of Companies
+            <span className="text-brand-red">R</span>{" "}
+            <span className="text-brand-sky">Colors</span> Group of Companies
           </p>
           <p className="text-sm text-gray-300 sm:mt-2">
             R Colors Group of Companies — A trusted name in construction, contracting, and real estate development.

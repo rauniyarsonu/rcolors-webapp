@@ -7,7 +7,7 @@ export default function Hero() {
   return (
     <section
       aria-labelledby="hero-title"
-      className="cx-on-dark relative isolate flex min-h-[max(600px,90vh)] items-end overflow-hidden bg-cx-ink text-white supports-[height:100svh]:min-h-[max(600px,90svh)]"
+      className="cx-on-dark relative isolate flex min-h-[max(600px,100vh)] items-end overflow-hidden bg-cx-ink text-white supports-[height:100svh]:min-h-[max(600px,100svh)]"
     >
       <Image
         src="/images/home4.jpg"

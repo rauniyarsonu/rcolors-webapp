@@ -2,7 +2,6 @@ import { manrope } from "@/lib/fonts";
 import Hero from "@/components/r-colors/Hero";
 import Intro from "@/components/r-colors/Intro";
 import Services from "@/components/r-colors/Services";
-import DivisionSwitcher from "@/components/construction/DivisionSwitcher";
 import ClosingCta from "@/components/construction/ClosingCta";
 
 export default function RColorsFinishingPage() {
@@ -10,7 +9,6 @@ export default function RColorsFinishingPage() {
     // Root layout already provides <main>; this wrapper scopes the cx tokens and font
     <div className={`cx ${manrope.variable} flex flex-col bg-cx-paper text-cx-ink`}>
       <Hero />
-      <DivisionSwitcher current="/businesses/r-colors" />
       <Intro />
       <Services />
       <ClosingCta

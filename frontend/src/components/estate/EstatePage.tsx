@@ -1,6 +1,5 @@
 import Link from "@/components/ui/Link";
 import { MapPin } from "lucide-react";
-import DivisionSwitcher from "@/components/construction/DivisionSwitcher";
 import { ESTATE } from "@/config/estate/site";
 import type { QueryState } from "@/lib/estate/engine";
 import { areasOf, indexLocations } from "@/lib/estate/locationTree";
@@ -73,7 +72,6 @@ export default function EstatePage({ bundle, cities, initialState, basePath, her
           </nav>
         )}
       </EstatePortal>
-      <DivisionSwitcher current="/businesses/estate" />
     </>
   );
 }

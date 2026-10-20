@@ -163,12 +163,18 @@ export default function Navbar() {
           className={`flex min-w-0 shrink-0 items-center gap-2 rounded-sm sm:gap-3 xl:gap-4 ${focusRingClass}`}
           aria-label="R Colors Group home"
         >
-          <span
-            className={`relative block h-[46px] w-[64px] shrink-0 overflow-hidden rounded-md sm:h-[56px] sm:w-[78px] ${
-              isCx ? "bg-white" : ""
-            }`}
-          >
-            <Image src="/images/icon.png" alt="" fill priority sizes="(min-width: 640px) 78px, 64px" className="object-cover" />
+          {/* icon.png is a 2000×2000 canvas with the mark at roughly x 480–1517, y 543–1311.
+              The box frames x 450–1550, y 520–1335, and the image is scaled up inside it,
+              so only transparent padding is clipped. */}
+          <span className="block shrink-0 rounded-md">
+            <span className="relative block aspect-[1100/815] h-10 overflow-hidden sm:h-12 lg:h-[52px]">
+              <Image
+                src="/images/icon.png"
+                alt=""
+                priority
+                className="absolute left-[-40.91%] top-[-63.8%] h-[245.4%] w-[181.82%] max-w-none object-contain"
+              />
+            </span>
           </span>
           <span className="whitespace-nowrap font-heading text-[clamp(1.2rem,0.9rem+1.6vw,1.875rem)] font-bold tracking-tight lg:text-2xl xl:text-3xl 2xl:text-4xl">
             <span className={logoRedClass}>R </span>
