@@ -19,6 +19,9 @@ import ContactPage from "@/pages/ContactPage";
 import ProjectsPage from "@/pages/projects/ProjectsPage";
 import ProjectDetailPage from "@/pages/projects/ProjectDetailPage";
 import WhyUsPage from "@/pages/WhyUsPage";
+import CareersPage from "@/pages/careers/CareersPage";
+import GeneralApplicationPage from "@/pages/careers/GeneralApplicationPage";
+import JobDetailPage from "@/pages/careers/JobDetailPage";
 import NotFoundPage from "@/pages/NotFoundPage";
 
 /** New pages start at the top (or at #hash); back/forward and `scroll: false` keep the position */
@@ -67,6 +70,9 @@ export default function App() {
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/projects" element={<ProjectsPage />} />
             <Route path="/projects/:slug" element={<ProjectDetailPage />} />
+            <Route path="/careers" element={<CareersPage />} />
+            <Route path="/careers/apply" element={<GeneralApplicationPage />} />
+            <Route path="/careers/:slug" element={<JobDetailPage />} />
             <Route path="/why-us" element={<WhyUsPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>

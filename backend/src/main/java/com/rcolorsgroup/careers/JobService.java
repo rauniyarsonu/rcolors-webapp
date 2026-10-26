@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -225,11 +226,14 @@ public class JobService {
         return t.isEmpty() ? null : t;
     }
 
+    /** Paths under /careers/ that aren't jobs (frontend routes) */
+    private static final Set<String> RESERVED_SLUGS = Set.of("apply");
+
     /** The title as a slug, with a short random suffix when it's taken */
     String uniqueSlug(String title) {
         String base = slugify(title);
         String slug = base;
-        while (jobs.existsBySlug(slug)) slug = base + "-" + Integer.toString(1296 + random.nextInt(45360), 36);
+        while (RESERVED_SLUGS.contains(slug) || jobs.existsBySlug(slug)) slug = base + "-" + Integer.toString(1296 + random.nextInt(45360), 36);
         return slug;
     }
 

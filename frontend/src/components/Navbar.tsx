@@ -224,6 +224,10 @@ export default function Navbar() {
               Projects
               {activeBar(isActive("/projects"))}
             </Link>
+            <Link href="/careers" className={navLinkClass} aria-current={pathname === "/careers" ? "page" : undefined}>
+              Careers
+              {activeBar(isActive("/careers"))}
+            </Link>
             <Link href="/contact" className={navLinkClass} aria-current={pathname === "/contact" ? "page" : undefined}>
               Contact
               {activeBar(isActive("/contact"))}
@@ -298,6 +302,9 @@ export default function Navbar() {
           />
           <DrawerLink href="/projects" current={isActive("/projects")} onNavigate={() => closeDrawer(false)}>
             Projects
+          </DrawerLink>
+          <DrawerLink href="/careers" current={isActive("/careers")} onNavigate={() => closeDrawer(false)}>
+            Careers
           </DrawerLink>
           <DrawerLink href="/contact" current={pathname === "/contact"} onNavigate={() => closeDrawer(false)}>
             Contact
