@@ -1,0 +1,977 @@
+{
+  "/api/projects" : {
+    "status" : 200,
+    "body" : [ {
+      "id" : "rainbow-housing-pune",
+      "name" : "Rainbow Housing",
+      "location" : "Pune",
+      "business" : "construction",
+      "category" : "residential",
+      "status" : "completed",
+      "coverImage" : "/images/R Colors Company Profile Final (2)_page-0012.jpg",
+      "gallery" : [ ],
+      "description" : "Premium residential construction project executed with high standards.",
+      "year" : null
+    }, {
+      "id" : "sahu-city-lucknow",
+      "name" : "Sahu City",
+      "location" : "Lucknow",
+      "business" : "construction",
+      "category" : "residential",
+      "status" : "completed",
+      "coverImage" : "/images/R Colors Company Profile Final (2)_page-0012.jpg",
+      "gallery" : [ ],
+      "description" : "Large scale residential development.",
+      "year" : null
+    }, {
+      "id" : "rudra-group-varanasi",
+      "name" : "Rudra Group",
+      "location" : "Varanasi (VNS)",
+      "business" : "construction",
+      "category" : "residential",
+      "status" : "completed",
+      "coverImage" : "/images/R Colors Company Profile Final (2)_page-0012.jpg",
+      "gallery" : [ ],
+      "description" : "Residential building and development.",
+      "year" : null
+    }, {
+      "id" : "balaji-construction-company",
+      "name" : "Balaji Construction Company",
+      "location" : "",
+      "business" : "construction",
+      "category" : "commercial",
+      "status" : "completed",
+      "coverImage" : "/images/R Colors Company Profile Final (2)_page-0013.jpg",
+      "gallery" : [ ],
+      "description" : "Commercial development project.",
+      "year" : null
+    }, {
+      "id" : "shalimar-lucknow",
+      "name" : "Shalimar",
+      "location" : "Lucknow",
+      "business" : "construction",
+      "category" : "residential",
+      "status" : "completed",
+      "coverImage" : "/images/R Colors Company Profile Final (2)_page-0013.jpg",
+      "gallery" : [ ],
+      "description" : "Luxury residential apartment complex.",
+      "year" : null
+    }, {
+      "id" : "paras-group-prayagraj",
+      "name" : "Paras Group (Paras Greens)",
+      "location" : "Prayagraj",
+      "business" : "construction",
+      "category" : "residential",
+      "status" : "completed",
+      "coverImage" : "/images/R Colors Company Profile Final (2)_page-0013.jpg",
+      "gallery" : [ ],
+      "description" : "Modern residential greens project.",
+      "year" : null
+    } ]
+  },
+  "/api/clients" : {
+    "status" : 200,
+    "body" : [ {
+      "id" : "shalimar",
+      "name" : "Shalimar",
+      "logo" : ""
+    }, {
+      "id" : "sahu-city",
+      "name" : "Sahu City",
+      "logo" : ""
+    }, {
+      "id" : "ssb",
+      "name" : "SSB (Stay Blessed)",
+      "logo" : ""
+    }, {
+      "id" : "kasturi",
+      "name" : "Kasturi",
+      "logo" : ""
+    }, {
+      "id" : "ramk-group",
+      "name" : "RAMK Group",
+      "logo" : ""
+    }, {
+      "id" : "rohan-builders",
+      "name" : "Rohan Builders & Developers",
+      "logo" : ""
+    }, {
+      "id" : "global-group",
+      "name" : "Global Group",
+      "logo" : ""
+    }, {
+      "id" : "vascon",
+      "name" : "Vascon",
+      "logo" : ""
+    }, {
+      "id" : "balaji-construction",
+      "name" : "Balaji Construction Company",
+      "logo" : ""
+    }, {
+      "id" : "amit-enterprises",
+      "name" : "Amit Enterprises Housing",
+      "logo" : ""
+    }, {
+      "id" : "omaxe",
+      "name" : "Omaxe",
+      "logo" : ""
+    }, {
+      "id" : "roma",
+      "name" : "Roma",
+      "logo" : ""
+    }, {
+      "id" : "raj-heramba",
+      "name" : "RajHeramba",
+      "logo" : ""
+    }, {
+      "id" : "dka",
+      "name" : "DKA (Dheeraj Kapoor & Associates)",
+      "logo" : ""
+    }, {
+      "id" : "rudra",
+      "name" : "Rudra (Builders & Developers)",
+      "logo" : ""
+    }, {
+      "id" : "nip",
+      "name" : "NIP Housing Credit & Development",
+      "logo" : ""
+    }, {
+      "id" : "kgr",
+      "name" : "KGR Developers & Builders",
+      "logo" : ""
+    }, {
+      "id" : "shree-tridev",
+      "name" : "Shree Tridev",
+      "logo" : ""
+    } ]
+  },
+  "/api/estate/cities" : {
+    "status" : 200,
+    "body" : [ {
+      "slug" : "lucknow",
+      "name" : "Lucknow",
+      "stateSlug" : "uttar-pradesh",
+      "stateName" : "Uttar Pradesh"
+    } ]
+  },
+  "/api/projects/rainbow-housing-pune" : {
+    "status" : 200,
+    "body" : {
+      "id" : "rainbow-housing-pune",
+      "name" : "Rainbow Housing",
+      "location" : "Pune",
+      "business" : "construction",
+      "category" : "residential",
+      "status" : "completed",
+      "coverImage" : "/images/R Colors Company Profile Final (2)_page-0012.jpg",
+      "gallery" : [ ],
+      "description" : "Premium residential construction project executed with high standards.",
+      "year" : null
+    }
+  },
+  "/api/projects/sahu-city-lucknow" : {
+    "status" : 200,
+    "body" : {
+      "id" : "sahu-city-lucknow",
+      "name" : "Sahu City",
+      "location" : "Lucknow",
+      "business" : "construction",
+      "category" : "residential",
+      "status" : "completed",
+      "coverImage" : "/images/R Colors Company Profile Final (2)_page-0012.jpg",
+      "gallery" : [ ],
+      "description" : "Large scale residential development.",
+      "year" : null
+    }
+  },
+  "/api/projects/rudra-group-varanasi" : {
+    "status" : 200,
+    "body" : {
+      "id" : "rudra-group-varanasi",
+      "name" : "Rudra Group",
+      "location" : "Varanasi (VNS)",
+      "business" : "construction",
+      "category" : "residential",
+      "status" : "completed",
+      "coverImage" : "/images/R Colors Company Profile Final (2)_page-0012.jpg",
+      "gallery" : [ ],
+      "description" : "Residential building and development.",
+      "year" : null
+    }
+  },
+  "/api/projects/balaji-construction-company" : {
+    "status" : 200,
+    "body" : {
+      "id" : "balaji-construction-company",
+      "name" : "Balaji Construction Company",
+      "location" : "",
+      "business" : "construction",
+      "category" : "commercial",
+      "status" : "completed",
+      "coverImage" : "/images/R Colors Company Profile Final (2)_page-0013.jpg",
+      "gallery" : [ ],
+      "description" : "Commercial development project.",
+      "year" : null
+    }
+  },
+  "/api/projects/shalimar-lucknow" : {
+    "status" : 200,
+    "body" : {
+      "id" : "shalimar-lucknow",
+      "name" : "Shalimar",
+      "location" : "Lucknow",
+      "business" : "construction",
+      "category" : "residential",
+      "status" : "completed",
+      "coverImage" : "/images/R Colors Company Profile Final (2)_page-0013.jpg",
+      "gallery" : [ ],
+      "description" : "Luxury residential apartment complex.",
+      "year" : null
+    }
+  },
+  "/api/projects/paras-group-prayagraj" : {
+    "status" : 200,
+    "body" : {
+      "id" : "paras-group-prayagraj",
+      "name" : "Paras Group (Paras Greens)",
+      "location" : "Prayagraj",
+      "business" : "construction",
+      "category" : "residential",
+      "status" : "completed",
+      "coverImage" : "/images/R Colors Company Profile Final (2)_page-0013.jpg",
+      "gallery" : [ ],
+      "description" : "Modern residential greens project.",
+      "year" : null
+    }
+  },
+  "/api/estate/cities/uttar-pradesh" : {
+    "status" : 404
+  },
+  "/api/estate/cities/lucknow" : {
+    "status" : 200,
+    "body" : {
+      "city" : {
+        "slug" : "lucknow",
+        "name" : "Lucknow",
+        "stateSlug" : "uttar-pradesh",
+        "stateName" : "Uttar Pradesh"
+      },
+      "locations" : [ {
+        "id" : "uttar-pradesh",
+        "slug" : "uttar-pradesh",
+        "name" : "Uttar Pradesh",
+        "type" : "state",
+        "parentId" : null,
+        "enabled" : true,
+        "order" : 1
+      }, {
+        "id" : "lucknow",
+        "slug" : "lucknow",
+        "name" : "Lucknow",
+        "type" : "city",
+        "parentId" : "uttar-pradesh",
+        "enabled" : true,
+        "order" : 1,
+        "aliases" : [ "LKO" ],
+        "coordinates" : {
+          "lat" : 26.8467,
+          "lng" : 80.9462
+        }
+      }, {
+        "id" : "gomti-nagar",
+        "slug" : "gomti-nagar",
+        "name" : "Gomti Nagar",
+        "type" : "locality",
+        "parentId" : "lucknow",
+        "enabled" : true,
+        "order" : 1,
+        "aliases" : [ "GN" ],
+        "landmarks" : [ "Ambedkar Memorial Park" ],
+        "nearby" : [ "gomti-nagar-extension", "indira-nagar", "chinhat" ],
+        "toConfirm" : true
+      }, {
+        "id" : "gomti-nagar-extension",
+        "slug" : "gomti-nagar-extension",
+        "name" : "Gomti Nagar Extension",
+        "type" : "locality",
+        "parentId" : "lucknow",
+        "enabled" : true,
+        "order" : 2,
+        "aliases" : [ "GNE" ],
+        "landmarks" : [ "Ekana Stadium" ],
+        "nearby" : [ "gomti-nagar", "shaheed-path", "sultanpur-road" ],
+        "toConfirm" : true
+      }, {
+        "id" : "hazratganj",
+        "slug" : "hazratganj",
+        "name" : "Hazratganj",
+        "type" : "locality",
+        "parentId" : "lucknow",
+        "enabled" : true,
+        "order" : 3,
+        "nearby" : [ "mahanagar", "aliganj" ],
+        "toConfirm" : true
+      }, {
+        "id" : "aliganj",
+        "slug" : "aliganj",
+        "name" : "Aliganj",
+        "type" : "locality",
+        "parentId" : "lucknow",
+        "enabled" : true,
+        "order" : 4,
+        "nearby" : [ "vikas-nagar", "jankipuram", "mahanagar" ],
+        "toConfirm" : true
+      }, {
+        "id" : "indira-nagar",
+        "slug" : "indira-nagar",
+        "name" : "Indira Nagar",
+        "type" : "locality",
+        "parentId" : "lucknow",
+        "enabled" : true,
+        "order" : 5,
+        "nearby" : [ "gomti-nagar", "mahanagar", "faizabad-road" ],
+        "toConfirm" : true
+      }, {
+        "id" : "jankipuram",
+        "slug" : "jankipuram",
+        "name" : "Jankipuram",
+        "type" : "locality",
+        "parentId" : "lucknow",
+        "enabled" : true,
+        "order" : 6,
+        "nearby" : [ "aliganj", "vikas-nagar" ],
+        "toConfirm" : true
+      }, {
+        "id" : "vikas-nagar",
+        "slug" : "vikas-nagar",
+        "name" : "Vikas Nagar",
+        "type" : "locality",
+        "parentId" : "lucknow",
+        "enabled" : true,
+        "order" : 7,
+        "nearby" : [ "aliganj", "jankipuram" ],
+        "toConfirm" : true
+      }, {
+        "id" : "mahanagar",
+        "slug" : "mahanagar",
+        "name" : "Mahanagar",
+        "type" : "locality",
+        "parentId" : "lucknow",
+        "enabled" : true,
+        "order" : 8,
+        "nearby" : [ "hazratganj", "indira-nagar", "aliganj" ],
+        "toConfirm" : true
+      }, {
+        "id" : "aashiana",
+        "slug" : "aashiana",
+        "name" : "Aashiana",
+        "type" : "locality",
+        "parentId" : "lucknow",
+        "enabled" : true,
+        "order" : 9,
+        "aliases" : [ "Ashiana" ],
+        "nearby" : [ "kanpur-road", "telibagh", "alambagh" ],
+        "toConfirm" : true
+      }, {
+        "id" : "alambagh",
+        "slug" : "alambagh",
+        "name" : "Alambagh",
+        "type" : "locality",
+        "parentId" : "lucknow",
+        "enabled" : true,
+        "order" : 10,
+        "landmarks" : [ "Alambagh Bus Station" ],
+        "nearby" : [ "aashiana", "rajajipuram", "kanpur-road" ],
+        "toConfirm" : true
+      }, {
+        "id" : "rajajipuram",
+        "slug" : "rajajipuram",
+        "name" : "Rajajipuram",
+        "type" : "locality",
+        "parentId" : "lucknow",
+        "enabled" : true,
+        "order" : 11,
+        "nearby" : [ "alambagh" ],
+        "toConfirm" : true
+      }, {
+        "id" : "chinhat",
+        "slug" : "chinhat",
+        "name" : "Chinhat",
+        "type" : "locality",
+        "parentId" : "lucknow",
+        "enabled" : true,
+        "order" : 12,
+        "nearby" : [ "faizabad-road", "gomti-nagar" ],
+        "toConfirm" : true
+      }, {
+        "id" : "faizabad-road",
+        "slug" : "faizabad-road",
+        "name" : "Faizabad Road",
+        "type" : "locality",
+        "parentId" : "lucknow",
+        "enabled" : true,
+        "order" : 13,
+        "nearby" : [ "chinhat", "indira-nagar" ],
+        "toConfirm" : true
+      }, {
+        "id" : "sultanpur-road",
+        "slug" : "sultanpur-road",
+        "name" : "Sultanpur Road",
+        "type" : "locality",
+        "parentId" : "lucknow",
+        "enabled" : true,
+        "order" : 14,
+        "nearby" : [ "shaheed-path", "gomti-nagar-extension", "sushant-golf-city", "gosainganj" ],
+        "toConfirm" : true
+      }, {
+        "id" : "shaheed-path",
+        "slug" : "shaheed-path",
+        "name" : "Shaheed Path",
+        "type" : "locality",
+        "parentId" : "lucknow",
+        "enabled" : true,
+        "order" : 15,
+        "nearby" : [ "sultanpur-road", "gomti-nagar-extension", "sushant-golf-city" ],
+        "toConfirm" : true
+      }, {
+        "id" : "kanpur-road",
+        "slug" : "kanpur-road",
+        "name" : "Kanpur Road",
+        "type" : "locality",
+        "parentId" : "lucknow",
+        "enabled" : true,
+        "order" : 16,
+        "nearby" : [ "aashiana", "alambagh" ],
+        "toConfirm" : true
+      }, {
+        "id" : "raebareli-road",
+        "slug" : "raebareli-road",
+        "name" : "Raebareli Road",
+        "type" : "locality",
+        "parentId" : "lucknow",
+        "enabled" : true,
+        "order" : 17,
+        "aliases" : [ "Rae Bareli Road" ],
+        "nearby" : [ "telibagh", "vrindavan-yojana" ],
+        "toConfirm" : true
+      }, {
+        "id" : "vrindavan-yojana",
+        "slug" : "vrindavan-yojana",
+        "name" : "Vrindavan Yojana",
+        "type" : "locality",
+        "parentId" : "lucknow",
+        "enabled" : true,
+        "order" : 18,
+        "nearby" : [ "raebareli-road", "telibagh" ],
+        "toConfirm" : true
+      }, {
+        "id" : "sushant-golf-city",
+        "slug" : "sushant-golf-city",
+        "name" : "Sushant Golf City",
+        "type" : "locality",
+        "parentId" : "lucknow",
+        "enabled" : true,
+        "order" : 19,
+        "landmarks" : [ "Lulu Mall" ],
+        "nearby" : [ "shaheed-path", "sultanpur-road" ],
+        "toConfirm" : true
+      }, {
+        "id" : "telibagh",
+        "slug" : "telibagh",
+        "name" : "Telibagh",
+        "type" : "locality",
+        "parentId" : "lucknow",
+        "enabled" : true,
+        "order" : 20,
+        "nearby" : [ "raebareli-road", "vrindavan-yojana" ],
+        "toConfirm" : true
+      }, {
+        "id" : "mohanlalganj",
+        "slug" : "mohanlalganj",
+        "name" : "Mohanlalganj",
+        "type" : "town",
+        "parentId" : "lucknow",
+        "enabled" : true,
+        "order" : 100,
+        "nearby" : [ "gosainganj" ],
+        "toConfirm" : true
+      }, {
+        "id" : "bakshi-ka-talab",
+        "slug" : "bakshi-ka-talab",
+        "name" : "Bakshi Ka Talab",
+        "type" : "town",
+        "parentId" : "lucknow",
+        "enabled" : true,
+        "order" : 101,
+        "aliases" : [ "BKT" ],
+        "toConfirm" : true
+      }, {
+        "id" : "gosainganj",
+        "slug" : "gosainganj",
+        "name" : "Gosainganj",
+        "type" : "town",
+        "parentId" : "lucknow",
+        "enabled" : true,
+        "order" : 102,
+        "nearby" : [ "mohanlalganj", "sultanpur-road" ],
+        "toConfirm" : true
+      } ],
+      "properties" : [ {
+        "id" : "lko-p-001",
+        "citySlug" : "lucknow",
+        "locationSlug" : "gomti-nagar-extension",
+        "title" : "[SAMPLE] Residential Plot near Shaheed Path",
+        "category" : "land",
+        "type" : "residential-plot",
+        "price" : 9000000,
+        "areaValue" : 200,
+        "areaUnit" : "sqyd",
+        "status" : "ready",
+        "images" : [ ],
+        "verified" : true,
+        "verifiedOn" : "2026-09-20",
+        "description" : "Sample listing used to demonstrate the portal. A residential plot with boundary wall in a developed pocket. Replace with a real listing before launch.",
+        "postedAt" : "2026-10-02",
+        "featured" : true,
+        "agentId" : "lko-a-001",
+        "isSample" : true,
+        "attributes" : {
+          "facing" : "east",
+          "roadWidth" : 30,
+          "cornerPlot" : false,
+          "boundaryWall" : true,
+          "landUse" : "Residential",
+          "titleDocsVerified" : true
+        }
+      }, {
+        "id" : "lko-p-002",
+        "citySlug" : "lucknow",
+        "locationSlug" : "sultanpur-road",
+        "title" : "[SAMPLE] East-Facing Corner Plot on Sultanpur Road",
+        "category" : "land",
+        "type" : "residential-plot",
+        "price" : 4500000,
+        "areaValue" : 150,
+        "areaUnit" : "sqyd",
+        "status" : "ready",
+        "images" : [ ],
+        "verified" : true,
+        "verifiedOn" : "2026-09-12",
+        "description" : "Sample listing used to demonstrate the portal. A corner plot inside a plotted development, close to the main road.",
+        "postedAt" : "2026-09-28",
+        "agentId" : "lko-a-002",
+        "projectId" : "lko-prj-002",
+        "isSample" : true,
+        "attributes" : {
+          "facing" : "east",
+          "roadWidth" : 40,
+          "cornerPlot" : true,
+          "boundaryWall" : false,
+          "landUse" : "Residential",
+          "titleDocsVerified" : true
+        }
+      }, {
+        "id" : "lko-p-003",
+        "citySlug" : "lucknow",
+        "locationSlug" : "mohanlalganj",
+        "title" : "[SAMPLE] Agricultural Land in Mohanlalganj",
+        "category" : "land",
+        "type" : "agricultural-land",
+        "price" : 6000000,
+        "areaValue" : 2,
+        "areaUnit" : "bigha",
+        "status" : "ready",
+        "images" : [ ],
+        "verified" : false,
+        "description" : "Sample listing used to demonstrate regional land. Agricultural land on the city outskirts with road access.",
+        "postedAt" : "2026-09-18",
+        "agentId" : "lko-a-003",
+        "isSample" : true,
+        "attributes" : {
+          "roadWidth" : 20,
+          "distanceFromHighway" : 2.5,
+          "landUse" : "Agricultural",
+          "facing" : "north"
+        }
+      }, {
+        "id" : "lko-p-004",
+        "citySlug" : "lucknow",
+        "locationSlug" : "faizabad-road",
+        "title" : "[SAMPLE] Commercial Land on Faizabad Road",
+        "category" : "land",
+        "type" : "commercial-land",
+        "price" : 25000000,
+        "areaValue" : 5000,
+        "areaUnit" : "sqft",
+        "status" : "ready",
+        "images" : [ ],
+        "verified" : true,
+        "verifiedOn" : "2026-08-30",
+        "description" : "Sample listing used to demonstrate commercial land. Main-road frontage suited to showrooms or a small commercial building.",
+        "postedAt" : "2026-09-10",
+        "agentId" : "lko-a-004",
+        "isSample" : true,
+        "attributes" : {
+          "facing" : "north",
+          "roadWidth" : 60,
+          "cornerPlot" : false,
+          "landUse" : "Commercial",
+          "titleDocsVerified" : true
+        }
+      }, {
+        "id" : "lko-p-005",
+        "citySlug" : "lucknow",
+        "locationSlug" : "bakshi-ka-talab",
+        "title" : "[SAMPLE] Farm Land in Bakshi Ka Talab",
+        "category" : "land",
+        "type" : "agricultural-land",
+        "price" : 3500000,
+        "priceUnit" : "per-area",
+        "areaValue" : 1.5,
+        "areaUnit" : "acre",
+        "status" : "ready",
+        "images" : [ ],
+        "verified" : false,
+        "description" : "Sample listing used to demonstrate a per-acre price. Farm land on the northern outskirts, a short drive from the highway.",
+        "postedAt" : "2026-08-22",
+        "agentId" : "lko-a-003",
+        "isSample" : true,
+        "attributes" : {
+          "distanceFromHighway" : 1,
+          "landUse" : "Agricultural",
+          "boundaryWall" : false
+        }
+      }, {
+        "id" : "lko-p-006",
+        "citySlug" : "lucknow",
+        "locationSlug" : "gomti-nagar",
+        "title" : "[SAMPLE] 3 BHK Apartment in Gomti Nagar",
+        "category" : "property",
+        "type" : "apartment",
+        "price" : 11500000,
+        "areaValue" : 1650,
+        "areaUnit" : "sqft",
+        "status" : "ready",
+        "images" : [ "/images/cd01.jpg", "/images/home3.jpg" ],
+        "verified" : true,
+        "verifiedOn" : "2026-09-25",
+        "description" : "Sample listing used to demonstrate the portal. A ready-to-move apartment on a mid floor with covered parking.",
+        "postedAt" : "2026-10-05",
+        "featured" : true,
+        "agentId" : "lko-a-001",
+        "isSample" : true,
+        "attributes" : {
+          "bhk" : 3,
+          "bathrooms" : 3,
+          "floor" : 7,
+          "totalFloors" : 14,
+          "furnishing" : "semi-furnished",
+          "ageYears" : 4,
+          "facing" : "east"
+        }
+      }, {
+        "id" : "lko-p-007",
+        "citySlug" : "lucknow",
+        "locationSlug" : "jankipuram",
+        "title" : "[SAMPLE] 2 BHK Apartment in Jankipuram",
+        "category" : "property",
+        "type" : "apartment",
+        "price" : 5800000,
+        "areaValue" : 1100,
+        "areaUnit" : "sqft",
+        "status" : "under-development",
+        "images" : [ "/images/home1.jpg" ],
+        "verified" : false,
+        "description" : "Sample listing used to demonstrate an under-construction home linked to a project.",
+        "postedAt" : "2026-09-30",
+        "agentId" : "lko-a-005",
+        "projectId" : "lko-prj-005",
+        "isSample" : true,
+        "attributes" : {
+          "bhk" : 2,
+          "bathrooms" : 2,
+          "floor" : 4,
+          "totalFloors" : 12,
+          "furnishing" : "unfurnished",
+          "possession" : "Dec 2027"
+        }
+      }, {
+        "id" : "lko-p-008",
+        "citySlug" : "lucknow",
+        "locationSlug" : "aliganj",
+        "title" : "[SAMPLE] 4 BHK Independent House in Aliganj",
+        "category" : "property",
+        "type" : "independent-house",
+        "price" : 21000000,
+        "areaValue" : 2400,
+        "areaUnit" : "sqft",
+        "status" : "ready",
+        "images" : [ "/images/home4.3.jpg" ],
+        "verified" : true,
+        "verifiedOn" : "2026-09-05",
+        "description" : "Sample listing used to demonstrate the portal. A two-storey family home with a private garden.",
+        "postedAt" : "2026-09-15",
+        "agentId" : "lko-a-005",
+        "isSample" : true,
+        "attributes" : {
+          "bhk" : 4,
+          "bathrooms" : 4,
+          "totalFloors" : 2,
+          "furnishing" : "unfurnished",
+          "ageYears" : 8,
+          "facing" : "north-east"
+        }
+      }, {
+        "id" : "lko-p-009",
+        "citySlug" : "lucknow",
+        "locationSlug" : "hazratganj",
+        "title" : "[SAMPLE] Ground-Floor Shop in Hazratganj",
+        "category" : "property",
+        "type" : "shop",
+        "price" : 9500000,
+        "areaValue" : 350,
+        "areaUnit" : "sqft",
+        "status" : "ready",
+        "images" : [ "/images/cd02.jpg" ],
+        "verified" : false,
+        "description" : "Sample listing used to demonstrate commercial property. A ground-floor shop on a busy market street.",
+        "postedAt" : "2026-08-28",
+        "agentId" : "lko-a-004",
+        "isSample" : true,
+        "attributes" : {
+          "floor" : 0,
+          "furnishing" : "unfurnished"
+        }
+      }, {
+        "id" : "lko-p-010",
+        "citySlug" : "lucknow",
+        "locationSlug" : "gomti-nagar",
+        "title" : "[SAMPLE] Furnished Office Space in Gomti Nagar",
+        "category" : "property",
+        "type" : "office",
+        "price" : 14000000,
+        "areaValue" : 1200,
+        "areaUnit" : "sqft",
+        "status" : "ready",
+        "images" : [ "/images/cd02.jpg" ],
+        "verified" : true,
+        "verifiedOn" : "2026-09-18",
+        "description" : "Sample listing used to demonstrate commercial property. A furnished office floor plate with lift access and parking.",
+        "postedAt" : "2026-09-22",
+        "agentId" : "lko-a-006",
+        "isSample" : true,
+        "attributes" : {
+          "floor" : 5,
+          "totalFloors" : 9,
+          "furnishing" : "furnished",
+          "ageYears" : 3
+        }
+      } ],
+      "projects" : [ {
+        "id" : "lko-prj-001",
+        "citySlug" : "lucknow",
+        "locationSlug" : "shaheed-path",
+        "name" : "[SAMPLE] Residential Towers, Shaheed Path",
+        "developer" : "Developer to be confirmed",
+        "type" : "residential",
+        "status" : "under-construction",
+        "startingPrice" : 7500000,
+        "sizeRange" : "2–4 BHK · 1,250–2,400 sq ft",
+        "images" : [ "/images/home2.jpg" ],
+        "description" : "Sample project used to demonstrate the Projects tab. Replace with a real project, developer and RERA number before launch.",
+        "isSample" : true
+      }, {
+        "id" : "lko-prj-002",
+        "citySlug" : "lucknow",
+        "locationSlug" : "sultanpur-road",
+        "name" : "[SAMPLE] Plotted Development, Sultanpur Road",
+        "developer" : "Developer to be confirmed",
+        "type" : "plotted",
+        "status" : "ready",
+        "startingPrice" : 3600000,
+        "sizeRange" : "100–300 sq yd plots",
+        "images" : [ "/images/cd03.jpg" ],
+        "description" : "Sample project used to demonstrate plotted developments with internal roads and boundary wall.",
+        "featured" : true,
+        "isSample" : true
+      }, {
+        "id" : "lko-prj-003",
+        "citySlug" : "lucknow",
+        "locationSlug" : "gomti-nagar-extension",
+        "name" : "[SAMPLE] Mixed-Use Development, Gomti Nagar Extension",
+        "developer" : "Developer to be confirmed",
+        "type" : "mixed-use",
+        "status" : "upcoming",
+        "startingPrice" : 9000000,
+        "sizeRange" : "Shops & 3 BHK · 400–1,900 sq ft",
+        "images" : [ "/images/home1.jpg" ],
+        "description" : "Sample project used to demonstrate a mixed-use scheme with retail below and homes above.",
+        "isSample" : true
+      }, {
+        "id" : "lko-prj-004",
+        "citySlug" : "lucknow",
+        "locationSlug" : "faizabad-road",
+        "name" : "[SAMPLE] Commercial Complex, Faizabad Road",
+        "developer" : "Developer to be confirmed",
+        "type" : "commercial",
+        "status" : "under-construction",
+        "startingPrice" : 4500000,
+        "sizeRange" : "Shops & offices · 250–1,500 sq ft",
+        "images" : [ "/images/cd02.jpg" ],
+        "description" : "Sample project used to demonstrate commercial projects.",
+        "isSample" : true
+      }, {
+        "id" : "lko-prj-005",
+        "citySlug" : "lucknow",
+        "locationSlug" : "jankipuram",
+        "name" : "[SAMPLE] Residential Project, Jankipuram",
+        "developer" : "Developer to be confirmed",
+        "type" : "residential",
+        "status" : "under-construction",
+        "startingPrice" : 5500000,
+        "sizeRange" : "2–3 BHK · 1,050–1,500 sq ft",
+        "images" : [ "/images/cd01.jpg" ],
+        "description" : "Sample project used to demonstrate how listings link to a project.",
+        "isSample" : true
+      }, {
+        "id" : "lko-prj-006",
+        "citySlug" : "lucknow",
+        "locationSlug" : "gosainganj",
+        "name" : "[SAMPLE] Plotted Township, Gosainganj",
+        "developer" : "Developer to be confirmed",
+        "type" : "plotted",
+        "status" : "upcoming",
+        "startingPrice" : 1800000,
+        "sizeRange" : "1,000–2,700 sq ft plots",
+        "images" : [ "/images/cd03.jpg" ],
+        "description" : "Sample project used to demonstrate a regional (outskirts) project.",
+        "isSample" : true
+      } ],
+      "agents" : [ {
+        "id" : "lko-a-001",
+        "name" : "[SAMPLE] Estate Advisor 1",
+        "role" : "Property Advisor (sample profile)",
+        "phone" : "6389144470",
+        "specializations" : [ "residential", "investment" ],
+        "areasServed" : [ "gomti-nagar", "gomti-nagar-extension", "shaheed-path" ],
+        "languages" : [ "Hindi", "English" ],
+        "isSample" : true
+      }, {
+        "id" : "lko-a-002",
+        "name" : "[SAMPLE] Estate Advisor 2",
+        "role" : "Plots & Land Advisor (sample profile)",
+        "phone" : "9579662353",
+        "specializations" : [ "land", "residential" ],
+        "areasServed" : [ "sultanpur-road", "gosainganj", "sushant-golf-city" ],
+        "languages" : [ "Hindi", "English" ],
+        "isSample" : true
+      }, {
+        "id" : "lko-a-003",
+        "name" : "[SAMPLE] Estate Advisor 3",
+        "role" : "Regional Land Advisor (sample profile)",
+        "phone" : "6389144470",
+        "specializations" : [ "land", "investment" ],
+        "areasServed" : [ "mohanlalganj", "bakshi-ka-talab" ],
+        "languages" : [ "Hindi" ],
+        "isSample" : true
+      }, {
+        "id" : "lko-a-004",
+        "name" : "[SAMPLE] Estate Advisor 4",
+        "role" : "Commercial Property Advisor (sample profile)",
+        "phone" : "9579662353",
+        "specializations" : [ "commercial" ],
+        "areasServed" : [ "hazratganj", "faizabad-road", "indira-nagar" ],
+        "languages" : [ "Hindi", "English" ],
+        "isSample" : true
+      }, {
+        "id" : "lko-a-005",
+        "name" : "[SAMPLE] Estate Advisor 5",
+        "role" : "Residential Sales Advisor (sample profile)",
+        "phone" : "6389144470",
+        "specializations" : [ "residential" ],
+        "areasServed" : [ "aliganj", "jankipuram", "vikas-nagar" ],
+        "languages" : [ "Hindi", "English" ],
+        "isSample" : true
+      }, {
+        "id" : "lko-a-006",
+        "name" : "[SAMPLE] Estate Advisor 6",
+        "role" : "Senior Property Consultant (sample profile)",
+        "phone" : "9579662353",
+        "specializations" : [ "residential", "commercial", "investment" ],
+        "areasServed" : [ "lucknow" ],
+        "languages" : [ "Hindi", "English" ],
+        "featured" : true,
+        "isSample" : true
+      } ]
+    }
+  },
+  "/api/estate/cities/gomti-nagar" : {
+    "status" : 404
+  },
+  "/api/estate/cities/gomti-nagar-extension" : {
+    "status" : 404
+  },
+  "/api/estate/cities/hazratganj" : {
+    "status" : 404
+  },
+  "/api/estate/cities/aliganj" : {
+    "status" : 404
+  },
+  "/api/estate/cities/indira-nagar" : {
+    "status" : 404
+  },
+  "/api/estate/cities/jankipuram" : {
+    "status" : 404
+  },
+  "/api/estate/cities/vikas-nagar" : {
+    "status" : 404
+  },
+  "/api/estate/cities/mahanagar" : {
+    "status" : 404
+  },
+  "/api/estate/cities/aashiana" : {
+    "status" : 404
+  },
+  "/api/estate/cities/alambagh" : {
+    "status" : 404
+  },
+  "/api/estate/cities/rajajipuram" : {
+    "status" : 404
+  },
+  "/api/estate/cities/chinhat" : {
+    "status" : 404
+  },
+  "/api/estate/cities/faizabad-road" : {
+    "status" : 404
+  },
+  "/api/estate/cities/sultanpur-road" : {
+    "status" : 404
+  },
+  "/api/estate/cities/shaheed-path" : {
+    "status" : 404
+  },
+  "/api/estate/cities/kanpur-road" : {
+    "status" : 404
+  },
+  "/api/estate/cities/raebareli-road" : {
+    "status" : 404
+  },
+  "/api/estate/cities/vrindavan-yojana" : {
+    "status" : 404
+  },
+  "/api/estate/cities/sushant-golf-city" : {
+    "status" : 404
+  },
+  "/api/estate/cities/telibagh" : {
+    "status" : 404
+  },
+  "/api/estate/cities/mohanlalganj" : {
+    "status" : 404
+  },
+  "/api/estate/cities/bakshi-ka-talab" : {
+    "status" : 404
+  },
+  "/api/estate/cities/gosainganj" : {
+    "status" : 404
+  }
+}

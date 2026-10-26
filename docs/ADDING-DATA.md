@@ -1,10 +1,17 @@
 # Adding data to R Colors Estate
 
-The estate portal (`/businesses/estate`) is driven entirely by data files.
+> **The JSON files described here are now first-run seed data only.** The backend
+> keeps all content in its database and imports these files once, when the database
+> is empty (`DataSeeder`). Editing them afterwards does not change a running site.
+> Use them to prepare the initial data set (and keep `npm run validate:data` passing);
+> day-to-day changes will go through the admin panel at `/admin` (being built), with
+> CSV import for bulk listings. To re-seed a local database, stop the backend, delete
+> `backend/data/`, and start it again.
+
+The estate portal (`/businesses/estate`) is driven entirely by data.
 Adding a city, a locality, a village, a listing, a project or an agent never
 needs a change to a React component. The Spring Boot backend serves the data
-(`GET /api/estate/cities`, `GET /api/estate/cities/<slug>`); restart it after
-editing the files (or run it with `app.data-dir` pointing at the folder).
+(`GET /api/estate/cities`, `GET /api/estate/cities/<slug>`).
 
 Run the `npm run …` commands below from `frontend/`.
 
@@ -234,7 +241,7 @@ the ones where R Colors sells, delete the rest (or set `"enabled": false`).
 | Area units shown per category, bigha sizes | `frontend/src/config/estate/units.ts` |
 | Hide results until a city is picked | `REQUIRE_CITY_SELECTION` in `frontend/src/config/estate/site.ts` |
 | Hero photo | `heroImage` in `frontend/src/config/estate/site.ts` |
-| Move data to a database / CMS | change `EstateService` in the backend; the API response shape (`CityBundle`) stays the same |
+| Database / CMS | done: `EstateService` reads the database; the API response shape (`CityBundle`) is unchanged |
 
 ## 11. URLs
 

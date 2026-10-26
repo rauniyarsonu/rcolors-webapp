@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Lookup structure over the flat location list from locations.json.
+ * Lookup structure over the flat location list (EstateJson.location records).
  * Port of frontend/src/lib/estate/locationTree.ts; keep the two in step.
  */
 public class LocationTree {

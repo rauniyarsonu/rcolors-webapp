@@ -4,7 +4,7 @@ React (Vite + TypeScript + Tailwind) frontend and Spring Boot (Java 21) backend.
 
 ```
 frontend/   React app: pages, components, styles, images (public/), estate data scripts
-backend/    Spring Boot API: content + estate data, contact/enquiry forms, database
+backend/    Spring Boot API: content + estate data (database, Flyway migrations), contact/enquiry forms
 docs/       ADDING-DATA.md: how to add cities, localities, listings, projects, agents
 Dockerfile  one image that serves the React build and the API together
 ```
@@ -38,14 +38,28 @@ cd backend && mvn test
 
 | Method | Path | |
 | --- | --- | --- |
-| GET | `/api/projects`, `/api/projects/{id}` | portfolio (`backend/src/main/resources/data/projects.json`) |
-| GET | `/api/clients` | clients (`data/clients.json`) |
+| GET | `/api/projects`, `/api/projects/{id}` | portfolio projects |
+| GET | `/api/clients` | clients |
 | GET | `/api/estate/cities` | cities in the estate city dropdown |
 | GET | `/api/estate/cities/{slug}` | everything one city page needs (locations, listings, projects, agents) |
+| GET | `/api/testimonials?business=` | published testimonials, optionally for one business |
+| GET | `/api/site` | company contact details, home hero slides, home stats |
+| GET | `/api/businesses/{key}` | `construction`, `r-colors` or `estate`: hero, intro, services, page blocks |
 | POST | `/api/contact` | contact form (form-urlencoded) → `contact_message` table |
 | POST | `/api/estate/enquiries` | estate enquiry form → `estate_enquiry` table |
 
+GET endpoints return only published content and send `Cache-Control: max-age=60, public`.
 Invalid form posts get `400 {"errors": {"field": "message"}}`.
+
+## Content and database
+
+All content lives in the database. The schema is managed by Flyway
+(`backend/src/main/resources/db/migration`, `ddl-auto=validate`). On the first start,
+when the content tables are empty, `DataSeeder` imports the JSON files under
+`backend/src/main/resources/data/` (projects, clients, testimonials, site, businesses,
+estate). After that those files are only seed data: editing them changes nothing on a
+running site. An existing database created before Flyway is adopted automatically
+(`baseline-on-migrate`).
 
 ## Configuration (backend environment variables)
 
@@ -55,6 +69,7 @@ Invalid form posts get `400 {"errors": {"field": "message"}}`.
 | `SPRING_PROFILES_ACTIVE=prod` + `DATABASE_URL`, `DATABASE_USERNAME`, `DATABASE_PASSWORD` | H2 file | PostgreSQL in production |
 | `CORS_ALLOWED_ORIGINS` | `http://localhost:3000` | comma-separated; only needed when the frontend is on another domain |
 | `NOTIFY_EMAIL`, `MAIL_HOST`, `MAIL_PORT`, `MAIL_USERNAME`, `MAIL_PASSWORD` | off | email each form submission |
+| `SEED_ENABLED` | `true` | import `data/*.json` into an empty database on start; `false` starts with empty content |
 
 Frontend build variables (`frontend/.env`): `VITE_SITE_URL` (absolute URLs in social/SEO
 tags) and `VITE_API_BASE_URL` (leave empty when the API is on the same origin).

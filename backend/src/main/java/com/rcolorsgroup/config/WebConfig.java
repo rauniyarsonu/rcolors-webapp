@@ -1,16 +1,26 @@
 package com.rcolorsgroup.config;
 
 import java.io.IOException;
+import java.time.Duration;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
+import org.springframework.http.CacheControl;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.mvc.WebContentInterceptor;
 import org.springframework.web.servlet.resource.PathResourceResolver;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
+    /** Public content reads; short so admin edits reach visitors within a minute */
+    static final String[] PUBLIC_READS = {
+        "/api/projects", "/api/projects/*", "/api/clients", "/api/estate/cities", "/api/estate/cities/*",
+        "/api/testimonials", "/api/site", "/api/businesses/*",
+    };
+
     private final String[] allowedOrigins;
 
     public WebConfig(@Value("${app.cors.allowed-origins:}") String[] allowedOrigins) {
@@ -22,6 +32,13 @@ public class WebConfig implements WebMvcConfigurer {
         if (allowedOrigins.length > 0) {
             registry.addMapping("/api/**").allowedOrigins(allowedOrigins).allowedMethods("GET", "POST");
         }
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        WebContentInterceptor cache = new WebContentInterceptor();
+        for (String path : PUBLIC_READS) cache.addCacheMapping(CacheControl.maxAge(Duration.ofSeconds(60)).cachePublic(), path);
+        registry.addInterceptor(cache).addPathPatterns(PUBLIC_READS);
     }
 
     /**
