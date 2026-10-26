@@ -34,6 +34,3 @@ export function useUnsavedChanges(dirty: boolean) {
     };
   }, [dirty]);
 }
-
-/** For buttons that navigate or sign out */
-export const confirmLeave = (dirty: boolean) => !dirty || window.confirm(MESSAGE);

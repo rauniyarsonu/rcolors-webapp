@@ -266,3 +266,28 @@ it in the `estate_enquiry` table. The contact page form works the same way
 (`POST /api/contact`, table `contact_message`). To also receive each submission
 by email, set `NOTIFY_EMAIL` and the `MAIL_*` settings described in
 `backend/src/main/resources/application.properties`.
+
+## 13. Managing careers
+
+Jobs and applications live in the database, not in data files, and are managed in the
+admin panel at `/admin` (sign-in setup: README > Configuration > Admin login).
+
+- **Post a job:** Jobs → New job. "Save as draft" keeps it private; "Publish" puts it on
+  `/careers` straight away. Use Preview to see the public page before publishing.
+  Descriptions are plain text (blank line = new paragraph); responsibilities,
+  requirements, nice-to-haves and benefits are one row each and can be reordered.
+- **Salary** is only shown publicly when "Show salary on the careers page" is ticked.
+- **Deadline:** the last day to apply. After it the job drops off the list and its page
+  says it's closed, without you changing anything.
+- **Close / reopen:** a closed job stops taking applications but its link still works.
+  **Archive** removes it from the site entirely (applications are kept). Only a draft
+  that nobody applied to can be deleted.
+- **The URL** (`/careers/site-engineer-civil`) is made from the first title and stays the
+  same when you rename the job, so shared links keep working. Duplicate a job to reuse it.
+- **Applications:** filter by job, status, date or name/email/phone; change the status
+  from the list or the detail page (with an optional note, kept in the history); add
+  private notes; download the résumé; Export CSV downloads what the filters show.
+- **Data removal:** if a candidate asks to be deleted, open the application and use
+  "Delete application". It removes the application, its résumé and its history.
+- **Copy on the careers page** (intro, perks, empty state, labels) is in
+  `frontend/src/config/careers.ts`.
