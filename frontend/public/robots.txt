@@ -1,0 +1,3 @@
+# Admin pages are private (they also send noindex)
+User-agent: *
+Disallow: /admin

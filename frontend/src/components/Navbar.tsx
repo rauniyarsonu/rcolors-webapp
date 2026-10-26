@@ -228,7 +228,8 @@ export default function Navbar() {
               Careers
               {activeBar(isActive("/careers"))}
             </Link>
-            <Link href="/contact" className={navLinkClass} aria-current={pathname === "/contact" ? "page" : undefined}>
+            {/* From xl only: at lg (1024px) the row doesn't fit it, and "Discuss Your Project" already links to /contact */}
+            <Link href="/contact" className={`${navLinkClass} hidden xl:flex`} aria-current={pathname === "/contact" ? "page" : undefined}>
               Contact
               {activeBar(isActive("/contact"))}
             </Link>

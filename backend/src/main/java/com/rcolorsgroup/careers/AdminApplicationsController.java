@@ -70,9 +70,15 @@ public class AdminApplicationsController {
                 .body(file.data());
     }
 
+    /** Same filters as the list, so the export matches what the admin sees */
     @GetMapping("/applications/export.csv")
-    public ResponseEntity<byte[]> export(@RequestParam(required = false) String jobId, @RequestParam(required = false) ApplicationStatus status) {
-        String csv = applications.exportCsv(new ApplicationService.Filter(jobId, status, null, null, null));
+    public ResponseEntity<byte[]> export(
+            @RequestParam(required = false) String jobId,
+            @RequestParam(required = false) ApplicationStatus status,
+            @RequestParam(required = false) String q,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate from,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate to) {
+        String csv = applications.exportCsv(new ApplicationService.Filter(jobId, status, q, from, to));
         return ResponseEntity.ok()
                 .contentType(new MediaType("text", "csv", StandardCharsets.UTF_8))
                 .header(HttpHeaders.CONTENT_DISPOSITION, ContentDisposition.attachment().filename("applications-" + Careers.today() + ".csv").build().toString())

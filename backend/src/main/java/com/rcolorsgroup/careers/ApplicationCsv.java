@@ -24,11 +24,17 @@ final class ApplicationCsv {
             line(out, List.of(
                     a.getId(), TIME.format(a.getCreatedAt()), a.getJob() == null ? "General application" : a.getJob().getTitle(),
                     a.getStatus(), a.getName(), a.getEmail(), a.getPhone(), nz(a.getCurrentLocation()),
-                    nz(a.getTotalExperienceYears()), nz(a.getCurrentCompany()), nz(a.getNoticePeriod()), nz(a.getExpectedSalary()),
+                    nz(a.getTotalExperienceYears()), nz(a.getCurrentCompany()), noticePeriod(a.getNoticePeriod()), nz(a.getExpectedSalary()),
                     nz(a.getLinkedinUrl()), nz(a.getPortfolioUrl()), nz(a.getCoverLetter()),
                     a.getResume().getOriginalFilename(), nz(a.getAdminNotes())));
         }
         return out.toString();
+    }
+
+    /** DAYS_30 → "30 days" */
+    private static String noticePeriod(NoticePeriod p) {
+        if (p == null) return "";
+        return p == NoticePeriod.IMMEDIATE ? "Immediate" : p.name().substring(5) + " days";
     }
 
     private static Object nz(Object value) {
