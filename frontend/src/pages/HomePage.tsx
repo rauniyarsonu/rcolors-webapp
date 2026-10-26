@@ -1,6 +1,6 @@
 import Link from "@/components/ui/Link";
 import Image from "@/components/ui/Image";
-import { ArrowRight, ChevronRight, Building2, Clock, Layers, Paintbrush, ShieldCheck, Home as HomeIcon, MapPin, FileCheck, Hammer } from "lucide-react";
+import { ArrowRight, ChevronRight, Building2, Clock, Layers, Paintbrush, ShieldCheck, Home as HomeIcon, FileCheck, Hammer } from "lucide-react";
 import HeroSlider from "@/components/HeroSlider";
 import SectionHeading from "@/components/ui/SectionHeading";
 import BusinessCard from "@/components/home/BusinessCard";

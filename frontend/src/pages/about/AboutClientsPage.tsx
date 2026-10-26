@@ -158,7 +158,7 @@ export default function ClientsPage() {
                 Don&apos;t just take our word for it. Here&apos;s what our esteemed partners have to say about our execution and commitment to quality.
               </p>
             </SectionHeading>
-            <Marquee name="testimonials" rows={[{ items: testimonialCards }]} secondsPerItem={12} />
+            <Marquee rows={[{ items: testimonialCards }]} secondsPerItem={12} />
           </div>
         </div>
       </section>

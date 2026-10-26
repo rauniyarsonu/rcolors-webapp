@@ -1,6 +1,3 @@
-import { useState } from "react";
-import { Pause, Play } from "lucide-react";
-
 export interface MarqueeRow {
   /** Pre-rendered items; each needs a stable `key` */
   items: React.ReactNode[];
@@ -14,27 +11,22 @@ interface MarqueeProps {
   itemSpacingClass?: string;
   /** Constant speed regardless of item count */
   secondsPerItem?: number;
-  /** Used in the pause button label, e.g. "logos" -> "Pause logos" */
-  name: string;
   className?: string;
 }
 
 /**
  * Infinite horizontal marquee. Each row renders its items exactly twice and slides by -50%,
- * so the loop is seamless. Pauses on hover, via the pause button (tap/keyboard), and
- * stays still for visitors who prefer reduced motion.
+ * so the loop is seamless. Pauses on hover and stays still for visitors who prefer reduced motion.
  */
-export default function Marquee({ rows, itemSpacingClass = "mr-4 sm:mr-6", secondsPerItem = 5, name, className = "" }: MarqueeProps) {
-  const [paused, setPaused] = useState(false);
-
+export default function Marquee({ rows, itemSpacingClass = "mr-4 sm:mr-6", secondsPerItem = 5, className = "" }: MarqueeProps) {
   return (
-    <div className={`group ${className}`} data-state={paused ? "paused" : "running"}>
+    <div className={`group ${className}`}>
       <div className="relative -mx-4 overflow-hidden py-4 sm:mx-0">
         {rows.map((row, rowIndex) => (
           <div
             key={rowIndex}
             className={`flex w-max ${row.reverse ? "animate-marquee-right" : "animate-marquee-left"} ${rowIndex < rows.length - 1 ? "mb-4 sm:mb-6" : ""
-              } group-hover:[animation-play-state:paused] group-data-[state=paused]:[animation-play-state:paused] motion-reduce:[animation-play-state:paused]`}
+              } group-hover:[animation-play-state:paused] motion-reduce:[animation-play-state:paused]`}
             style={{ animationDuration: `${row.items.length * secondsPerItem}s` }}
           >
             {[0, 1].map((copy) => (

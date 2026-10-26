@@ -38,5 +38,5 @@ export default function ClientLogoMarquee({ rows: initialRows }: { rows: [number
     </div>
   );
 
-  return <Marquee name="logos" rows={[{ items: rows[0].map(tile) }, { items: rows[1].map(tile), reverse: true }]} />;
+  return <Marquee rows={[{ items: rows[0].map(tile) }, { items: rows[1].map(tile), reverse: true }]} />;
 }
