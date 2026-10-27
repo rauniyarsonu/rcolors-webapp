@@ -141,8 +141,7 @@ export default function Navbar() {
     ? "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
     : "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-navy";
   const dropdownLinkClass = (href: string) =>
-    `flex min-h-[44px] items-center px-6 text-[15px] font-medium transition-colors hover:text-brand-sky focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-brand-navy ${
-      pathname === href ? "text-brand-sky font-semibold" : ""
+    `flex min-h-[44px] items-center px-6 text-[15px] font-medium transition-colors hover:text-brand-sky focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-brand-navy ${pathname === href ? "text-brand-sky font-semibold" : ""
     }`;
 
   const navLinkClass = `relative flex min-h-[44px] min-w-11 items-center justify-center rounded-sm transition-colors ${hoverClass} ${focusRingClass}`;
@@ -152,9 +151,8 @@ export default function Navbar() {
 
   return (
     <header
-      className={`w-full z-50 pt-[env(safe-area-inset-top)] transition-colors duration-300 ${headerPosClass} ${headerBgClass} ${
-        isCx ? "cx" : ""
-      } ${isCx && isTransparent ? "cx-on-dark" : ""}`}
+      className={`w-full z-50 pt-[env(safe-area-inset-top)] transition-colors duration-300 ${headerPosClass} ${headerBgClass} ${isCx ? "cx" : ""
+        } ${isCx && isTransparent ? "cx-on-dark" : ""}`}
     >
       <div className="site-container flex h-16 items-center justify-between gap-3 lg:h-20">
         {/* Logo */}
@@ -224,10 +222,14 @@ export default function Navbar() {
               Projects
               {activeBar(isActive("/projects"))}
             </Link>
-            <Link href="/contact" className={navLinkClass} aria-current={pathname === "/contact" ? "page" : undefined}>
+            <Link href="/careers" className={navLinkClass} aria-current={pathname === "/careers" ? "page" : undefined}>
+              Careers
+              {activeBar(isActive("/careers"))}
+            </Link>
+            {/* <Link href="/contact" className={navLinkClass} aria-current={pathname === "/contact" ? "page" : undefined}>
               Contact
               {activeBar(isActive("/contact"))}
-            </Link>
+            </Link> */}
           </nav>
 
           <Link
@@ -255,9 +257,8 @@ export default function Navbar() {
 
       {/* Mobile drawer */}
       <div
-        className={`fixed inset-0 z-[60] bg-black/50 transition-opacity duration-300 lg:hidden ${
-          isMobileMenuOpen ? "opacity-100" : "pointer-events-none opacity-0"
-        }`}
+        className={`fixed inset-0 z-[60] bg-black/50 transition-opacity duration-300 lg:hidden ${isMobileMenuOpen ? "opacity-100" : "pointer-events-none opacity-0"
+          }`}
         aria-hidden="true"
         onClick={() => closeDrawer(false)}
       />
@@ -270,7 +271,7 @@ export default function Navbar() {
         className={`fixed inset-y-0 right-0 z-[70] flex w-[min(88vw,380px)] flex-col overflow-y-auto overscroll-contain bg-white pb-[env(safe-area-inset-bottom)] pr-[env(safe-area-inset-right)] pt-[env(safe-area-inset-top)] shadow-xl duration-300 ease-out motion-reduce:transition-none lg:hidden ${
           // Visibility flips instantly on open (so focus can move in) and waits for the slide on close
           isMobileMenuOpen ? "visible translate-x-0 transition-transform" : "invisible translate-x-full transition-[transform,visibility]"
-        } ${isCx ? "text-cx-ink" : "text-brand-navy"}`}
+          } ${isCx ? "text-cx-ink" : "text-brand-navy"}`}
       >
         <div className="flex h-16 shrink-0 items-center justify-between border-b px-6">
           <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-600">Menu</span>
@@ -298,6 +299,9 @@ export default function Navbar() {
           />
           <DrawerLink href="/projects" current={isActive("/projects")} onNavigate={() => closeDrawer(false)}>
             Projects
+          </DrawerLink>
+          <DrawerLink href="/careers" current={isActive("/careers")} onNavigate={() => closeDrawer(false)}>
+            Careers
           </DrawerLink>
           <DrawerLink href="/contact" current={pathname === "/contact"} onNavigate={() => closeDrawer(false)}>
             Contact
@@ -389,14 +393,13 @@ function NavDropdown({
       <div
         id={panelId}
         ref={panelRef}
-        className={`absolute top-full z-50 pt-2 duration-200 motion-reduce:transition-none ${
-          align === "right" ? "right-0 xl:left-0 xl:right-auto" : "left-0"
-        } ${
+        className={`absolute top-full z-50 pt-2 duration-200 motion-reduce:transition-none ${align === "right" ? "right-0 xl:left-0 xl:right-auto" : "left-0"
+          } ${
           // Visible immediately on open (so ArrowDown can focus a link), hidden only after the fade on close
           open
             ? "visible translate-y-0 opacity-100 transition-[opacity,transform]"
             : "invisible -translate-y-1 opacity-0 transition-[opacity,transform,visibility]"
-        }`}
+          }`}
       >
         <ul className={`min-w-[260px] bg-white py-2 xl:min-w-[280px] ${panelClass}`}>
           {items.map((item) => (
@@ -442,9 +445,8 @@ function DrawerAccordion({
     <div className="border-b">
       <button
         type="button"
-        className={`flex min-h-[52px] w-full items-center justify-between gap-3 px-6 text-left transition-colors hover:bg-gray-50 focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-brand-navy ${
-          active ? "text-brand-sky" : ""
-        }`}
+        className={`flex min-h-[52px] w-full items-center justify-between gap-3 px-6 text-left transition-colors hover:bg-gray-50 focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-brand-navy ${active ? "text-brand-sky" : ""
+          }`}
         aria-expanded={open}
         aria-controls={panelId}
         onClick={() => setOpen((v) => !v)}
@@ -460,9 +462,8 @@ function DrawerAccordion({
           Open: no `visible` class, so the closed drawer's hidden visibility still applies to these links. */}
       <div
         id={panelId}
-        className={`grid transition-[grid-template-rows,visibility] duration-200 ease-out motion-reduce:transition-none ${
-          open ? "grid-rows-[1fr]" : "invisible grid-rows-[0fr]"
-        }`}
+        className={`grid transition-[grid-template-rows,visibility] duration-200 ease-out motion-reduce:transition-none ${open ? "grid-rows-[1fr]" : "invisible grid-rows-[0fr]"
+          }`}
       >
         <div className="overflow-hidden">
           <div className="pb-2">
@@ -496,9 +497,8 @@ function DrawerLink({
       href={href}
       onClick={onNavigate}
       aria-current={current ? "page" : undefined}
-      className={`flex items-center gap-3 px-6 transition-colors hover:bg-gray-50 focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-brand-navy ${
-        nested ? "min-h-[48px] pl-10 font-medium" : "min-h-[52px] border-b"
-      } ${current ? "text-brand-sky" : ""}`}
+      className={`flex items-center gap-3 px-6 transition-colors hover:bg-gray-50 focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-brand-navy ${nested ? "min-h-[48px] pl-10 font-medium" : "min-h-[52px] border-b"
+        } ${current ? "text-brand-sky" : ""}`}
     >
       {current && <span aria-hidden="true" className="h-4 w-0.5 bg-brand-sky" />}
       {children}

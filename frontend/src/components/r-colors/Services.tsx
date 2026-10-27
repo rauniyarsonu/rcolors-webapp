@@ -92,7 +92,7 @@ export default function Services() {
     <section
       id="services"
       aria-labelledby="services-title"
-      className="relative isolate overflow-hidden bg-cx-paper pb-24 md:pb-32 lg:pb-40"
+      className="relative isolate overflow-hidden bg-cx-paper pb-20 md:pb-28 lg:pb-32"
     >
       {/* Subtle architectural background grid line accents */}
       <div
@@ -100,7 +100,7 @@ export default function Services() {
         className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(to_right,rgb(var(--cx-ink)/0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgb(var(--cx-ink)/0.03)_1px,transparent_1px)] bg-[size:4rem_4rem]"
       />
 
-      <div className="cx-container border-t border-cx-ink/10 pt-24 md:pt-32 lg:pt-40">
+      <div className="cx-container border-t border-cx-ink/10 pt-12 md:pt-16 lg:pt-20">
         <div className="max-w-3xl">
           <Reveal>
             <SectionLabel index="02" label="Our Services" />

@@ -5,7 +5,7 @@ React (Vite + TypeScript + Tailwind) frontend and Spring Boot (Java 21) backend.
 ```
 frontend/   React app: pages, components, styles, images (public/), estate data scripts
 backend/    Spring Boot API: content + estate data, contact/enquiry forms, database
-docs/       ADDING-DATA.md: how to add cities, localities, listings, projects, agents
+docs/       ADDING-DATA.md: how to add cities, localities, listings, projects, agents, and manage careers
 Dockerfile  one image that serves the React build and the API together
 ```
 
@@ -23,6 +23,15 @@ cd frontend
 npm install
 npm run dev
 ```
+
+To use the admin panel (`/admin`) locally, start the backend with the admin variables set
+(see [Admin login](#admin-login)):
+
+```bash
+ADMIN_USERNAME=admin ADMIN_PASSWORD_HASH='$2a$12$...' ADMIN_JWT_SECRET="$(openssl rand -base64 48)" mvn spring-boot:run
+```
+
+`SPRING_PROFILES_ACTIVE=dev` also adds two sample draft jobs to an empty database.
 
 If port 8080 is taken, start the backend with `PORT=8090 mvn spring-boot:run` and the
 frontend with `API_PROXY_TARGET=http://localhost:8090 npm run dev`.
@@ -44,8 +53,31 @@ cd backend && mvn test
 | GET | `/api/estate/cities/{slug}` | everything one city page needs (locations, listings, projects, agents) |
 | POST | `/api/contact` | contact form (form-urlencoded) → `contact_message` table |
 | POST | `/api/estate/enquiries` | estate enquiry form → `estate_enquiry` table |
+| GET | `/api/careers/jobs` | open jobs (not past their deadline), newest first; `?business=&location=&employmentType=&q=` |
+| GET | `/api/careers/jobs/{slug}` | one job; drafts/archived are 404, closed or expired jobs return `acceptingApplications: false` |
+| GET | `/api/careers/filters` | businesses, locations and job types that open jobs have |
+| POST | `/api/careers/jobs/{slug}/applications` | application (multipart, `resume` PDF/DOC/DOCX ≤ 5 MB) → `201 {"id"}` |
+| POST | `/api/careers/applications` | general application without a job (same fields) |
 
-Invalid form posts get `400 {"errors": {"field": "message"}}`.
+Invalid form posts get `400 {"errors": {"field": "message"}}`. Applications also answer
+`409` (job closed, or the same email applied to it in the last 30 days) and `429`
+(more than 5 applications per IP per hour) in the same shape.
+
+Admin API (`Authorization: Bearer <token>`, otherwise `401 {"errors": {"auth": ...}}`):
+
+| Method | Path | |
+| --- | --- | --- |
+| POST | `/api/admin/auth/login` | `{username, password}` → `{token, expiresAt}` (8 h); 5 failures per IP per 15 min → `429` |
+| GET | `/api/admin/auth/me` | `{username}` |
+| GET, POST | `/api/admin/jobs` | list (`?status=&q=&page=&size=`, with application counts) / create |
+| GET, PUT, DELETE | `/api/admin/jobs/{id}` | one job; delete only for drafts without applications (`409` otherwise) |
+| PATCH | `/api/admin/jobs/{id}/status` | `{status}`: publish (`OPEN`), close, reopen, archive |
+| POST | `/api/admin/jobs/{id}/duplicate` | copy as a new draft |
+| GET | `/api/admin/applications` | `?jobId=<id or general>&status=&q=&from=&to=&page=&size=&sort=newest\|oldest` |
+| GET, PATCH, DELETE | `/api/admin/applications/{id}` | detail with status history / `{status?, note?, adminNotes?}` / delete with résumé |
+| GET | `/api/admin/applications/{id}/resume` | résumé download (attachment) |
+| GET | `/api/admin/applications/export.csv` | CSV with the list's filters (no résumés) |
+| GET | `/api/admin/careers/summary` | dashboard counts |
 
 ## Configuration (backend environment variables)
 
@@ -54,7 +86,30 @@ Invalid form posts get `400 {"errors": {"field": "message"}}`.
 | `PORT` | `8080` | |
 | `SPRING_PROFILES_ACTIVE=prod` + `DATABASE_URL`, `DATABASE_USERNAME`, `DATABASE_PASSWORD` | H2 file | PostgreSQL in production |
 | `CORS_ALLOWED_ORIGINS` | `http://localhost:3000` | comma-separated; only needed when the frontend is on another domain |
-| `NOTIFY_EMAIL`, `MAIL_HOST`, `MAIL_PORT`, `MAIL_USERNAME`, `MAIL_PASSWORD` | off | email each form submission |
+| `NOTIFY_EMAIL`, `MAIL_HOST`, `MAIL_PORT`, `MAIL_USERNAME`, `MAIL_PASSWORD` | off | email each form submission and job application |
+| `ADMIN_USERNAME` | empty (admin off) | the one admin's username |
+| `ADMIN_PASSWORD_HASH` | empty (admin off) | BCrypt hash of the admin password, see below |
+| `ADMIN_JWT_SECRET` | empty (admin off) | at least 32 bytes, e.g. `openssl rand -base64 48`; changing it signs the admin out |
+| `ADMIN_PANEL_URL` | empty | admin panel URL for links in application emails, e.g. `https://rcolorgroup.netlify.app/admin` |
+| `CAREERS_ACK_EMAIL` | `false` | `true` also emails applicants a "we received your application" note |
+| `SERVER_FORWARD_HEADERS_STRATEGY=framework` | off | set when the API runs behind a proxy, so rate limits see the real client IP |
+
+### Admin login
+
+There is one admin and no user table. Until all three `ADMIN_*` login variables are set
+(and valid), admin login is off, the backend logs a warning, and the rest of the site
+works as usual. Generate the password hash once:
+
+```bash
+cd backend
+mvn -q compile exec:java -Dexec.mainClass=com.rcolorsgroup.auth.HashPassword   # asks for the password
+# or, on macOS/Linux with Apache's htpasswd:
+htpasswd -nbBC 12 "" 'your-password' | tr -d ':\n'
+```
+
+Put the output in `ADMIN_PASSWORD_HASH`, in single quotes in a shell (`$` is part of it).
+Then sign in at `/admin/login`. Résumés are stored in the database, so back it up like
+the rest of the data.
 
 Frontend build variables (`frontend/.env`): `VITE_SITE_URL` (absolute URLs in social/SEO
 tags) and `VITE_API_BASE_URL` (leave empty when the API is on the same origin).

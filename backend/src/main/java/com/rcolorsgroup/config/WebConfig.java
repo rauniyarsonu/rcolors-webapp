@@ -20,7 +20,12 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         if (allowedOrigins.length > 0) {
-            registry.addMapping("/api/**").allowedOrigins(allowedOrigins).allowedMethods("GET", "POST");
+            // All request headers are allowed by default, which covers the admin API's Authorization header.
+            // Content-Disposition is exposed so a cross-origin admin can read a résumé's filename.
+            registry.addMapping("/api/**")
+                    .allowedOrigins(allowedOrigins)
+                    .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE")
+                    .exposedHeaders("Content-Disposition");
         }
     }
 

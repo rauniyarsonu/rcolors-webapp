@@ -34,13 +34,22 @@ public class Notifier {
     }
 
     public void send(String subject, String body) {
+        deliver(to.isBlank() ? null : to.split("\\s*,\\s*"), subject, body);
+    }
+
+    /** Email someone other than the team, e.g. an applicant's acknowledgement */
+    public void sendTo(String recipient, String subject, String body) {
+        deliver(recipient == null || recipient.isBlank() ? null : new String[] {recipient}, subject, body);
+    }
+
+    private void deliver(String[] recipients, String subject, String body) {
         JavaMailSender sender = mail.getIfAvailable();
-        if (to.isBlank() || mailHost.isBlank() || sender == null) {
+        if (recipients == null || mailHost.isBlank() || sender == null) {
             log.info("{} (email notifications are off)", subject);
             return;
         }
         SimpleMailMessage msg = new SimpleMailMessage();
-        msg.setTo(to.split("\\s*,\\s*"));
+        msg.setTo(recipients);
         if (!from.isBlank()) msg.setFrom(from);
         msg.setSubject(subject);
         msg.setText(body);

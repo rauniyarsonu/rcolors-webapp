@@ -10,7 +10,11 @@ interface CtaBannerProps {
   label?: string;
   /** Adds Call and WhatsApp buttons beside the enquiry button */
   showContact?: boolean;
+  /** Trust indicators under the buttons */
+  badges?: readonly string[];
 }
+
+const DEFAULT_BADGES = ["Consultation & Site Visits", "Transparent Quotations", "Timely Project Execution"];
 
 /** Professional full-width CTA banner on a white background with soft sky glow, action buttons, and trust indicators */
 export default function CtaBanner({
@@ -20,6 +24,7 @@ export default function CtaBanner({
   href = "/contact",
   label = "Contact Us Today",
   showContact = false,
+  badges = DEFAULT_BADGES,
 }: CtaBannerProps) {
   const phone = COMPANY.phones[0];
 
@@ -103,18 +108,12 @@ export default function CtaBanner({
 
         {/* Professional Trust Badges */}
         <div className="mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 border-t border-gray-200 pt-6 text-xs text-gray-600 sm:mt-10 sm:pt-8 sm:text-sm">
-          <div className="flex items-center gap-2">
-            <CheckCircle2 size={16} className="text-brand-sky" aria-hidden="true" />
-            <span>Consultation & Site Visits</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <CheckCircle2 size={16} className="text-brand-sky" aria-hidden="true" />
-            <span>Transparent Quotations</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <CheckCircle2 size={16} className="text-brand-sky" aria-hidden="true" />
-            <span>Timely Project Execution</span>
-          </div>
+          {badges.map((badge) => (
+            <div key={badge} className="flex items-center gap-2">
+              <CheckCircle2 size={16} className="text-brand-sky" aria-hidden="true" />
+              <span>{badge}</span>
+            </div>
+          ))}
         </div>
       </div>
     </section>

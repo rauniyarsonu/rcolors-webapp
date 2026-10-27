@@ -88,11 +88,13 @@ export default function ServiceCard({
         <div className="lg:col-span-6 xl:col-span-7 flex flex-col justify-center">
           <Reveal delay={150}>
             {/* Architectural Index Counter */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2">
               <span className="font-display text-sm font-bold tracking-[0.2em] text-brand-sky">
                 {service.index}
               </span>
-              <span aria-hidden="true" className="h-px w-8 bg-cx-ink/20" />
+              <span aria-hidden="true" className="text-xs font-semibold text-cx-muted/70">
+                :
+              </span>
               <span className="text-xs uppercase tracking-[0.2em] text-cx-muted font-medium">
                 Scope {service.index} of {service.total}
               </span>
