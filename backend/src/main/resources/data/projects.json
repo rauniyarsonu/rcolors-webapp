@@ -70,5 +70,77 @@
     "gallery": [],
     "description": "Modern residential greens project.",
     "year": null
+  },
+  {
+    "id": "skyline-residency-painting-lucknow",
+    "name": "Skyline Residency – Interior & Exterior Painting",
+    "location": "Lucknow",
+    "business": "r-colors",
+    "category": "residential",
+    "status": "completed",
+    "coverImage": "/images/Rcolors-1.jpg",
+    "gallery": [],
+    "description": "Complete interior and exterior painting of a 120-flat residential tower, including putty, primer and weather-resistant exterior coats.",
+    "year": 2024
+  },
+  {
+    "id": "orchid-mall-false-ceiling-varanasi",
+    "name": "Orchid Mall – Gypsum False Ceiling",
+    "location": "Varanasi (VNS)",
+    "business": "r-colors",
+    "category": "commercial",
+    "status": "completed",
+    "coverImage": "/images/Rcolors-2.jpg",
+    "gallery": [],
+    "description": "Gypsum and POP false ceiling across 40,000 sq ft of retail space, with cove lighting profiles and access panels for services.",
+    "year": 2024
+  },
+  {
+    "id": "green-valley-villas-flooring-pune",
+    "name": "Green Valley Villas – Tile & Marble Flooring",
+    "location": "Pune",
+    "business": "r-colors",
+    "category": "residential",
+    "status": "completed",
+    "coverImage": "/images/Rcolors-3.jpg",
+    "gallery": [],
+    "description": "Italian marble in living areas and vitrified tiles in bedrooms and wet areas for 24 independent villas.",
+    "year": 2023
+  },
+  {
+    "id": "city-hospital-waterproofing-prayagraj",
+    "name": "City Hospital – Terrace Waterproofing",
+    "location": "Prayagraj",
+    "business": "r-colors",
+    "category": "institutional",
+    "status": "completed",
+    "coverImage": "/images/Rcolors-4.jpg",
+    "gallery": [],
+    "description": "Membrane and polymer-based waterproofing of terraces, water tanks and basement walls, backed by a 10-year warranty.",
+    "year": 2023
+  },
+  {
+    "id": "corporate-office-fitout-noida",
+    "name": "Corporate Office Fit-Out",
+    "location": "Noida",
+    "business": "r-colors",
+    "category": "commercial",
+    "status": "ongoing",
+    "coverImage": "/images/Rcolors-5.jpg",
+    "gallery": [],
+    "description": "Turnkey finishing of a 15,000 sq ft office: custom workstations, modular furniture, partitions, electrical and plumbing works.",
+    "year": 2025
+  },
+  {
+    "id": "heritage-bungalow-renovation-lucknow",
+    "name": "Heritage Bungalow Renovation",
+    "location": "Lucknow",
+    "business": "r-colors",
+    "category": "residential",
+    "status": "ongoing",
+    "coverImage": "/images/Rcolors-8.jpg",
+    "gallery": [],
+    "description": "Full refurbishment of a 1960s bungalow: rewiring, new plumbing, texture painting and restored flooring while keeping its original character.",
+    "year": 2025
   }
 ]

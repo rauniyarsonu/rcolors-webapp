@@ -82,7 +82,7 @@ export default function Expertise() {
     <section
       id="expertise"
       aria-labelledby="expertise-title"
-      className="relative bg-cx-paper py-24 md:py-32 lg:py-40 overflow-hidden"
+      className="relative bg-cx-paper pt-8 pb-20 md:pt-12 md:pb-28 lg:pt-14 lg:pb-32 overflow-hidden"
     >
       {/* Subtle architectural background grid line accents */}
       <div

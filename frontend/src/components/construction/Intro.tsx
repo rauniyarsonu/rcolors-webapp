@@ -13,7 +13,7 @@ const highlights = [
 
 export default function Intro() {
   return (
-    <section id="who-we-are" aria-labelledby="intro-title" className="bg-cx-paper py-24 md:py-32 lg:py-40">
+    <section id="who-we-are" aria-labelledby="intro-title" className="bg-cx-paper pt-20 pb-8 md:pt-28 md:pb-12 lg:pt-32 lg:pb-14">
       <div className="cx-container">
         <div className="grid gap-14 lg:grid-cols-12 lg:gap-10">
           <div className="lg:col-span-6 xl:col-span-5">
