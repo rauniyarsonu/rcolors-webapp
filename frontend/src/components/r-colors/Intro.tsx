@@ -59,12 +59,15 @@ export default function Intro() {
 
         <ul className="mt-16 grid grid-cols-1 gap-4 sm:grid-cols-2 md:mt-20 lg:grid-cols-4 lg:gap-6">
           {highlights.map((item, idx) => (
-            <li key={item.title} className="rounded-xl border border-gray-100 bg-gray-50 p-6 shadow-sm">
+            <li
+              key={item.title}
+              className="group h-full rounded-xl border border-gray-100 bg-gray-50 p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-brand-sky/60 hover:bg-white hover:shadow-xl motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+            >
               <Reveal delay={idx * 80}>
-                <span className="font-heading text-sm font-black text-es-accent-strong">
+                <span className="font-heading text-sm font-black text-es-accent-strong transition-colors duration-300 group-hover:text-brand-sky">
                   {String(idx + 1).padStart(2, "0")}
                 </span>
-                <h3 className="mt-3 font-heading text-lg font-bold text-brand-navy">{item.title}</h3>
+                <h3 className="mt-3 font-heading text-lg font-bold text-brand-navy transition-colors duration-300 group-hover:text-es-accent-strong">{item.title}</h3>
                 <p className="mt-2 text-[15px] leading-relaxed text-gray-600">{item.desc}</p>
               </Reveal>
             </li>
