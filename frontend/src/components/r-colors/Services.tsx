@@ -1,4 +1,4 @@
-import SectionLabel from "@/components/construction/SectionLabel";
+import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/construction/Reveal";
 import ServiceCard, { type ServiceItem } from "@/components/construction/ServiceCard";
 
@@ -92,28 +92,17 @@ export default function Services() {
     <section
       id="services"
       aria-labelledby="services-title"
-      className="relative isolate overflow-hidden bg-cx-paper pb-20 md:pb-28 lg:pb-32"
+      className="section-y w-full scroll-mt-20 bg-gray-50"
     >
-      {/* Subtle architectural background grid line accents */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(to_right,rgb(var(--cx-ink)/0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgb(var(--cx-ink)/0.03)_1px,transparent_1px)] bg-[size:4rem_4rem]"
-      />
 
-      <div className="cx-container border-t border-cx-ink/10 pt-12 md:pt-16 lg:pt-20">
+      <div className="site-container">
         <div className="max-w-3xl">
           <Reveal>
-            <SectionLabel index="02" label="Our Services" />
-            <h2
-              id="services-title"
-              className="mt-6 text-balance font-display text-[clamp(2rem,4.2vw,3.5rem)] font-semibold leading-[1.08] tracking-[-0.02em] text-cx-ink"
-            >
-              Comprehensive Interior &amp; Finishing Solutions.
-            </h2>
+            <SectionHeading id="services-title" eyebrow="Our Services" title="Comprehensive Interior & Finishing Solutions." bar align="left" />
           </Reveal>
         </div>
 
-        <div className="mt-16 md:mt-24 space-y-12 md:space-y-16 lg:space-y-20">
+        <div className="mt-10 space-y-8 md:mt-16 md:space-y-10 lg:space-y-12">
           {services.map((service, idx) => (
             <ServiceCard
               key={service.index}

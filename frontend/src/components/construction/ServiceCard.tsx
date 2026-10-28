@@ -36,7 +36,7 @@ export default function ServiceCard({
   return (
     <article
       aria-labelledby={`service-title-${service.index}`}
-      className="group relative rounded-sm border border-cx-ink/10 bg-white p-6 shadow-[0_4px_24px_-4px_rgba(32,37,34,0.05)] transition-all duration-300 hover:border-brand-sky/60 hover:shadow-[0_12px_36px_-6px_rgba(32,37,34,0.1)] sm:p-8 md:p-10 lg:p-12"
+      className="group relative rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow duration-300 hover:shadow-xl sm:p-8 md:p-10 lg:p-12"
     >
       <div
         className={`grid items-center gap-10 lg:grid-cols-12 lg:gap-14 xl:gap-16 ${
@@ -58,7 +58,7 @@ export default function ServiceCard({
               />
 
               {/* Image Container with 4:3 architectural aspect */}
-              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xs bg-cx-concrete">
+              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg bg-gray-100">
                 <Image
                   src={service.image}
                   alt={service.imageAlt}
@@ -70,12 +70,12 @@ export default function ServiceCard({
                 {/* Subtle gradient vignette for contrast */}
                 <div
                   aria-hidden="true"
-                  className="absolute inset-0 bg-gradient-to-t from-cx-ink/60 via-transparent to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-40"
+                  className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-40"
                 />
 
                 {/* Scope badge */}
                 <div className="absolute bottom-4 left-4 z-10">
-                  <span className="inline-flex items-center rounded-xs bg-cx-ink/90 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-white backdrop-blur-md">
+                  <span className="inline-flex items-center rounded-md bg-brand-navy/90 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-white backdrop-blur-md">
                     {service.scopeBadge}
                   </span>
                 </div>
@@ -89,13 +89,13 @@ export default function ServiceCard({
           <Reveal delay={150}>
             {/* Architectural Index Counter */}
             <div className="flex items-center gap-2">
-              <span className="font-display text-sm font-bold tracking-[0.2em] text-brand-sky">
+              <span className="font-heading text-sm font-black tracking-[0.2em] text-es-accent-strong">
                 {service.index}
               </span>
-              <span aria-hidden="true" className="text-xs font-semibold text-cx-muted/70">
+              <span aria-hidden="true" className="text-xs font-semibold text-gray-400">
                 :
               </span>
-              <span className="text-xs uppercase tracking-[0.2em] text-cx-muted font-medium">
+              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-500">
                 Scope {service.index} of {service.total}
               </span>
             </div>
@@ -103,33 +103,33 @@ export default function ServiceCard({
             {/* Title */}
             <h3
               id={`service-title-${service.index}`}
-              className="mt-3 font-display text-2xl font-semibold tracking-[-0.015em] text-cx-ink sm:text-3xl lg:text-[2rem]"
+              className="mt-3 text-balance font-heading text-2xl font-black leading-tight text-brand-navy sm:text-3xl"
             >
               {service.title}
             </h3>
 
             {/* Tagline */}
             {service.tagline && (
-              <p className="mt-2 text-sm font-medium text-brand-sky sm:text-base">{service.tagline}</p>
+              <p className="mt-2 text-sm font-semibold text-es-accent-strong sm:text-base">{service.tagline}</p>
             )}
 
             {/* Description */}
-            <p className="mt-4 text-[15px] leading-relaxed text-cx-muted sm:text-base max-w-[58ch]">
+            <p className="mt-4 max-w-[58ch] text-[15px] leading-relaxed text-gray-600 sm:text-base">
               {service.desc}
             </p>
 
             {/* Capabilities Checklist */}
-            <div className="mt-6 pt-6 border-t border-cx-ink/10">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cx-ink">{capabilitiesLabel}</p>
+            <div className="mt-6 border-t border-gray-200 pt-6">
+              <p className="text-xs font-bold uppercase tracking-widest text-brand-navy">{capabilitiesLabel}</p>
               <ul className="mt-3 grid grid-cols-1 gap-2.5 sm:grid-cols-2">
                 {service.capabilities.map((cap) => (
                   <li
                     key={cap}
-                    className="flex items-start gap-2.5 rounded-xs border border-cx-ink/5 bg-cx-paper px-3 py-2 text-xs sm:text-[13px] font-medium text-cx-ink transition-colors group-hover:border-cx-ink/10"
+                    className="flex items-start gap-2.5 rounded-lg border border-gray-100 bg-gray-50 px-3 py-2 text-xs font-medium text-gray-700 sm:text-[13px]"
                   >
                     <span
                       aria-hidden="true"
-                      className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-brand-sky/15 text-brand-sky"
+                      className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-brand-sky/15 text-es-accent-strong"
                     >
                       <Check size={11} strokeWidth={3} />
                     </span>
@@ -148,7 +148,7 @@ export default function ServiceCard({
               ) : (
                 <Link
                   href={service.ctaHref}
-                  className="group/link inline-flex min-h-[44px] items-center gap-2.5 border-b-2 border-cx-ink/30 pb-1 text-sm font-semibold text-cx-ink transition-all duration-200 hover:border-brand-sky hover:text-brand-sky"
+                  className="group/link inline-flex min-h-11 items-center gap-2 font-bold text-es-accent-strong transition-colors duration-200 hover:text-brand-navy"
                 >
                   <span>{service.ctaText}</span>
                   <ArrowRight

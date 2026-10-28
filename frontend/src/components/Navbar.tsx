@@ -22,7 +22,6 @@ const businessItems: NavItem[] = [
 // Routes whose first section is a full-bleed hero the header sits on top of
 const overlayRoutes = ["/", "/businesses/construction", "/businesses/r-colors"];
 // Routes that use the cx (architectural paper/ink) chrome
-const cxRoutes = ["/businesses/construction", "/businesses/r-colors"];
 // Prefixes whose every page opens with a full-bleed hero (estate city and locality pages)
 const overlayPrefixes = ["/businesses/estate"];
 
@@ -46,7 +45,6 @@ export default function Navbar() {
   const isOverlay =
     overlayRoutes.includes(pathname) ||
     overlayPrefixes.some((prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`));
-  const isCx = cxRoutes.some((route) => pathname.startsWith(route));
   const isTransparent = isOverlay && !isScrolled && !isMobileMenuOpen;
 
   useEffect(() => {
@@ -122,14 +120,9 @@ export default function Navbar() {
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
 
-  // Visual theme: construction and finishing routes use the cx tokens, every other route keeps the brand look
   const headerPosClass = isOverlay ? "fixed top-0 left-0 right-0" : "sticky top-0";
-  const headerBgClass = isTransparent
-    ? "bg-transparent"
-    : isCx
-      ? "bg-cx-paper border-b border-cx-ink/10"
-      : "bg-white shadow-md";
-  const textColorClass = isTransparent ? "text-white" : isCx ? "text-cx-ink" : "text-brand-navy";
+  const headerBgClass = isTransparent ? "bg-transparent" : "bg-white shadow-md";
+  const textColorClass = isTransparent ? "text-white" : "text-brand-navy";
   const hoverClass = "hover:text-brand-sky";
   const indicatorClass = "bg-brand-sky";
   const logoRedClass = isTransparent ? "text-white" : "text-brand-red";
@@ -151,8 +144,7 @@ export default function Navbar() {
 
   return (
     <header
-      className={`w-full z-50 pt-[env(safe-area-inset-top)] transition-colors duration-300 ${headerPosClass} ${headerBgClass} ${isCx ? "cx" : ""
-        } ${isCx && isTransparent ? "cx-on-dark" : ""}`}
+      className={`w-full z-50 pt-[env(safe-area-inset-top)] transition-colors duration-300 ${headerPosClass} ${headerBgClass}`}
     >
       <div className="site-container flex h-16 items-center justify-between gap-3 lg:h-20">
         {/* Logo */}
@@ -201,7 +193,7 @@ export default function Navbar() {
               linkClass={dropdownLinkClass}
               pathname={pathname}
               activeBar={activeBar(isActive("/about"))}
-              panelClass={isCx ? "border border-cx-ink/10 text-cx-ink" : "shadow-2xl text-black"}
+              panelClass="shadow-2xl text-black"
             />
 
             <NavDropdown
@@ -214,7 +206,7 @@ export default function Navbar() {
               linkClass={dropdownLinkClass}
               pathname={pathname}
               activeBar={activeBar(isActive("/businesses"))}
-              panelClass={isCx ? "border border-cx-ink/10 text-cx-ink" : "shadow-2xl text-black"}
+              panelClass="shadow-2xl text-black"
               align="right"
             />
 
@@ -271,7 +263,7 @@ export default function Navbar() {
         className={`fixed inset-y-0 right-0 z-[70] flex w-[min(88vw,380px)] flex-col overflow-y-auto overscroll-contain bg-white pb-[env(safe-area-inset-bottom)] pr-[env(safe-area-inset-right)] pt-[env(safe-area-inset-top)] shadow-xl duration-300 ease-out motion-reduce:transition-none lg:hidden ${
           // Visibility flips instantly on open (so focus can move in) and waits for the slide on close
           isMobileMenuOpen ? "visible translate-x-0 transition-transform" : "invisible translate-x-full transition-[transform,visibility]"
-          } ${isCx ? "text-cx-ink" : "text-brand-navy"}`}
+          } text-brand-navy`}
       >
         <div className="flex h-16 shrink-0 items-center justify-between border-b px-6">
           <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-600">Menu</span>

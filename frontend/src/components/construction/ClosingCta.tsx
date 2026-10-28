@@ -22,14 +22,10 @@ export default function ClosingCta({ eyebrow, title, body, primary, secondary }:
         aria-hidden="true"
         className="pointer-events-none absolute right-0 top-0 h-full w-1/2 translate-x-1/4 skew-x-12 bg-brand-sky/[0.04]"
       />
-      <div className="cx-container relative text-center">
+      <div className="site-container relative max-w-4xl text-center">
         <Reveal>
-          <p className="flex items-center justify-center gap-3 text-xs font-semibold uppercase tracking-[0.24em] text-brand-sky">
-            <span aria-hidden="true" className="h-px w-8 bg-brand-sky/70" />
-            <span>{eyebrow}</span>
-            <span aria-hidden="true" className="h-px w-8 bg-brand-sky/70" />
-          </p>
-          <h2 className="mt-4 font-display text-[clamp(2rem,4vw,3.25rem)] font-semibold tracking-[-0.02em] text-brand-navy">
+          <p className="text-sm font-bold uppercase tracking-widest text-es-accent-strong md:text-base">{eyebrow}</p>
+          <h2 className="mt-3 text-balance font-heading text-[clamp(2rem,1.5rem+3vw,3.25rem)] font-black leading-[1.15] tracking-tight text-brand-navy">
             {title}
           </h2>
           <p className="mx-auto mt-5 max-w-[58ch] text-base leading-relaxed text-gray-600 md:text-lg">{body}</p>

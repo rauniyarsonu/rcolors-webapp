@@ -1,4 +1,3 @@
-import { manrope } from "@/lib/fonts";
 import Hero from "@/components/construction/Hero";
 import Intro from "@/components/construction/Intro";
 import Expertise from "@/components/construction/Expertise";
@@ -6,8 +5,8 @@ import ClosingCta from "@/components/construction/ClosingCta";
 
 export default function ConstructionBusinessPage() {
   return (
-    // Root layout already provides <main>; this wrapper scopes the cx tokens and font
-    <div className={`cx ${manrope.variable} flex flex-col bg-cx-paper text-cx-ink`}>
+    // Root layout already provides <main>
+    <div className="flex flex-col">
       <Hero />
       <Intro />
       <Expertise />

@@ -16,16 +16,6 @@ const config: Config = {
         'brand-sky': '#28A9DC',
         'brand-red': '#C1272D',
         'brand-green': '#235c1d',
-        // Construction & Developers tokens, defined in globals.css
-        cx: {
-          ink: 'rgb(var(--cx-ink) / <alpha-value>)',
-          graphite: 'rgb(var(--cx-graphite) / <alpha-value>)',
-          paper: 'rgb(var(--cx-paper) / <alpha-value>)',
-          concrete: 'rgb(var(--cx-concrete) / <alpha-value>)',
-          muted: 'rgb(var(--cx-muted) / <alpha-value>)',
-          accent: 'rgb(var(--cx-accent) / <alpha-value>)',
-          'accent-strong': 'rgb(var(--cx-accent-strong) / <alpha-value>)',
-        },
         // Estate tokens (white + sky theme), defined in globals.css
         es: {
           ink: 'rgb(var(--es-ink) / <alpha-value>)',
