@@ -4,11 +4,12 @@
  * CSV importer all read these maps.
  */
 
-/** "agents" stays in the Tab type so the data layer keeps compiling while the tab is hidden */
+/** "projects" and "agents" stay in the Tab type so the data layer keeps compiling while those tabs are hidden */
 export type Tab = "buy" | "projects" | "agents";
 export const TABS: readonly { key: Tab; label: string }[] = [
   { key: "buy", label: "Buy" },
-  { key: "projects", label: "Projects" },
+  // Projects temporarily hidden from the app; uncomment to restore
+  // { key: "projects", label: "Projects" },
   // Agents temporarily hidden from the app; uncomment to restore
   // { key: "agents", label: "Agents" },
 ];

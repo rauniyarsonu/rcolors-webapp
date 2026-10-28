@@ -11,13 +11,16 @@ export const ESTATE = {
   /** When true, the city dropdown starts empty and results stay hidden until a city is chosen. */
   REQUIRE_CITY_SELECTION: false,
 
+  /** Buy listings aren't live yet: Buy-tab locality counts read 0 and picking a locality shows "Coming soon". */
+  BUY_COMING_SOON: true,
+
   /** Results shown per "Load more" step */
   PAGE_SIZE: 12,
   /** How many trending chips to show under the search box */
   TRENDING_LIMIT: 6,
 
   heroImage: {
-    src: "/images/home1.jpg",
+    src: "/images/estatelanding.jpeg",
     alt: "Residential high-rise towers rising above a green neighbourhood",
   },
   /** Shown on cards when a record has no images yet */
@@ -27,6 +30,11 @@ export const ESTATE = {
   enquiry: {
     formName: "estate-enquiry",
     endpoint: apiUrl("/api/estate/enquiries"),
+  },
+  /** "Sell Your Property" registrations, posted the same way: FormsController */
+  sellRequest: {
+    formName: "estate-sell-request",
+    endpoint: apiUrl("/api/estate/sell-requests"),
   },
 
   /**

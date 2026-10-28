@@ -27,7 +27,8 @@ export default function SearchBar({ bundle, ctx, keyword, onKeyword, onPick, dis
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(-1);
   const deferred = useDeferredValue(text);
-  const items = useMemo(() => suggest(deferred, bundle, ctx), [deferred, bundle, ctx]);
+  // Projects temporarily hidden from the app; drop the filter to restore project suggestions
+  const items = useMemo(() => suggest(deferred, bundle, ctx).filter((s) => s.kind !== "project"), [deferred, bundle, ctx]);
 
   // Keep the box in sync when the keyword changes elsewhere (chip removed, back button)
   useEffect(() => setText(keyword), [keyword]);
@@ -73,7 +74,7 @@ export default function SearchBar({ bundle, ctx, keyword, onKeyword, onPick, dis
     >
       <div className="relative flex-1">
         <label htmlFor={`${uid}-input`} className="sr-only">
-          Search by locality, village, landmark or project
+          Search by locality, village or landmark
         </label>
         <Search size={18} aria-hidden="true" className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-es-muted" />
         <input
@@ -95,7 +96,7 @@ export default function SearchBar({ bundle, ctx, keyword, onKeyword, onPick, dis
           onFocus={() => setOpen(true)}
           onBlur={() => setTimeout(() => setOpen(false), 120)}
           onKeyDown={onKeyDown}
-          placeholder="Search by locality, village, landmark or project"
+          placeholder="Search by locality, village or landmark"
           className="h-[52px] w-full rounded-md border border-es-line bg-white pl-11 pr-4 text-base text-es-ink outline-none transition-colors placeholder:text-es-muted hover:border-slate-400 focus:border-es-accent-strong focus:ring-2 focus:ring-es-accent-strong/25 disabled:bg-slate-50"
         />
         <ul

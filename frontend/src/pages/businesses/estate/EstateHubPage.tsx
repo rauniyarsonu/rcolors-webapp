@@ -1,5 +1,4 @@
 import EstatePage from "@/components/estate/EstatePage";
-import EnquirySection from "@/components/estate/EnquirySection";
 import WhyEstate from "@/components/estate/WhyEstate";
 import LoadState from "@/components/LoadState";
 import Seo from "@/components/Seo";
@@ -17,12 +16,11 @@ export default function EstateBusinessPage() {
 
   if (cities.status !== "ok") return <LoadState result={cities} />;
 
-  // No enabled city with data yet: keep the company content and the enquiry form working
+  // No enabled city with data yet: keep the company content
   if (!first || bundle.status === "not-found") {
     return (
       <div className="pt-16 lg:pt-20">
         <WhyEstate />
-        <EnquirySection />
       </div>
     );
   }

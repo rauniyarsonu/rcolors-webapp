@@ -23,7 +23,7 @@ const promises = [
   {
     icon: Users,
     title: "Client-Focused Approach",
-    desc: "Your vision is our priority. We work closely with clients to understand their needs and deliver customized construction solutions.",
+    desc: "Your vision is our priority. We work closely with clients to understand their needs and deliver customised construction solutions.",
   },
 ];
 

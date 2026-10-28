@@ -15,6 +15,8 @@ interface FilterPanelProps {
   ctx: EngineContext;
   state: QueryState;
   update: Update;
+  /** When set, locality counts show 0 and picking one calls this instead (listings not live yet) */
+  onComingSoon?: () => void;
 }
 
 /**
@@ -22,12 +24,12 @@ interface FilterPanelProps {
  * current tab and segment. Each filter type maps to one generic control, so
  * new filters need no changes here.
  */
-export default function FilterPanel({ bundle, ctx, state, update }: FilterPanelProps) {
+export default function FilterPanel({ bundle, ctx, state, update, onComingSoon }: FilterPanelProps) {
   const defs = filtersFor(state.tab, state.segment).filter((d) => d.type !== "segmented");
   return (
     <div className="divide-y divide-es-line">
       {defs.map((def) => (
-        <FilterField key={`${state.tab}-${def.key}`} def={def} bundle={bundle} ctx={ctx} state={state} update={update} />
+        <FilterField key={`${state.tab}-${def.key}`} def={def} bundle={bundle} ctx={ctx} state={state} update={update} onComingSoon={onComingSoon} />
       ))}
     </div>
   );
@@ -61,10 +63,13 @@ const Section = ({ legend, children, aside }: { legend: string; children: React.
 
 /* ---------- location tree ---------- */
 
-function LocationField({ def, bundle, ctx, state, update }: { def: LocationFilterDef } & FilterPanelProps) {
+function LocationField({ def, bundle, ctx, state, update, onComingSoon }: { def: LocationFilterDef } & FilterPanelProps) {
   const uid = useId();
   const [filter, setFilter] = useState("");
-  const areas = useMemo(() => localityCounts(bundle, state, ctx), [bundle, state, ctx]);
+  const areas = useMemo(() => {
+    const list = localityCounts(bundle, state, ctx);
+    return onComingSoon ? list.map((a) => ({ ...a, count: 0 })) : list;
+  }, [bundle, state, ctx, onComingSoon]);
 
   // Group by parent; results first within each group
   const children = useMemo(() => {
@@ -82,7 +87,7 @@ function LocationField({ def, bundle, ctx, state, update }: { def: LocationFilte
     (children.get(a.location.slug) ?? []).some(matches);
 
   const toggle = (slug: string) =>
-    update((s) => ({ ...s, loc: s.loc.includes(slug) ? s.loc.filter((x) => x !== slug) : [...s.loc, slug] }));
+    onComingSoon ? onComingSoon() : update((s) => ({ ...s, loc: s.loc.includes(slug) ? s.loc.filter((x) => x !== slug) : [...s.loc, slug] }));
 
   const renderLevel = (parent: string, depth: number): React.ReactNode => {
     const list = (children.get(parent) ?? []).filter(matches);

@@ -85,14 +85,16 @@ interface PropertyDetailProps {
   onViewProject: (id: string) => void;
 }
 
-export function PropertyDetail({ property: p, bundle, ctx, unit, onEnquire, onViewProject }: PropertyDetailProps) {
+// bundle and onViewProject are only used by the hidden project block; rename them back when restoring it
+export function PropertyDetail({ property: p, bundle: _bundle, ctx, unit, onEnquire, onViewProject: _onViewProject }: PropertyDetailProps) {
   const type = PROPERTY_TYPES[p.type];
   const a = p.attributes;
   const price = totalPrice(p);
   const sqft = ctx.areaSqft(p);
   // Agents temporarily hidden from the app; uncomment to restore the "Listed by" block below
   // const agent = p.agentId ? bundle.agents.find((x) => x.id === p.agentId) : undefined;
-  const project = p.projectId ? bundle.projects.find((x) => x.id === p.projectId) : undefined;
+  // Projects temporarily hidden from the app; uncomment to restore the "Part of" block below
+  // const project = p.projectId ? bundle.projects.find((x) => x.id === p.projectId) : undefined;
 
   return (
     <div>
@@ -148,6 +150,7 @@ export function PropertyDetail({ property: p, bundle, ctx, unit, onEnquire, onVi
           ]}
         />
 
+        {/* Projects temporarily hidden from the app; uncomment to restore
         {project && (
           <div className="flex flex-wrap items-center justify-between gap-3 rounded-md border border-es-line p-4">
             <p className="text-sm text-es-body">
@@ -158,6 +161,7 @@ export function PropertyDetail({ property: p, bundle, ctx, unit, onEnquire, onVi
             </button>
           </div>
         )}
+        */}
 
         {/* Agents temporarily hidden from the app; uncomment to restore
         {agent && (

@@ -1,15 +1,17 @@
 import Image from "@/components/ui/Image";
-import { BadgeCheck } from "lucide-react";
+import { ArrowRight, BadgeCheck, Tag } from "lucide-react";
 import { ESTATE } from "@/config/estate/site";
 
 interface EstateHeroProps {
   cityName: string;
   /** H1 override for locality landing pages */
   title?: string;
+  /** Scrolls to the "Sell Your Property" form */
+  onSell?: () => void;
 }
 
 /** Full-bleed photo with a navy overlay; the search card overlaps its lower edge */
-export default function EstateHero({ title }: EstateHeroProps) {
+export default function EstateHero({ title, onSell }: EstateHeroProps) {
   return (
     <section aria-labelledby="es-hero-title" className="es-on-dark relative isolate overflow-hidden bg-es-ink text-white">
       <Image src={ESTATE.heroImage.src} alt={ESTATE.heroImage.alt} fill priority sizes="100vw" className="-z-20 object-cover object-[50%_40%]" />
@@ -22,10 +24,23 @@ export default function EstateHero({ title }: EstateHeroProps) {
           {title ?? ESTATE.brand}
         </h1>
         <p className="mt-4 max-w-xl text-lg text-white/85 md:text-xl">From Search to Keys, we&apos;ve got you covered.</p>
-        <p className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3.5 py-1.5 text-sm font-medium text-white">
-          <BadgeCheck size={16} aria-hidden="true" className="text-es-accent" />
-          Verified listings &amp; proper documentation
-        </p>
+        <div className="mt-6 flex flex-wrap items-center gap-3">
+          <p className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3.5 py-1.5 text-sm font-medium text-white">
+            <BadgeCheck size={16} aria-hidden="true" className="text-es-accent" />
+            Verified listings &amp; proper documentation
+          </p>
+          {onSell && (
+            <button
+              type="button"
+              onClick={onSell}
+              className="group inline-flex min-h-[44px] items-center gap-2 rounded-full bg-white px-5 text-sm font-bold text-es-ink shadow-sm transition-colors hover:bg-es-surface"
+            >
+              <Tag size={16} aria-hidden="true" className="text-es-accent-strong" />
+              Sell your property
+              <ArrowRight size={16} aria-hidden="true" className="transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none" />
+            </button>
+          )}
+        </div>
       </div>
     </section>
   );

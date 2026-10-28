@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "@/lib/navigation";
-import { ArrowDown, Handshake, SlidersHorizontal, X } from "lucide-react";
+import { ArrowDown, Clock, Handshake, SlidersHorizontal, X } from "lucide-react";
 import { PROJECT_TYPES, PROPERTY_TYPES, SEGMENTS, type Segment, type Tab } from "@/config/estate/catalog";
 import { sortsFor } from "@/config/estate/filters";
 import { ESTATE } from "@/config/estate/site";
@@ -25,7 +25,6 @@ import { PropertyDetail, ProjectDetail } from "./DetailView";
 import Dialog from "./Dialog";
 import EmptyState from "./EmptyState";
 import EnquiryForm, { type EnquiryContext } from "./EnquiryForm";
-import EnquirySection from "./EnquirySection";
 import EstateHero from "./EstateHero";
 import FilterPanel, { type Update } from "./FilterPanel";
 import LocalityStrip from "./LocalityStrip";
@@ -33,7 +32,8 @@ import ProjectCard from "./ProjectCard";
 import PropertyCard from "./PropertyCard";
 import SearchBar from "./SearchBar";
 import SearchTabs from "./SearchTabs";
-import StartJourney, { type JourneyAction } from "./StartJourney";
+import SellSection from "./SellSection";
+import type { JourneyAction } from "./StartJourney";
 import TrendingChips from "./TrendingChips";
 import { useQueryState } from "./useQueryState";
 
@@ -73,14 +73,19 @@ export default function EstatePortal({ bundle, cities, initialState, basePath, h
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [enquiry, setEnquiry] = useState<EnquiryContext | null>(null);
   const [sourceSellingOpen, setSourceSellingOpen] = useState(false);
-  const [formContext, setFormContext] = useState<EnquiryContext | undefined>();
+  const [comingSoonOpen, setComingSoonOpen] = useState(false);
   const baseTitle = useRef<string | null>(null);
 
   const update: Update = useCallback((fn, opts) => setState(fn, opts), [setState]);
 
   /* ---------- derived data ---------- */
-  const results = useMemo(() => runQuery(bundle, state, ctx) as (Property | Project | Agent)[], [bundle, state, ctx]);
-  const areas = useMemo(() => localityCounts(bundle, state, ctx), [bundle, state, ctx]);
+  // Buy listings aren't live yet: every area reads 0 and picking one shows "Coming soon"
+  const buyComingSoon = ESTATE.BUY_COMING_SOON && state.tab === "buy";
+  const results = useMemo(() => (buyComingSoon ? [] : (runQuery(bundle, state, ctx) as (Property | Project | Agent)[])), [bundle, state, ctx, buyComingSoon]);
+  const areas = useMemo(() => {
+    const list = localityCounts(bundle, state, ctx);
+    return buyComingSoon ? list.map((a) => ({ ...a, count: 0 })) : list;
+  }, [bundle, state, ctx, buyComingSoon]);
   const trending = useMemo(() => trendingLocations(bundle, ctx, ESTATE.TRENDING_LIMIT), [bundle, ctx]);
   const chips = useMemo(() => activeChips(state, ctx), [state, ctx]);
   const activeCount = countActiveFilters(state);
@@ -125,11 +130,16 @@ export default function EstatePortal({ bundle, cities, initialState, basePath, h
 
   const pickSuggestion = (s: Suggestion) => {
     if (s.kind === "project") update((st) => ({ ...withTab(st, "projects"), view: s.projectId }));
+    else if (buyComingSoon) return showComingSoon();
     else update((st) => ({ ...st, loc: st.loc.includes(s.slug) ? st.loc : [...st.loc, s.slug] }));
     goToResults();
   };
 
-  const toggleLoc = (slug: string) => update((s) => ({ ...s, loc: s.loc.includes(slug) ? s.loc.filter((x) => x !== slug) : [...s.loc, slug] }));
+  const showComingSoon = useCallback(() => {
+    setFiltersOpen(false);
+    setComingSoonOpen(true);
+  }, []);
+  const toggleLoc = (slug: string) => buyComingSoon ? showComingSoon() : update((s) => ({ ...s, loc: s.loc.includes(slug) ? s.loc.filter((x) => x !== slug) : [...s.loc, slug] }));
 
   const enquireProperty = (p: Property) =>
     setEnquiry({ subject: p.title, reference: p.id, city: city.name, interest: PROPERTY_TYPES[p.type].interest });
@@ -138,14 +148,14 @@ export default function EstatePortal({ bundle, cities, initialState, basePath, h
   const enquireGeneral = () => setEnquiry({ subject: `${heading}`, city: city.name });
 
   const onJourney = (a: JourneyAction) => {
-    if (a === "investment") {
-      setFormContext({ interest: "investment", city: city.name });
+    if (a === "sell") {
       requestAnimationFrame(() => {
-        scrollToId("enquire");
-        document.querySelector<HTMLElement>("#enquire input")?.focus({ preventScroll: true });
+        scrollToId("sell");
+        document.querySelector<HTMLElement>("#sell input:not([tabindex='-1'])")?.focus({ preventScroll: true });
       });
       return;
     }
+    if (a === "investment") return enquireGeneral();
     update((s) => (a === "land" ? withSegment(withTab(s, "buy"), "land") : withTab(s, a)));
     goToResults();
   };
@@ -158,7 +168,9 @@ export default function EstatePortal({ bundle, cities, initialState, basePath, h
 
   /* ---------- detail view ---------- */
   const viewProperty = state.view ? bundle.properties.find((p) => p.id === state.view) : undefined;
-  const viewProject = state.view && !viewProperty ? bundle.projects.find((p) => p.id === state.view) : undefined;
+  // Projects temporarily hidden from the app; restore the lookup below to re-enable ?view=<projectId>
+  const viewProject = undefined as Project | undefined;
+  // const viewProject = state.view && !viewProperty ? bundle.projects.find((p) => p.id === state.view) : undefined;
   const closeView = () => update((s) => ({ ...s, view: undefined }));
   const openView = (id: string) => update((s) => ({ ...s, view: id }));
 
@@ -169,11 +181,11 @@ export default function EstatePortal({ bundle, cities, initialState, basePath, h
 
   const emptyTitle = single ? `No ${state.tab === "agents" ? "agents" : state.tab === "projects" ? "projects" : "listings"} in ${ctx.locationName(single)} yet` : "No results match these filters";
 
-  const filterPanel = <FilterPanel bundle={bundle} ctx={ctx} state={state} update={update} />;
+  const filterPanel = <FilterPanel bundle={bundle} ctx={ctx} state={state} update={update} onComingSoon={buyComingSoon ? showComingSoon : undefined} />;
 
   return (
     <div className="bg-white">
-      <EstateHero cityName={city.name} title={heroTitle} />
+      <EstateHero cityName={city.name} title={heroTitle} onSell={() => onJourney("sell")} />
 
       {/* Tabs + search card overlap the hero's lower edge */}
       <div className="es-container relative z-10 -mt-28 md:-mt-32">
@@ -206,6 +218,7 @@ export default function EstatePortal({ bundle, cities, initialState, basePath, h
                 locations={trending}
                 selected={state.loc}
                 onPick={(slug) => {
+                  if (buyComingSoon) return showComingSoon();
                   update((s) => ({ ...s, loc: s.loc.length === 1 && s.loc[0] === slug ? [] : [slug] }));
                   goToResults();
                 }}
@@ -332,7 +345,18 @@ export default function EstatePortal({ bundle, cities, initialState, basePath, h
                   </aside>
 
                   <div className="min-w-0">
-                    {results.length === 0 ? (
+                    {buyComingSoon ? (
+                      <div className="flex flex-col items-center rounded-lg border border-dashed border-slate-300 bg-white px-6 py-14 text-center">
+                        <span className="flex h-14 w-14 items-center justify-center rounded-full bg-es-surface text-es-accent-strong">
+                          <Clock size={26} aria-hidden="true" />
+                        </span>
+                        <h3 className="mt-4 font-display text-xl font-bold text-es-ink">Coming soon</h3>
+                        <p className="mt-2 max-w-md text-es-muted">Properties for sale in {city.name} are coming soon. Tell us what you're looking for and we'll reach out first.</p>
+                        <button type="button" onClick={enquireGeneral} className="mt-6 min-h-[44px] rounded-md bg-es-accent-strong px-5 text-sm font-semibold text-white hover:bg-es-ink">
+                          Enquire
+                        </button>
+                      </div>
+                    ) : results.length === 0 ? (
                       <EmptyState
                         title={emptyTitle}
                         body={single ? "We're adding listings here. Try a nearby area or tell us what you need." : "Try removing a filter, or tell us what you're looking for and we'll find it."}
@@ -378,9 +402,8 @@ export default function EstatePortal({ bundle, cities, initialState, basePath, h
         </>
       )}
 
-      <StartJourney onAction={onJourney} />
       {children}
-      <EnquirySection key={formContext?.interest ?? "default"} context={formContext} />
+      <SellSection city={city.name} />
 
       {/* Mobile filters: bottom sheet */}
       <Dialog
@@ -449,6 +472,23 @@ export default function EstatePortal({ bundle, cities, initialState, basePath, h
           <button
             type="button"
             onClick={() => setSourceSellingOpen(false)}
+            className="mt-6 min-h-[44px] rounded-md bg-es-accent-strong px-6 font-bold text-white hover:bg-es-ink"
+          >
+            Got it
+          </button>
+        </div>
+      </Dialog>
+
+      <Dialog open={comingSoonOpen} onClose={() => setComingSoonOpen(false)} title="Coming soon" hideTitle className="md:w-[min(100vw-2rem,440px)]">
+        <div className="flex flex-col items-center px-6 py-8 text-center">
+          <span className="flex h-14 w-14 items-center justify-center rounded-full bg-es-surface text-es-accent-strong">
+            <Clock size={28} aria-hidden="true" />
+          </span>
+          <p className="mt-4 font-display text-2xl font-bold text-es-ink">Coming soon</p>
+          <p className="mt-2 text-sm leading-relaxed text-es-muted">Properties for sale in {city.name} are coming soon. Check back shortly.</p>
+          <button
+            type="button"
+            onClick={() => setComingSoonOpen(false)}
             className="mt-6 min-h-[44px] rounded-md bg-es-accent-strong px-6 font-bold text-white hover:bg-es-ink"
           >
             Got it

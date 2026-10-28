@@ -32,8 +32,8 @@ const services: ServiceItem[] = [
       "Advanced MEP & Fire Safety Systems",
       "Fast-Track Phased Execution",
     ],
-    ctaText: "Explore Commercial Projects",
-    ctaHref: "/projects?business=construction",
+    ctaText: "Contact us for Commercial Projects",
+    ctaHref: "/contact",
   },
   {
     index: "03",

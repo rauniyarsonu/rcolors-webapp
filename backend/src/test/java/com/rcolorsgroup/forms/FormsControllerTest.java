@@ -19,6 +19,7 @@ class FormsControllerTest {
     @Autowired MockMvc mvc;
     @Autowired ContactMessageRepository contacts;
     @Autowired EstateEnquiryRepository enquiries;
+    @Autowired PropertySellRequestRepository sellRequests;
 
     @Test
     void savesAValidContactMessage() throws Exception {
@@ -66,6 +67,40 @@ class FormsControllerTest {
                         .param("page", "https://example.com/businesses/estate/lucknow"))
                 .andExpect(status().isCreated());
         assertThat(enquiries.findAll()).anyMatch(e -> e.getName().equals("Ravi Kumar") && e.getCity().equals("lucknow"));
+    }
+
+    @Test
+    void savesASellRequestWithOptionalFieldsLeftBlank() throws Exception {
+        mvc.perform(post("/api/estate/sell-requests")
+                        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                        .param("name", " Meena Gupta ")
+                        .param("phone", "9988776655")
+                        .param("email", "")
+                        .param("propertyType", "residential-plot")
+                        .param("location", "Gomti Nagar Extension")
+                        .param("area", "")
+                        .param("price", "")
+                        .param("message", "")
+                        .param("city", "Lucknow")
+                        .param("page", "https://example.com/businesses/estate/lucknow"))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.id").isNumber());
+        assertThat(sellRequests.findAll()).anyMatch(r -> r.getName().equals("Meena Gupta") && r.getPropertyType().equals("residential-plot"));
+    }
+
+    @Test
+    void rejectsAnInvalidSellRequestFieldByField() throws Exception {
+        mvc.perform(post("/api/estate/sell-requests")
+                        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                        .param("name", "M")
+                        .param("phone", "12345")
+                        .param("propertyType", "castle")
+                        .param("location", ""))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.errors.name").exists())
+                .andExpect(jsonPath("$.errors.phone").exists())
+                .andExpect(jsonPath("$.errors.propertyType").exists())
+                .andExpect(jsonPath("$.errors.location").exists());
     }
 
     @Test

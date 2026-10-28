@@ -77,7 +77,7 @@ const features = [
   },
   {
     title: "Client-Focused Approach",
-    text: "Your vision is our priority. We work closely with clients to understand their needs and deliver customized construction solutions.",
+    text: "Your vision is our priority. We work closely with clients to understand their needs and deliver customised construction solutions.",
   },
 ];
 

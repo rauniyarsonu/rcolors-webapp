@@ -11,16 +11,20 @@ interface ClosingCtaProps {
 
 export default function ClosingCta({ eyebrow, title, body, primary, secondary }: ClosingCtaProps) {
   return (
-    <section className="relative isolate overflow-hidden border-y border-gray-100 bg-white py-20 md:py-28 text-brand-navy">
-      {/* Subtle decorative architectural glow using brand-sky */}
+    <section className="relative isolate overflow-hidden border-t border-gray-100 bg-white py-20 md:py-28 text-brand-navy">
+      {/* Ambient background glows (same as the home page CtaBanner) */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_60%_at_50%_-20%,rgba(40,169,220,0.08),transparent)]"
+        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(40,169,220,0.08),transparent)]"
       />
-      {/* Decorative architectural slant accent matching brand theme */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute right-0 top-0 h-full w-1/2 translate-x-1/4 skew-x-12 bg-brand-sky/[0.04]"
+        className="pointer-events-none absolute -top-32 left-1/2 -z-10 h-72 w-96 -translate-x-1/2 rounded-full bg-brand-sky/10 blur-3xl"
+      />
+      {/* Top subtle highlight divider */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-sky/40 to-transparent"
       />
       <div className="site-container relative max-w-4xl text-center">
         <Reveal>

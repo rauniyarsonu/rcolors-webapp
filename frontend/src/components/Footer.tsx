@@ -12,7 +12,7 @@ const quickLinks = [
 ];
 
 const businessLinks = [
-  { name: "Construction & Developers", href: "/businesses/construction" },
+  { name: "R Colors Construction & Developers", href: "/businesses/construction" },
   { name: "R Colors Finishing Works", href: "/businesses/r-colors" },
   { name: "R Colors Estate", href: "/businesses/estate" },
 ];

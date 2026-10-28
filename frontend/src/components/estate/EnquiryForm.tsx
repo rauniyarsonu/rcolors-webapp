@@ -22,7 +22,7 @@ interface Values {
 }
 type Errors = Partial<Record<keyof Values, string>>;
 
-const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+export const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 function validate(v: Values): Errors {
   const e: Errors = {};
@@ -34,7 +34,7 @@ function validate(v: Values): Errors {
   return e;
 }
 
-const inputClass = (invalid: boolean) =>
+export const inputClass = (invalid: boolean) =>
   `w-full min-h-[48px] rounded-md border bg-white px-4 py-3 text-base text-es-ink placeholder:text-es-muted/70 outline-none transition-colors focus:border-es-accent-strong focus:ring-2 focus:ring-es-accent-strong/25 ${
     invalid ? "border-red-600" : "border-slate-300 hover:border-slate-400"
   }`;

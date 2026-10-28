@@ -28,8 +28,7 @@ function validate(v: Values): Errors {
 
 // text-base (16px) keeps iOS Safari from zooming in when a field is focused
 const inputClass = (invalid: boolean) =>
-  `w-full min-h-12 rounded-lg border bg-white px-4 py-3 text-base text-gray-900 outline-none transition-colors placeholder:text-gray-400 focus:border-brand-sky focus:ring-2 focus:ring-brand-sky ${
-    invalid ? "border-red-600" : "border-gray-300 hover:border-gray-400"
+  `w-full min-h-12 rounded-lg border bg-white px-4 py-3 text-base text-gray-900 outline-none transition-colors placeholder:text-gray-400 focus:border-brand-sky focus:ring-2 focus:ring-brand-sky ${invalid ? "border-red-600" : "border-gray-300 hover:border-gray-400"
   }`;
 
 const businesses = [
@@ -150,7 +149,7 @@ export default function ContactForm() {
       <div className="grid grid-cols-1 gap-5 sm:gap-6 md:grid-cols-2">
         <div>
           {label("name", "Your Name")}
-          <input {...field("name")} type="text" autoComplete="name" className={inputClass(!!errors.name)} placeholder="John Doe" />
+          <input {...field("name")} type="text" autoComplete="name" className={inputClass(!!errors.name)} placeholder=" Ananya" />
           {errorText("name")}
         </div>
         <div>
@@ -162,7 +161,7 @@ export default function ContactForm() {
 
       <div>
         {label("email", "Email Address")}
-        <input {...field("email")} type="email" inputMode="email" autoComplete="email" className={inputClass(!!errors.email)} placeholder="johndoe@example.com" />
+        <input {...field("email")} type="email" inputMode="email" autoComplete="email" className={inputClass(!!errors.email)} placeholder="ananya@example.com" />
         {errorText("email")}
       </div>
 
