@@ -45,14 +45,15 @@ export default function Intro() {
           </div>
 
           <Reveal delay={150} className="lg:col-span-5 lg:col-start-8">
-            <figure className="relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-gray-100 bg-gray-100 shadow-xl lg:aspect-[4/5]">
+            <figure className="group relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-gray-100 bg-gray-100 shadow-xl transition-all duration-500 hover:-translate-y-1 hover:border-brand-sky/60 hover:shadow-2xl motion-reduce:transition-none motion-reduce:hover:translate-y-0 lg:aspect-[4/5]">
               <Image
                 src="/images/Rcolors1.jpg"
                 alt="Finished interior space completed by the R Colors team"
                 fill
                 sizes="(min-width: 1320px) 520px, (min-width: 1024px) 40vw, 100vw"
-                className="object-cover"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
               />
+              <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-t from-brand-navy/40 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100 motion-reduce:transition-none" />
             </figure>
           </Reveal>
         </div>

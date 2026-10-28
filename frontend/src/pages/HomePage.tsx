@@ -26,7 +26,7 @@ const businesses = [
     cta: "Construction",
     photo: "/images/Rcolors2.png",
     photoAlt: "Construction site by R Colors Construction & Developers",
-    logo: "/images/logo2.jpg",
+    logo: "/images/logo02.jpeg",
     logoAlt: "R Colors Construction & Developers logo",
   },
   {
@@ -104,14 +104,15 @@ export default function Home() {
       <section data-aos="fade-up" data-aos-duration="1000" className="section-y w-full">
         <div className="site-container grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-5">
-            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-gray-100 shadow-xl lg:aspect-[3/4]">
+            <div className="group relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-gray-100 shadow-xl transition-all duration-500 hover:-translate-y-1 hover:border-brand-sky/60 hover:shadow-2xl motion-reduce:transition-none motion-reduce:hover:translate-y-0 lg:aspect-[3/4]">
               <Image
                 src="/images/welcome1.1.jpg"
                 fill
                 alt="About R Colors Group"
                 sizes="(min-width: 1280px) 460px, (min-width: 1024px) 38vw, 100vw"
-                className="object-cover"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
               />
+              <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-t from-brand-navy/40 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100 motion-reduce:transition-none" />
             </div>
           </div>
           <div className="max-w-[65ch] space-y-6 lg:col-span-7 lg:max-w-none lg:pl-8">
@@ -125,7 +126,7 @@ export default function Home() {
 
             <blockquote className="my-8 rounded-r-lg border-l-4 border-brand-sky bg-gray-50 py-3 pl-4 pr-4 shadow-sm sm:pl-6">
               <p className="text-pretty font-heading text-lg italic text-brand-navy sm:text-xl">
-                &quot;Your trusted partner in full-scale construction, finishing solutions, and real estate development.&quot;
+                &quot;Building the Future, Refining the Present : Your End-to-End partner in Construction & Real Estate. &quot;
               </p>
             </blockquote>
 

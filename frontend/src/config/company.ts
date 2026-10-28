@@ -6,8 +6,8 @@ export const COMPANY = {
   phones: ["6389144470", "9579662353"],
   email: "rcolorsgroup@gmail.com",
   address: {
-    short: "Flat No. 1004, BCC Tower, Arjunganj–Shultanpur Road, Lucknow, UP, India",
-    full: "Flat No. 1004, BCC Tower, Arjunganj–Shultanpur Road, Lucknow, Uttar Pradesh, India",
+    short: "Flat No. 1004, BCC Tower, Arjunganj, Shultanpur Road, Lucknow, UP, India",
+    full: "Flat No. 1004, BCC Tower, Arjunganj, Shultanpur Road, Lucknow, Uttar Pradesh, India",
   },
   contactForm: {
     /** Posted (form-urlencoded) to the Spring Boot backend: ContactController; keep field names in sync */

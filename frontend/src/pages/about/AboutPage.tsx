@@ -93,8 +93,10 @@ export default function AboutCompanyPage() {
           <SectionHeading title="OUR JOURNEY" bar className="mb-12 md:mb-16" />
           <div className="relative border-l-4 md:border-l-0 border-brand-sky ml-6 md:ml-0 md:pl-0">
             {[
-              { year: "2011", title: "R Colors Construction & Developers Founded", desc: "Started our journey with a commitment to quality in the construction industry." },
-              { year: "Growth", title: "R Colors Finishing Business Launched", desc: "Added specialized interior, exterior, and finishing services." },
+              { year: "2011", title: "R Colors Finishing Business Launched", desc: "Added specialized interior, exterior, and finishing services." },
+              { year: "2023", title: "Under R Colors Finishing Business", desc: "We done 50+ projects and More than 12 Million Sqft of Work. " },
+              { year: "2024", title: "R Colors Construction and Developers Launched", desc: "Started our new journey with a commitment to quality in the construction industry. " },
+              { year: "Growth", title: "Under R Colors Construction and Developers", desc: "We done 20+ projects and More than 5 Million Sqft of Work. " },
               { year: "Expansion", title: "R Colors Estate Launched", desc: "Expanded into real estate and property solutions." },
               { year: "Today", title: "R Colors Group of Companies", desc: "Operating as a unified group with 3 specialized businesses delivering complete infrastructure solutions." }
             ].map((event, idx) => (
