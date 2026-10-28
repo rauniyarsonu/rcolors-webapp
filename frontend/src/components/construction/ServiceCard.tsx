@@ -6,11 +6,9 @@ import ButtonLink from "./ButtonLink";
 
 export interface ServiceItem {
   index: string;
-  total: string;
   title: string;
   tagline?: string;
   desc: string;
-  scopeBadge: string;
   image: string;
   imageAlt: string;
   capabilities: string[];
@@ -72,13 +70,6 @@ export default function ServiceCard({
                   aria-hidden="true"
                   className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-40"
                 />
-
-                {/* Scope badge */}
-                <div className="absolute bottom-4 left-4 z-10">
-                  <span className="inline-flex items-center rounded-md bg-brand-navy/90 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-white backdrop-blur-md">
-                    {service.scopeBadge}
-                  </span>
-                </div>
               </div>
             </div>
           </Reveal>
@@ -87,23 +78,10 @@ export default function ServiceCard({
         {/* Content Column */}
         <div className="lg:col-span-6 xl:col-span-7 flex flex-col justify-center">
           <Reveal delay={150}>
-            {/* Architectural Index Counter */}
-            <div className="flex items-center gap-2">
-              <span className="font-heading text-sm font-black tracking-[0.2em] text-es-accent-strong">
-                {service.index}
-              </span>
-              <span aria-hidden="true" className="text-xs font-semibold text-gray-400">
-                :
-              </span>
-              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-500">
-                Scope {service.index} of {service.total}
-              </span>
-            </div>
-
             {/* Title */}
             <h3
               id={`service-title-${service.index}`}
-              className="mt-3 text-balance font-heading text-2xl font-black leading-tight text-brand-navy sm:text-3xl"
+              className="text-balance font-heading text-2xl font-black leading-tight text-brand-navy sm:text-3xl"
             >
               {service.title}
             </h3>

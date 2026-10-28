@@ -47,7 +47,7 @@ export default function MissionVisionPage() {
           <div className="grid w-full max-w-6xl grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-6">
             <div className="relative aspect-[4/3] w-full sm:aspect-[16/10] lg:aspect-square" data-aos="fade-right">
               <Image
-                src="/images/mission.jpg"
+                src="/images/mandv001.jpg"
                 alt="Construction"
                 fill
                 sizes="(min-width: 1280px) 576px, (min-width: 1024px) 48vw, 100vw"

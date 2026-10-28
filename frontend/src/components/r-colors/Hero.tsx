@@ -10,7 +10,7 @@ export default function Hero() {
       className="relative isolate flex min-h-[max(600px,100vh)] items-end overflow-hidden bg-brand-navy text-white supports-[height:100svh]:min-h-[max(600px,100svh)]"
     >
       <Image
-        src="/images/Rcolors-1.jpg"
+        src="/images/finishinghero001.jpg"
         alt="Freshly painted interior finished by R Colors"
         fill
         priority
@@ -28,8 +28,8 @@ export default function Hero() {
           className="cx-rise mt-6 text-balance font-heading text-[clamp(2.25rem,1.4rem+4vw,4.5rem)] font-black leading-tight drop-shadow-lg"
           style={rise(160)}
         >
-          <span className="block">Finishing &amp; Interiors.</span>
-          <span className="block text-brand-sky">Done with Precision.</span>
+          <span className="block"> R Colors</span>
+          <span className="block">Finishing Works</span>
         </h1>
 
         <p

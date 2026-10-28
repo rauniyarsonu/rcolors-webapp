@@ -2,7 +2,7 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/construction/Reveal";
 import ServiceCard, { type ServiceItem } from "@/components/construction/ServiceCard";
 
-const base = { total: "08", ctaText: "Inquire for Service", ctaHref: "/contact" };
+const base = { ctaText: "Inquire for Service", ctaHref: "/contact" };
 
 const services: ServiceItem[] = [
   {
@@ -10,7 +10,6 @@ const services: ServiceItem[] = [
     index: "01",
     title: "Interior & Exterior Painting",
     desc: "We provide high-quality interior and exterior painting services for residential and commercial projects. Our finishes enhance both protection and visual appeal. Using premium materials and modern application techniques, we ensure smooth surfaces and long-lasting durability. Our team focuses on precision, surface preparation, and timely completion for flawless results.",
-    scopeBadge: "Residential & Commercial",
     image: "/images/Rcolors-1.jpg",
     imageAlt: "Interior and exterior painting work by R Colors",
     capabilities: ["Premium Paints & Materials", "Thorough Surface Preparation", "Smooth, Long-Lasting Finishes"],
@@ -20,7 +19,6 @@ const services: ServiceItem[] = [
     index: "02",
     title: "POP & Gypsum Work",
     desc: "We deliver elegant POP and gypsum solutions for ceilings and decorative interiors. Our designs enhance structural appeal while adding a refined and modern finish to every space. From false ceilings to customized patterns, we ensure accurate installation and clean finishing. Our team focuses on detailed craftsmanship, proper alignment, and durable materials to maintain long-term strength and aesthetic consistency.",
-    scopeBadge: "Ceilings & Decorative Interiors",
     image: "/images/Rcolors-2.jpg",
     imageAlt: "POP and gypsum false ceiling installation",
     capabilities: ["False Ceilings", "Customized Decorative Patterns", "Accurate Alignment & Clean Finishing"],
@@ -30,7 +28,6 @@ const services: ServiceItem[] = [
     index: "03",
     title: "Tiles & Marble Installation",
     desc: "We specialize in precise tile and marble installation for floors and walls. Our work combines strength with refined finishing and elegant surface detailing. Our team ensures proper alignment, secure fitting, and smooth surface finishing. We focus on durability, neat execution, and long-lasting performance to achieve premium results.",
-    scopeBadge: "Floors & Walls",
     image: "/images/Rcolors-3.jpg",
     imageAlt: "Tile and marble flooring installation",
     capabilities: ["Floor & Wall Tiling", "Marble Installation", "Secure Fitting & Proper Alignment"],
@@ -40,7 +37,6 @@ const services: ServiceItem[] = [
     index: "04",
     title: "Waterproofing Solutions",
     desc: "We provide reliable waterproofing services to protect buildings from leakage and moisture damage. Our solutions increase structural lifespan. Using advanced materials and proven industry methods, we seal vulnerable areas effectively and precisely. Our approach ensures long-term protection and reduced future maintenance concerns.",
-    scopeBadge: "Leakage & Moisture Protection",
     image: "/images/Rcolors-4.jpg",
     imageAlt: "Waterproofing treatment applied to a building surface",
     capabilities: ["Leakage & Moisture Prevention", "Advanced Sealing Materials", "Reduced Future Maintenance"],
@@ -50,7 +46,6 @@ const services: ServiceItem[] = [
     index: "05",
     title: "Furniture & Interior Work",
     desc: "We offer customized furniture and interior finishing solutions tailored to client requirements. Our work balances functionality and design. From modular units to complete interior setups, we use premium quality materials and skilled workmanship. We ensure long-term durability, smart space optimization, and elegant overall presentation.",
-    scopeBadge: "Custom & Modular Interiors",
     image: "/images/Rcolors-5.jpg",
     imageAlt: "Custom furniture and finished interior",
     capabilities: ["Customized Furniture", "Modular Units & Full Interior Setups", "Smart Space Optimization"],
@@ -60,7 +55,6 @@ const services: ServiceItem[] = [
     index: "06",
     title: "Electrical Services",
     desc: "We handle safe and efficient electrical installations for residential and commercial projects. Our systems ensure reliable performance. Our team follows proper wiring standards and safety protocols with strict quality supervision. We deliver structured planning and smooth execution for long-term operational safety and dependable functionality.",
-    scopeBadge: "Residential & Commercial",
     image: "/images/Rcolors-6.jpg",
     imageAlt: "Electrical wiring and installation work",
     capabilities: ["Standard-Compliant Wiring", "Safety Protocols & Supervision", "Structured Installation Planning"],
@@ -70,7 +64,6 @@ const services: ServiceItem[] = [
     index: "07",
     title: "Plumbing Services",
     desc: "We provide professional plumbing solutions for new construction and renovation projects. Our installations ensure efficient water flow and drainage. With careful planning and quality fittings, we prevent leakage and future maintenance issues effectively. Our work supports durability, safety standards, and seamless system functionality.",
-    scopeBadge: "New Build & Renovation",
     image: "/images/Rcolors-7.jpg",
     imageAlt: "Plumbing installation and fittings",
     capabilities: ["Water Supply & Drainage", "Quality Fittings", "Leak Prevention"],
@@ -80,7 +73,6 @@ const services: ServiceItem[] = [
     index: "08",
     title: "Renovation & Repair Services",
     desc: "We offer renovation and repair solutions to upgrade and restore existing spaces. Our services improve structural strength and overall appearance. From surface corrections to complete refurbishment, we manage projects with precision and care at every stage. Our goal is to deliver enhanced value, improved functionality, and renewed durability.",
-    scopeBadge: "Upgrade & Restore",
     image: "/images/Rcolors-8.jpg",
     imageAlt: "Renovated interior space after refurbishment",
     capabilities: ["Surface Corrections", "Complete Refurbishment", "Structural & Visual Upgrades"],

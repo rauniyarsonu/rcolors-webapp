@@ -28,8 +28,8 @@ export default function Hero() {
           className="cx-rise mt-6 text-balance font-heading text-[clamp(2.25rem,1.4rem+4vw,4.5rem)] font-black leading-tight drop-shadow-lg"
           style={rise(160)}
         >
-          <span className="block">Building Strong Foundations.</span>
-          <span className="block text-brand-sky">Creating Lasting Value.</span>
+          <span className="block">R Colors Construction</span>
+          <span className="block">and Developers</span>
         </h1>
 
         <p

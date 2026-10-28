@@ -4,13 +4,6 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import { ArrowRight } from "lucide-react";
 import Reveal from "@/components/construction/Reveal";
 
-const highlights = [
-  { title: "Precision", desc: "Careful surface preparation and attention to detail on every finish." },
-  { title: "Professional Workmanship", desc: "Experienced teams working to defined quality standards." },
-  { title: "Timely Execution", desc: "Structured processes that keep each project on schedule." },
-  { title: "Lasting Value", desc: "Durable materials and finishes built for long-term performance." },
-];
-
 export default function Intro() {
   return (
     <section id="who-we-are" aria-labelledby="intro-title" className="section-y w-full scroll-mt-20 bg-white">
@@ -47,7 +40,7 @@ export default function Intro() {
           <Reveal delay={150} className="lg:col-span-5 lg:col-start-8">
             <figure className="group relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-gray-100 bg-gray-100 shadow-xl transition-all duration-500 hover:-translate-y-1 hover:border-brand-sky/60 hover:shadow-2xl motion-reduce:transition-none motion-reduce:hover:translate-y-0 lg:aspect-[4/5]">
               <Image
-                src="/images/Rcolors1.jpg"
+                src="/images/finishing002.jpg"
                 alt="Finished interior space completed by the R Colors team"
                 fill
                 sizes="(min-width: 1320px) 520px, (min-width: 1024px) 40vw, 100vw"
@@ -57,23 +50,6 @@ export default function Intro() {
             </figure>
           </Reveal>
         </div>
-
-        <ul className="mt-16 grid grid-cols-1 gap-4 sm:grid-cols-2 md:mt-20 lg:grid-cols-4 lg:gap-6">
-          {highlights.map((item, idx) => (
-            <li
-              key={item.title}
-              className="group h-full rounded-xl border border-gray-100 bg-gray-50 p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-brand-sky/60 hover:bg-white hover:shadow-xl motion-reduce:transition-none motion-reduce:hover:translate-y-0"
-            >
-              <Reveal delay={idx * 80}>
-                <span className="font-heading text-sm font-black text-es-accent-strong transition-colors duration-300 group-hover:text-brand-sky">
-                  {String(idx + 1).padStart(2, "0")}
-                </span>
-                <h3 className="mt-3 font-heading text-lg font-bold text-brand-navy transition-colors duration-300 group-hover:text-es-accent-strong">{item.title}</h3>
-                <p className="mt-2 text-[15px] leading-relaxed text-gray-600">{item.desc}</p>
-              </Reveal>
-            </li>
-          ))}
-        </ul>
       </div>
     </section>
   );
