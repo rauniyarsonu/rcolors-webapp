@@ -1,5 +1,6 @@
 import EstatePage from "@/components/estate/EstatePage";
-import WhyEstate from "@/components/estate/WhyEstate";
+import EstateAbout from "@/components/estate/EstateAbout";
+import EstateHero from "@/components/estate/EstateHero";
 import LoadState from "@/components/LoadState";
 import Seo from "@/components/Seo";
 import { emptyState } from "@/lib/estate/engine";
@@ -19,9 +20,10 @@ export default function EstateBusinessPage() {
   // No enabled city with data yet: keep the company content
   if (!first || bundle.status === "not-found") {
     return (
-      <div className="pt-16 lg:pt-20">
-        <WhyEstate />
-      </div>
+      <>
+        <EstateHero />
+        <EstateAbout />
+      </>
     );
   }
   if (bundle.status !== "ok") return <LoadState result={bundle} />;

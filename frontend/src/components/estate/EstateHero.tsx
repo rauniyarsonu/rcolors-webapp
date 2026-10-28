@@ -1,45 +1,62 @@
-import Image from "@/components/ui/Image";
-import { ArrowRight, BadgeCheck, Tag } from "lucide-react";
+import { useState } from "react";
+import HeroImage from "@/components/ui/HeroImage";
+import ButtonLink from "@/components/construction/ButtonLink";
 import { ESTATE } from "@/config/estate/site";
 
+const rise = (delayMs: number) => ({ animationDelay: `${delayMs}ms` });
+
 interface EstateHeroProps {
-  cityName: string;
   /** H1 override for locality landing pages */
   title?: string;
-  /** Scrolls to the "Sell Your Property" form */
-  onSell?: () => void;
 }
 
-/** Full-bleed photo with a navy overlay; the search card overlaps its lower edge */
-export default function EstateHero({ title, onSell }: EstateHeroProps) {
+/** Full-screen hero in the construction / R Colors style; the search card overlaps its lower edge.
+ * From md up it is 7rem shorter than the viewport so the whole search card fits on landing. */
+export default function EstateHero({ title }: EstateHeroProps) {
+  const [ready, setReady] = useState(false);
+
   return (
-    <section aria-labelledby="es-hero-title" className="es-on-dark relative isolate overflow-hidden bg-es-ink text-white">
-      <Image src={ESTATE.heroImage.src} alt={ESTATE.heroImage.alt} fill priority sizes="100vw" className="-z-20 object-cover object-[50%_40%]" />
-      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-b from-es-ink/85 via-es-ink/60 to-es-ink/90" />
-      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-r from-es-ink/70 to-transparent" />
+    <section
+      data-hero-pending={ready ? undefined : ""}
+      aria-labelledby="es-hero-title"
+      className="es-on-dark relative isolate flex min-h-[max(600px,100vh)] items-end overflow-hidden bg-brand-navy text-white supports-[height:100svh]:min-h-[max(600px,100svh)] md:min-h-[max(600px,calc(100svh_-_7rem))]"
+    >
+      <HeroImage
+        src={ESTATE.heroImage.src}
+        alt={ESTATE.heroImage.alt}
+        className="object-[50%_40%]"
+        ready={ready}
+        onReady={() => setReady(true)}
+      />
+      {/* Contrast overlays, same treatment as the home hero slider */}
+      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-black/40" />
+      <div aria-hidden="true" className="absolute inset-x-0 bottom-0 -z-10 h-2/3 bg-gradient-to-t from-black/80 to-transparent" />
 
-      <div className="es-container pb-36 pt-28 md:pb-40 md:pt-36 lg:pt-40">
-
-        <h1 id="es-hero-title" className="mt-4 max-w-3xl font-display text-[clamp(2.25rem,5vw,4rem)] font-bold leading-[1.05] tracking-[-0.02em] text-balance">
+      {/* Extra bottom padding leaves room for the overlapping search card */}
+      <div className="es-container relative pb-40 pt-32 md:pb-48 lg:pb-52">
+        <h1
+          id="es-hero-title"
+          className="cx-rise mt-6 max-w-4xl text-balance font-heading text-[clamp(2.25rem,1.4rem+4vw,4.5rem)] font-black leading-tight drop-shadow-lg"
+          style={rise(160)}
+        >
           {title ?? ESTATE.brand}
         </h1>
-        <p className="mt-4 max-w-xl text-lg text-white/85 md:text-xl">From Search to Keys, we&apos;ve got you covered.</p>
-        <div className="mt-6 flex flex-wrap items-center gap-3">
-          <p className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3.5 py-1.5 text-sm font-medium text-white">
-            <BadgeCheck size={16} aria-hidden="true" className="text-es-accent" />
-            Verified listings &amp; proper documentation
-          </p>
-          {onSell && (
-            <button
-              type="button"
-              onClick={onSell}
-              className="group inline-flex min-h-[44px] items-center gap-2 rounded-full bg-white px-5 text-sm font-bold text-es-ink shadow-sm transition-colors hover:bg-es-surface"
-            >
-              <Tag size={16} aria-hidden="true" className="text-es-accent-strong" />
-              Sell your property
-              <ArrowRight size={16} aria-hidden="true" className="transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none" />
-            </button>
-          )}
+
+        <p
+          className="cx-rise mt-6 max-w-[58ch] border-l-4 border-brand-sky pl-4 text-base leading-relaxed text-gray-200 drop-shadow-md md:text-lg"
+          style={rise(240)}
+        >
+          From search to keys, we&apos;ve got you covered. Verified plots, homes and commercial spaces with proper documentation and
+          transparent deals.
+        </p>
+
+        <div className="cx-rise mt-10 flex flex-col gap-3 sm:flex-row sm:gap-4" style={rise(320)}>
+          <ButtonLink href="#services" variant="primary-on-dark" className="w-full sm:w-auto">
+            Explore Our Services
+          </ButtonLink>
+          <ButtonLink href="#sell" variant="light-on-dark" arrow={false} className="w-full sm:w-auto">
+            Sell Your Property
+          </ButtonLink>
         </div>
       </div>
     </section>

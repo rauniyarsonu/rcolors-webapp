@@ -16,6 +16,8 @@ const config: Config = {
         'brand-sky': '#28A9DC',
         'brand-red': '#C1272D',
         'brand-green': '#235c1d',
+        // Warm accent for decorative details; 2.2:1 on white, so not for text on light surfaces
+        'brand-gold': '#C8A96A',
         // Estate tokens (white + sky theme), defined in globals.css
         es: {
           ink: 'rgb(var(--es-ink) / <alpha-value>)',
@@ -41,9 +43,19 @@ const config: Config = {
         'marquee-right': {
           '0%': { transform: 'translateX(-50%)' },
           '100%': { transform: 'translateX(0)' },
+        },
+        'fade-up': {
+          '0%': { opacity: '0', transform: 'translateY(8px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        'sweep-x': {
+          '0%': { transform: 'scaleX(0)' },
+          '100%': { transform: 'scaleX(1)' },
         }
       },
       animation: {
+        'sweep-x': 'sweep-x 0.6s cubic-bezier(0.22, 1, 0.36, 1) both',
+        'fade-up': 'fade-up 0.4s ease-out both',
         'marquee-left': 'marquee-left 180s linear infinite',
         'marquee-right': 'marquee-right 180s linear infinite',
       }

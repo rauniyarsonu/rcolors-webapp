@@ -12,25 +12,46 @@ const slides = [
 
 const INTERVAL_MS = 5000; // 5 seconds per slide
 const SWIPE_THRESHOLD_PX = 50;
+const FADE_MS = 1000;
+// Never keep the hero blank if the first image is slow or fails
+const READY_FALLBACK_MS = 3000;
 
 export default function HeroSlider() {
   const [current, setCurrent] = useState(0);
+  // Slide that is fading out; keeps its zoom so it doesn't snap back mid-fade
+  const [previous, setPrevious] = useState<number | null>(null);
+  // Becomes true once the first image has loaded, so the entrance fade, zoom and caption actually animate on landing
+  const [ready, setReady] = useState(false);
+  const firstImage = useRef<HTMLImageElement>(null);
   const [isMouseDown, setIsMouseDown] = useState(false);
   const touchStart = useRef<{ x: number; y: number } | null>(null);
   const mouseStart = useRef<{ x: number; y: number } | null>(null);
 
   const goTo = useCallback((index: number) => {
-    setCurrent((index + slides.length) % slides.length);
+    const next = (index + slides.length) % slides.length;
+    if (next === current) return;
+    setPrevious(current);
+    setCurrent(next);
+  }, [current]);
+
+  // Cached images can finish loading before onLoad is attached
+  useEffect(() => {
+    const img = firstImage.current;
+    if (img?.complete && img.naturalWidth > 0) {
+      // Wait a frame so the initial (hidden) styles paint before transitioning in
+      requestAnimationFrame(() => setReady(true));
+      return;
+    }
+    const fallback = setTimeout(() => setReady(true), READY_FALLBACK_MS);
+    return () => clearTimeout(fallback);
   }, []);
 
-  // 5-second auto-slide; resets on slide change and pauses while actively dragging
+  // 5-second auto-slide; starts once the hero is visible, resets on slide change and pauses while actively dragging
   useEffect(() => {
-    if (isMouseDown) return;
-    const timer = setTimeout(() => {
-      setCurrent((prev) => (prev + 1) % slides.length);
-    }, INTERVAL_MS);
+    if (!ready || isMouseDown) return;
+    const timer = setTimeout(() => goTo(current + 1), INTERVAL_MS);
     return () => clearTimeout(timer);
-  }, [current, isMouseDown]);
+  }, [current, ready, isMouseDown, goTo]);
 
   // Touch gesture handling (mobile & tablet)
   const onTouchStart = (e: React.TouchEvent) => {
@@ -106,28 +127,38 @@ export default function HeroSlider() {
     >
       {/* Background Images */}
       {slides.map((slide, index) => {
-        const isActive = index === current;
+        const isActive = ready && index === current;
+        // The outgoing slide keeps zooming while it fades; all others reset instantly while hidden
+        const isZooming = isActive || (ready && index === previous);
         return (
           <div
             key={slide.image}
             aria-hidden={!isActive}
-            className={`pointer-events-none absolute inset-0 z-0 transition-opacity duration-1000 ease-in-out motion-reduce:transition-none ${isActive ? "opacity-100" : "opacity-0"
+            style={{ transitionDuration: `${FADE_MS}ms` }}
+            className={`pointer-events-none absolute inset-0 z-0 transition-opacity ease-in-out motion-reduce:transition-none ${isActive ? "opacity-100" : "opacity-0"
               }`}
           >
-            {/* Ken Burns effect: scale up slowly while active across 5s interval */}
+            {/* Ken Burns effect: scale up slowly across the interval plus the fade-out */}
             <div
-              className={`relative h-full w-full transition-transform duration-[5000ms] ease-linear motion-reduce:scale-100 motion-reduce:transition-none ${isActive ? "scale-105" : "scale-100"
+              style={isZooming ? { transitionDuration: `${INTERVAL_MS + FADE_MS}ms` } : undefined}
+              className={`relative h-full w-full motion-reduce:scale-100 motion-reduce:transition-none ${isZooming ? "scale-105 transition-transform ease-linear" : "scale-100 transition-none"
                 }`}
             >
-              <Image
-                src={slide.image}
-                alt={slide.text}
-                fill
-                priority={index === 0}
-                sizes="100vw"
-                draggable={false}
-                className={`pointer-events-none object-cover ${slide.position}`}
-              />
+              {/* Other slides start downloading only after the first one, so they don't compete with it on landing */}
+              {(index === 0 || ready) && (
+                <Image
+                  ref={index === 0 ? firstImage : undefined}
+                  src={slide.image}
+                  alt={slide.text}
+                  fill
+                  priority={index === 0}
+                  sizes="100vw"
+                  draggable={false}
+                  onLoad={index === 0 ? () => setReady(true) : undefined}
+                  onError={index === 0 ? () => setReady(true) : undefined}
+                  className={`pointer-events-none object-cover ${slide.position}`}
+                />
+              )}
               {/* Dark overlay for contrast */}
               <div className="absolute inset-0 bg-black/40" />
             </div>
@@ -144,7 +175,7 @@ export default function HeroSlider() {
           {/* All captions share one grid cell, so the box is as tall as the longest one and nothing shifts */}
           <div className="grid max-w-4xl flex-1" aria-live="off">
             {slides.map((slide, index) => {
-              const isActive = index === current;
+              const isActive = ready && index === current;
               // Only the first slide's title is the page h1
               const Heading = index === 0 ? "h1" : "h2";
               return (

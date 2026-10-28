@@ -132,142 +132,157 @@ export default function SellForm({ city }: { city: string }) {
     </label>
   );
 
+  const legend = (step: string, text: string) => (
+    <legend className="flex items-center gap-3 font-display text-lg font-bold text-es-ink">
+      <span aria-hidden="true" className="text-sm font-bold text-es-accent-strong">
+        {step}
+      </span>
+      {text}
+    </legend>
+  );
+
   return (
-    <form ref={formRef} noValidate onSubmit={onSubmit} className="space-y-5">
+    <form ref={formRef} noValidate onSubmit={onSubmit} className="space-y-8">
       {/* Honeypot: hidden from people and assistive tech, attractive to bots */}
       <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
         <label htmlFor={id("bot")}>Leave this field empty</label>
         <input id={id("bot")} name="bot-field" tabIndex={-1} autoComplete="off" value={honeypot} onChange={(e) => setHoneypot(e.target.value)} />
       </div>
 
-      <div>
-        {label("name", "Owner's Full Name", true)}
-        <input
-          id={id("name")}
-          name="name"
-          type="text"
-          autoComplete="name"
-          required
-          value={values.name}
-          onChange={set("name")}
-          aria-invalid={!!errors.name}
-          aria-describedby={describe("name")}
-          className={inputClass(!!errors.name)}
-          placeholder="e.g. Rahul Sharma"
-        />
-        {errorText("name")}
-      </div>
-
-      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+      <fieldset className="space-y-5">
+        {legend("01", "Your details")}
         <div>
-          {label("phone", "Phone Number", true)}
+          {label("name", "Owner's Full Name", true)}
           <input
-            id={id("phone")}
-            name="phone"
-            type="tel"
-            inputMode="tel"
-            autoComplete="tel"
-            required
-            value={values.phone}
-            onChange={set("phone")}
-            aria-invalid={!!errors.phone}
-            aria-describedby={describe("phone")}
-            className={inputClass(!!errors.phone)}
-            placeholder="+91 XXXXX XXXXX"
-          />
-          {errorText("phone")}
-        </div>
-        <div>
-          {label("email", "Email Address")}
-          <input
-            id={id("email")}
-            name="email"
-            type="email"
-            autoComplete="email"
-            value={values.email}
-            onChange={set("email")}
-            aria-invalid={!!errors.email}
-            aria-describedby={describe("email")}
-            className={inputClass(!!errors.email)}
-            placeholder="rahul@example.com"
-          />
-          {errorText("email")}
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-        <div>
-          {label("propertyType", "Property Type", true)}
-          <select
-            id={id("propertyType")}
-            name="propertyType"
-            required
-            value={values.propertyType}
-            onChange={set("propertyType")}
-            aria-invalid={!!errors.propertyType}
-            aria-describedby={describe("propertyType")}
-            className={inputClass(!!errors.propertyType)}
-          >
-            <option value="">Select Property Type</option>
-            <optgroup label="Land & Plots">
-              {LAND.map((k) => (
-                <option key={k} value={k}>
-                  {PROPERTY_TYPES[k].label}
-                </option>
-              ))}
-            </optgroup>
-            <optgroup label="Built Property">
-              {BUILT.map((k) => (
-                <option key={k} value={k}>
-                  {PROPERTY_TYPES[k].label}
-                </option>
-              ))}
-            </optgroup>
-          </select>
-          {errorText("propertyType")}
-        </div>
-        <div>
-          {label("location", "Location", true)}
-          <input
-            id={id("location")}
-            name="location"
+            id={id("name")}
+            name="name"
             type="text"
-            autoComplete="street-address"
+            autoComplete="name"
             required
-            value={values.location}
-            onChange={set("location")}
-            aria-invalid={!!errors.location}
-            aria-describedby={describe("location")}
-            className={inputClass(!!errors.location)}
-            placeholder={`Locality or village, ${city}`}
+            value={values.name}
+            onChange={set("name")}
+            aria-invalid={!!errors.name}
+            aria-describedby={describe("name")}
+            className={inputClass(!!errors.name)}
+            placeholder="e.g. Rahul Sharma"
           />
-          {errorText("location")}
+          {errorText("name")}
         </div>
-      </div>
 
-      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-        <div>
-          {label("area", "Area / Size")}
-          <input id={id("area")} name="area" type="text" value={values.area} onChange={set("area")} className={inputClass(false)} placeholder="e.g. 1200 sq ft or 2 bigha" />
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+          <div>
+            {label("phone", "Phone Number", true)}
+            <input
+              id={id("phone")}
+              name="phone"
+              type="tel"
+              inputMode="tel"
+              autoComplete="tel"
+              required
+              value={values.phone}
+              onChange={set("phone")}
+              aria-invalid={!!errors.phone}
+              aria-describedby={describe("phone")}
+              className={inputClass(!!errors.phone)}
+              placeholder="+91 XXXXX XXXXX"
+            />
+            {errorText("phone")}
+          </div>
+          <div>
+            {label("email", "Email Address")}
+            <input
+              id={id("email")}
+              name="email"
+              type="email"
+              autoComplete="email"
+              value={values.email}
+              onChange={set("email")}
+              aria-invalid={!!errors.email}
+              aria-describedby={describe("email")}
+              className={inputClass(!!errors.email)}
+              placeholder="rahul@example.com"
+            />
+            {errorText("email")}
+          </div>
         </div>
-        <div>
-          {label("price", "Expected Price")}
-          <input id={id("price")} name="price" type="text" value={values.price} onChange={set("price")} className={inputClass(false)} placeholder="e.g. ₹45 lakh" />
-        </div>
-      </div>
+      </fieldset>
 
-      <div>
-        {label("message", "Anything else?")}
-        <textarea
-          id={id("message")}
-          name="message"
-          rows={3}
-          value={values.message}
-          onChange={set("message")}
-          className={`${inputClass(false)} resize-y`}
-          placeholder="Road width, facing, documents available, best time to call…"
-        />
-      </div>
+      <fieldset className="space-y-5 border-t border-es-line pt-8">
+        {legend("02", "Property details")}
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+          <div>
+            {label("propertyType", "Property Type", true)}
+            <select
+              id={id("propertyType")}
+              name="propertyType"
+              required
+              value={values.propertyType}
+              onChange={set("propertyType")}
+              aria-invalid={!!errors.propertyType}
+              aria-describedby={describe("propertyType")}
+              className={inputClass(!!errors.propertyType)}
+            >
+              <option value="">Select Property Type</option>
+              <optgroup label="Land & Plots">
+                {LAND.map((k) => (
+                  <option key={k} value={k}>
+                    {PROPERTY_TYPES[k].label}
+                  </option>
+                ))}
+              </optgroup>
+              <optgroup label="Built Property">
+                {BUILT.map((k) => (
+                  <option key={k} value={k}>
+                    {PROPERTY_TYPES[k].label}
+                  </option>
+                ))}
+              </optgroup>
+            </select>
+            {errorText("propertyType")}
+          </div>
+          <div>
+            {label("location", "Location", true)}
+            <input
+              id={id("location")}
+              name="location"
+              type="text"
+              autoComplete="street-address"
+              required
+              value={values.location}
+              onChange={set("location")}
+              aria-invalid={!!errors.location}
+              aria-describedby={describe("location")}
+              className={inputClass(!!errors.location)}
+              placeholder={`Locality or village, ${city}`}
+            />
+            {errorText("location")}
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+          <div>
+            {label("area", "Area / Size")}
+            <input id={id("area")} name="area" type="text" value={values.area} onChange={set("area")} className={inputClass(false)} placeholder="e.g. 1200 sq ft or 2 bigha" />
+          </div>
+          <div>
+            {label("price", "Expected Price")}
+            <input id={id("price")} name="price" type="text" value={values.price} onChange={set("price")} className={inputClass(false)} placeholder="e.g. ₹45 lakh" />
+          </div>
+        </div>
+
+        <div>
+          {label("message", "Anything else?")}
+          <textarea
+            id={id("message")}
+            name="message"
+            rows={3}
+            value={values.message}
+            onChange={set("message")}
+            className={`${inputClass(false)} resize-y`}
+            placeholder="Road width, facing, documents available, best time to call…"
+          />
+        </div>
+      </fieldset>
 
       {status === "error" && (
         <p role="alert" className="flex items-start gap-2 rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">
@@ -299,7 +314,7 @@ export default function SellForm({ city }: { city: string }) {
           </>
         )}
       </button>
-      <p className="text-xs text-es-muted">Free to register. We use your details only to contact you about selling this property.</p>
+      <p className="-mt-4 text-center text-xs text-es-muted">We use your details only to contact you about selling this property.</p>
     </form>
   );
 }

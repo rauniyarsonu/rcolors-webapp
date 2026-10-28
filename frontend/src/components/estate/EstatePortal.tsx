@@ -33,7 +33,6 @@ import PropertyCard from "./PropertyCard";
 import SearchBar from "./SearchBar";
 import SearchTabs from "./SearchTabs";
 import SellSection from "./SellSection";
-import type { JourneyAction } from "./StartJourney";
 import TrendingChips from "./TrendingChips";
 import { useQueryState } from "./useQueryState";
 
@@ -147,19 +146,6 @@ export default function EstatePortal({ bundle, cities, initialState, basePath, h
   const enquireAgent = (a: Agent) => setEnquiry({ subject: `${a.name} (${a.role})`, reference: a.id, city: city.name });
   const enquireGeneral = () => setEnquiry({ subject: `${heading}`, city: city.name });
 
-  const onJourney = (a: JourneyAction) => {
-    if (a === "sell") {
-      requestAnimationFrame(() => {
-        scrollToId("sell");
-        document.querySelector<HTMLElement>("#sell input:not([tabindex='-1'])")?.focus({ preventScroll: true });
-      });
-      return;
-    }
-    if (a === "investment") return enquireGeneral();
-    update((s) => (a === "land" ? withSegment(withTab(s, "buy"), "land") : withTab(s, a)));
-    goToResults();
-  };
-
   const nearby = useMemo(() => {
     const out = new Set<string>();
     for (const slug of state.loc) for (const n of ctx.index.bySlug.get(slug)?.nearby ?? []) if (!state.loc.includes(n) && ctx.index.bySlug.has(n)) out.add(n);
@@ -185,7 +171,7 @@ export default function EstatePortal({ bundle, cities, initialState, basePath, h
 
   return (
     <div className="bg-white">
-      <EstateHero cityName={city.name} title={heroTitle} onSell={() => onJourney("sell")} />
+      <EstateHero title={heroTitle} />
 
       {/* Tabs + search card overlap the hero's lower edge */}
       <div className="es-container relative z-10 -mt-28 md:-mt-32">
@@ -246,7 +232,7 @@ export default function EstatePortal({ bundle, cities, initialState, basePath, h
                 {/* Heading, segment, count, sort */}
                 <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
                   <div className="min-w-0">
-                    <h2 id="es-results-heading" className="font-display text-2xl font-bold tracking-tight text-es-ink md:text-3xl">
+                    <h2 id="es-results-heading" className="text-balance font-heading text-2xl font-black leading-tight text-brand-navy md:text-3xl">
                       {heading}
                     </h2>
                     <p className="mt-1 text-sm text-es-muted" aria-live="polite" aria-atomic="true">
@@ -495,26 +481,6 @@ export default function EstatePortal({ bundle, cities, initialState, basePath, h
           </button>
         </div>
       </Dialog>
-
-      <SampleBanner bundle={bundle} />
-    </div>
-  );
-}
-
-/** Development-only reminder that sample records are on screen */
-function SampleBanner({ bundle }: { bundle: CityBundle }) {
-  const [hidden, setHidden] = useState(false);
-  if (import.meta.env.PROD || hidden) return null;
-  const n = [...bundle.properties, ...bundle.projects, ...bundle.agents].filter((r) => r.isSample).length;
-  if (!n) return null;
-  return (
-    <div role="note" className="fixed bottom-4 left-4 z-40 flex max-w-xs items-start gap-3 rounded-md bg-amber-100 px-4 py-3 text-sm text-amber-950 shadow-lg ring-1 ring-amber-300">
-      <span>
-        <strong>Dev only:</strong> {n} [SAMPLE] records render on this page. Replace them before launch (see docs/ADDING-DATA.md).
-      </span>
-      <button type="button" onClick={() => setHidden(true)} aria-label="Hide sample data notice" className="-mr-1 -mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded hover:bg-amber-200">
-        <X size={16} aria-hidden="true" />
-      </button>
     </div>
   );
 }

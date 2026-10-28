@@ -1,7 +1,7 @@
 import Link from "@/components/ui/Link";
 import { ArrowRight } from "lucide-react";
 
-type Variant = "primary" | "primary-on-dark" | "outline-light" | "outline-dark";
+type Variant = "primary" | "primary-on-dark" | "outline-light" | "outline-dark" | "light-on-dark";
 
 // Same look as ui/Button: sky-700 fills so white text passes WCAG AA
 const variants: Record<Variant, string> = {
@@ -9,6 +9,8 @@ const variants: Record<Variant, string> = {
   "primary-on-dark": "bg-es-accent-strong text-white hover:bg-white hover:text-brand-navy focus-visible:outline-white",
   "outline-light": "border-2 border-white/70 text-white hover:border-white hover:bg-white hover:text-brand-navy focus-visible:outline-white",
   "outline-dark": "border-2 border-es-accent-strong text-es-accent-strong hover:bg-es-accent-strong hover:text-white focus-visible:outline-es-accent-strong",
+  // Navy text stays on the sky hover: white on brand sky fails contrast
+  "light-on-dark": "border-2 border-white bg-white text-brand-navy hover:border-brand-sky hover:bg-brand-sky focus-visible:outline-white",
 };
 
 interface ButtonLinkProps {

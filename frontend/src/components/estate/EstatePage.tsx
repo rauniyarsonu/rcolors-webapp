@@ -2,8 +2,9 @@ import { ESTATE } from "@/config/estate/site";
 import type { QueryState } from "@/lib/estate/engine";
 import { areasOf, indexLocations } from "@/lib/estate/locationTree";
 import type { City, CityBundle } from "@/lib/estate/schema";
+import ClosingCta from "@/components/construction/ClosingCta";
+import EstateAbout from "./EstateAbout";
 import EstatePortal from "./EstatePortal";
-import WhyEstate from "./WhyEstate";
 
 interface EstatePageProps {
   bundle: CityBundle;
@@ -45,8 +46,15 @@ export default function EstatePage({ bundle, cities, initialState, basePath, her
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <EstatePortal bundle={bundle} cities={cities} initialState={initialState} basePath={basePath} heroTitle={heroTitle}>
-        <WhyEstate />
+        <EstateAbout />
       </EstatePortal>
+      <ClosingCta
+        eyebrow="Find Your Next Property"
+        title="Ready to Make Your Move?"
+        body="Browse verified plots, homes and commercial spaces, or talk to our team about buying, selling or investing."
+        primary={{ href: "#es-results", label: "Browse Properties" }}
+        secondary={{ href: "/contact", label: "Talk to an Advisor" }}
+      />
     </>
   );
 }

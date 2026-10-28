@@ -44,7 +44,7 @@ export default function AboutCompanyPage() {
             </blockquote>
           </div>
           {/* 4:3 when stacked; on lg it stretches to the height of the text column */}
-          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg shadow-2xl lg:aspect-auto lg:h-full lg:min-h-[32rem]">
+          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg shadow-2xl lg:order-first lg:aspect-auto lg:h-full lg:min-h-[32rem]">
             <Image
               src="/images/aboutus.jpg"
               alt="About R Colors Group"

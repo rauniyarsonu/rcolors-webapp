@@ -8,7 +8,7 @@ export default function Intro() {
   return (
     <section id="who-we-are" aria-labelledby="intro-title" className="section-y w-full scroll-mt-20 bg-white">
       <div className="site-container">
-        <div className="grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-12">
+        <div className="grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-16 xl:gap-20">
           <div className="lg:col-span-6">
             <Reveal>
               <SectionHeading id="intro-title" eyebrow="Who We Are" title="Engineering Excellence. Built Around Your Vision." bar align="left" />
@@ -39,8 +39,8 @@ export default function Intro() {
             </Reveal>
           </div>
 
-          <Reveal delay={150} className="lg:col-span-6">
-            <figure className="group relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-gray-100 bg-gray-100 shadow-xl transition-all duration-500 hover:-translate-y-1 hover:border-brand-sky/60 hover:shadow-2xl motion-reduce:transition-none motion-reduce:hover:translate-y-0 lg:aspect-[5/4]">
+          <Reveal delay={150} className="lg:order-first lg:col-span-6">
+            <figure className="group relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-gray-100 bg-gray-100 shadow-xl transition-all duration-500 hover:-translate-y-1 hover:border-brand-sky/60 hover:shadow-2xl motion-reduce:transition-none motion-reduce:hover:translate-y-0 lg:aspect-square">
               <Image
                 src="/images/construction002.jpg"
                 alt="High-rise towers under construction with tower cranes at dusk"

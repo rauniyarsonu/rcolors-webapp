@@ -1,21 +1,24 @@
-import Image from "@/components/ui/Image";
+import { useState } from "react";
+import HeroImage from "@/components/ui/HeroImage";
 import ButtonLink from "@/components/construction/ButtonLink";
 
 const rise = (delayMs: number) => ({ animationDelay: `${delayMs}ms` });
 
 export default function Hero() {
+  const [ready, setReady] = useState(false);
+
   return (
     <section
+      data-hero-pending={ready ? undefined : ""}
       aria-labelledby="hero-title"
       className="relative isolate flex min-h-[max(600px,100vh)] items-end overflow-hidden bg-brand-navy text-white supports-[height:100svh]:min-h-[max(600px,100svh)]"
     >
-      <Image
+      <HeroImage
         src="/images/finishinghero001.jpg"
         alt="Freshly painted interior finished by R Colors"
-        fill
-        priority
-        sizes="100vw"
-        className="-z-20 object-cover object-center"
+        className="object-center"
+        ready={ready}
+        onReady={() => setReady(true)}
       />
       {/* Contrast overlays, same treatment as the home hero slider */}
       <div aria-hidden="true" className="absolute inset-0 -z-10 bg-black/40" />
