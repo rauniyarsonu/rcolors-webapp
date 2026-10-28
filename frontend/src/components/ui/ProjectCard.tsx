@@ -1,4 +1,3 @@
-import Link from "@/components/ui/Link";
 import Image from "@/components/ui/Image";
 import { hoverShadow } from "./styles";
 
@@ -22,8 +21,7 @@ interface ProjectCardProps {
     description: string;
     coverImage?: string | null;
   };
-  href?: string;
-  /** Portfolio-page variant: border, 3-line description and a "View Details" footer */
+  /** Portfolio-page variant: border and a 3-line description */
   detailed?: boolean;
   /** Use h2 when the card grid sits directly under the page h1 */
   headingLevel?: "h2" | "h3";
@@ -31,11 +29,10 @@ interface ProjectCardProps {
 
 export const businessName = (business: string) => businessNames[business] ?? business;
 
-export default function ProjectCard({ project, href = "/projects", detailed = false, headingLevel = "h3" }: ProjectCardProps) {
+export default function ProjectCard({ project, detailed = false, headingLevel = "h3" }: ProjectCardProps) {
   const Heading = headingLevel;
   return (
-    <Link
-      href={href}
+    <article
       className={`group relative flex h-full flex-col rounded-lg bg-white shadow-md after:shadow-xl ${hoverShadow} ${
         detailed ? "border border-gray-100" : ""
       }`}
@@ -63,13 +60,8 @@ export default function ProjectCard({ project, href = "/projects", detailed = fa
             {project.location && <span className={`${metaItemClass} whitespace-nowrap`}>{project.location}</span>}
           </p>
         </div>
-        <p className={`text-base text-gray-600 md:text-sm ${detailed ? "mb-4 line-clamp-3" : "line-clamp-2"}`}>{project.description}</p>
-        {detailed && (
-          <span className="mt-auto text-sm font-bold text-brand-sky group-hover:underline">
-            View Details <span aria-hidden="true">→</span>
-          </span>
-        )}
+        <p className={`text-base text-gray-600 md:text-sm ${detailed ? "line-clamp-3" : "line-clamp-2"}`}>{project.description}</p>
       </div>
-    </Link>
+    </article>
   );
 }

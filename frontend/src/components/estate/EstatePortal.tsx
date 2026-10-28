@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "@/lib/navigation";
-import { ArrowDown, SlidersHorizontal, X } from "lucide-react";
+import { ArrowDown, Handshake, SlidersHorizontal, X } from "lucide-react";
 import { PROJECT_TYPES, PROPERTY_TYPES, SEGMENTS, type Segment, type Tab } from "@/config/estate/catalog";
 import { sortsFor } from "@/config/estate/filters";
 import { ESTATE } from "@/config/estate/site";
@@ -72,6 +72,7 @@ export default function EstatePortal({ bundle, cities, initialState, basePath, h
   const [shown, setShown] = useState<number>(ESTATE.PAGE_SIZE);
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [enquiry, setEnquiry] = useState<EnquiryContext | null>(null);
+  const [sourceSellingOpen, setSourceSellingOpen] = useState(false);
   const [formContext, setFormContext] = useState<EnquiryContext | undefined>();
   const baseTitle = useRef<string | null>(null);
 
@@ -176,7 +177,12 @@ export default function EstatePortal({ bundle, cities, initialState, basePath, h
 
       {/* Tabs + search card overlap the hero's lower edge */}
       <div className="es-container relative z-10 -mt-28 md:-mt-32">
-        <SearchTabs active={state.tab} onChange={(tab: Tab) => update((s) => withTab(s, tab))} panelId={PANEL_ID} />
+        <SearchTabs
+          active={state.tab}
+          onChange={(tab: Tab) => update((s) => withTab(s, tab))}
+          panelId={PANEL_ID}
+          onSourceSelling={() => setSourceSellingOpen(true)}
+        />
         <div className="rounded-b-lg rounded-tr-lg border border-es-line bg-white p-4 shadow-[0_18px_40px_-20px_rgba(15,60,99,0.45)] md:p-5">
           <div className="flex flex-col gap-2 md:flex-row">
             <div className="md:w-56 md:shrink-0">
@@ -430,6 +436,24 @@ export default function EstatePortal({ bundle, cities, initialState, basePath, h
       {/* Enquiry modal, pre-filled with the listing, project or agent */}
       <Dialog open={!!enquiry} onClose={() => setEnquiry(null)} title="Send an enquiry" className="md:w-[min(100vw-2rem,600px)]">
         <div className="px-5 py-5 md:px-6">{enquiry && <EnquiryForm context={enquiry} onDone={() => setEnquiry(null)} />}</div>
+      </Dialog>
+
+      {/* Source Selling isn't live yet */}
+      <Dialog open={sourceSellingOpen} onClose={() => setSourceSellingOpen(false)} title="Source Selling" className="md:w-[min(100vw-2rem,440px)]">
+        <div className="flex flex-col items-center px-6 py-8 text-center">
+          <span className="flex h-14 w-14 items-center justify-center rounded-full bg-es-surface text-es-accent-strong">
+            <Handshake size={28} aria-hidden="true" />
+          </span>
+          <p className="mt-4 font-display text-2xl font-bold text-es-ink">Launching soon</p>
+          <p className="mt-2 text-sm leading-relaxed text-es-muted">We're getting Source Selling ready. Check back soon.</p>
+          <button
+            type="button"
+            onClick={() => setSourceSellingOpen(false)}
+            className="mt-6 min-h-[44px] rounded-md bg-es-accent-strong px-6 font-bold text-white hover:bg-es-ink"
+          >
+            Got it
+          </button>
+        </div>
       </Dialog>
 
       <SampleBanner bundle={bundle} />

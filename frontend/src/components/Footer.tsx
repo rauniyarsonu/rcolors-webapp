@@ -63,7 +63,9 @@ export default function Footer() {
             <span className="text-brand-sky">Colors</span> Group of Companies
           </p>
           <p className="text-sm text-gray-300 sm:mt-2">
-            R Colors Group of Companies — A trusted name in construction, contracting, and real estate development.
+            <strong className="font-semibold text-white">R Colors Group of Companies</strong>
+            <br />
+            A trusted name in construction, contracting, and real estate development.
           </p>
           <ul className="mt-2 flex flex-wrap gap-3 sm:mt-4">
             {socials.map((social) => (

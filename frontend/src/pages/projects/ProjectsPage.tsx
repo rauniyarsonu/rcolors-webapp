@@ -86,7 +86,7 @@ function ProjectsView({
           {filteredProjects.length > 0 ? (
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
               {filteredProjects.map((project) => (
-                <ProjectCard key={project.id} project={project} href={`/projects/${project.id}`} detailed headingLevel="h2" />
+                <ProjectCard key={project.id} project={project} detailed headingLevel="h2" />
               ))}
             </div>
           ) : (

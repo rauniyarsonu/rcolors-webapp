@@ -6,7 +6,8 @@ export type JourneyAction = "land" | "projects" | "agents" | "investment";
 const CARDS: { action: JourneyAction; title: string; text: string; cta: string; image: string; alt: string }[] = [
   { action: "land", title: "Browse Plots & Land", text: "Residential plots, farm land and commercial land across the city and its outskirts.", cta: "See land & plots", image: "/images/cd03.jpg", alt: "Aerial view of a planned township" },
   { action: "projects", title: "Explore Projects", text: "Upcoming, under-construction and ready projects in one place.", cta: "View projects", image: "/images/home2.jpg", alt: "Cranes over a construction site at dusk" },
-  { action: "agents", title: "Talk to an Agent", text: "Speak to an advisor who knows the localities you're considering.", cta: "Find an agent", image: "/images/home4.1.jpg", alt: "Two people shaking hands over a property agreement" },
+  // Agents temporarily hidden from the app; uncomment to restore (and set the grid back to lg:grid-cols-4)
+  // { action: "agents", title: "Talk to an Agent", text: "Speak to an advisor who knows the localities you're considering.", cta: "Find an agent", image: "/images/home4.1.jpg", alt: "Two people shaking hands over a property agreement" },
   { action: "investment", title: "Get Investment Guidance", text: "Identify high-potential properties for long-term growth.", cta: "Ask for guidance", image: "/images/home4.2.jpg", alt: "House keys being handed over after a sale" },
 ];
 
@@ -18,7 +19,7 @@ export default function StartJourney({ onAction }: { onAction: (a: JourneyAction
         <h2 id="es-journey" className="mt-2 font-display text-3xl font-bold tracking-tight text-es-ink md:text-4xl">
           Start Your Journey
         </h2>
-        <ul className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {CARDS.map((c) => (
             <li key={c.action}>
               <button

@@ -41,6 +41,6 @@ export const ESTATE = {
     region: "Uttar Pradesh",
     country: "IN",
     phones: ["6389144470", "9579662353"],
-    email: "rcolourconstruction@gmail.com",
+    email: "rcolorsgroup@gmail.com",
   },
 } as const;

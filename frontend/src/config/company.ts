@@ -4,7 +4,7 @@ import { apiUrl } from "../lib/api";
 export const COMPANY = {
   name: "R Colors Group of Companies",
   phones: ["6389144470", "9579662353"],
-  email: "rcolourconstruction@gmail.com",
+  email: "rcolorsgroup@gmail.com",
   address: {
     short: "Flat No. 1004, BCC Tower, Arjunganj–Shultanpur Road, Lucknow, UP, India",
     full: "Flat No. 1004, BCC Tower, Arjunganj–Shultanpur Road, Lucknow, Uttar Pradesh, India",

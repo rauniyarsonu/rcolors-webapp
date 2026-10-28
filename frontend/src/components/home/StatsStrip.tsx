@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from "react";
 
 /* PLACEHOLDER VALUES: replace with the company's real figures. */
 const stats = [
-  { value: 10, suffix: "+", label: "Years of Experience" },
-  { value: 100, suffix: "+", label: "Projects Completed" },
-  { value: 50, suffix: "+", label: "Happy Clients" },
+  { value: 15, suffix: "+", label: "Years of Experience" },
+  { value: 70, suffix: "+", label: "Projects Completed" },
+  { value: 20, suffix: "+", label: "Happy Clients" },
   { value: 3, suffix: "", label: "Business Divisions" },
 ];
 

@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { BadgeCheck, Check, Link as LinkIcon, MapPin, Phone } from "lucide-react";
+// Phone and formatPhone are only used by the hidden agent block; re-add them when restoring it
+import { BadgeCheck, Check, Link as LinkIcon, MapPin } from "lucide-react";
 import { FACINGS, FURNISHING, LISTING_STATUSES, PROJECT_STATUSES, PROJECT_TYPES, PROPERTY_TYPES } from "@/config/estate/catalog";
 import type { AreaUnit } from "@/config/estate/units";
 import { totalPrice, type EngineContext } from "@/lib/estate/engine";
-import { formatArea, formatDate, formatNumber, formatPhone, formatPrice, formatPriceLong } from "@/lib/estate/format";
+import { formatArea, formatDate, formatNumber, formatPrice, formatPriceLong } from "@/lib/estate/format";
 import { ancestors } from "@/lib/estate/locationTree";
 import type { CityBundle, Project, Property } from "@/lib/estate/schema";
 import ListingImage from "./ListingImage";
@@ -89,7 +90,8 @@ export function PropertyDetail({ property: p, bundle, ctx, unit, onEnquire, onVi
   const a = p.attributes;
   const price = totalPrice(p);
   const sqft = ctx.areaSqft(p);
-  const agent = p.agentId ? bundle.agents.find((x) => x.id === p.agentId) : undefined;
+  // Agents temporarily hidden from the app; uncomment to restore the "Listed by" block below
+  // const agent = p.agentId ? bundle.agents.find((x) => x.id === p.agentId) : undefined;
   const project = p.projectId ? bundle.projects.find((x) => x.id === p.projectId) : undefined;
 
   return (
@@ -157,6 +159,7 @@ export function PropertyDetail({ property: p, bundle, ctx, unit, onEnquire, onVi
           </div>
         )}
 
+        {/* Agents temporarily hidden from the app; uncomment to restore
         {agent && (
           <div className="flex flex-wrap items-center justify-between gap-3 rounded-md bg-es-surface p-4">
             <div>
@@ -170,6 +173,7 @@ export function PropertyDetail({ property: p, bundle, ctx, unit, onEnquire, onVi
             </a>
           </div>
         )}
+        */}
 
         <div className="flex flex-col gap-2 sm:flex-row">
           <button type="button" onClick={onEnquire} className="min-h-[48px] flex-1 rounded-md bg-es-accent-strong px-6 font-bold text-white hover:bg-es-ink">

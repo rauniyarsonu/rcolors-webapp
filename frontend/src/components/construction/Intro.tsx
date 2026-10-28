@@ -75,9 +75,8 @@ export default function Intro() {
           {highlights.map((item, idx) => (
             <li
               key={item.title}
-              className={`border-b border-cx-ink/10 py-7 md:py-8 lg:border-b-0 lg:px-8 lg:first:pl-0 ${
-                idx % 2 === 1 ? "sm:border-l sm:pl-8" : "sm:pr-8"
-              } ${idx > 0 ? "lg:border-l" : ""}`}
+              className={`border-b border-cx-ink/10 py-7 md:py-8 lg:border-b-0 lg:px-8 lg:first:pl-0 ${idx % 2 === 1 ? "sm:border-l sm:pl-8" : "sm:pr-8"
+                } ${idx > 0 ? "lg:border-l" : ""}`}
             >
               <Reveal delay={idx * 80}>
                 <span className="font-display text-sm font-bold text-brand-sky">
