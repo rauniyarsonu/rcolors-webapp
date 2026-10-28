@@ -1,0 +1,22 @@
+{
+  "company": {
+    "name": "R Colors Group of Companies",
+    "phones": ["6389144470", "9579662353"],
+    "email": "rcolourconstruction@gmail.com",
+    "addressShort": "Flat No. 1004, BCC Tower, Arjunganj–Shultanpur Road, Lucknow, UP, India",
+    "addressFull": "Flat No. 1004, BCC Tower, Arjunganj–Shultanpur Road, Lucknow, Uttar Pradesh, India",
+    "social": { "facebook": "", "instagram": "", "linkedin": "" }
+  },
+  "heroSlides": [
+    { "image": "/images/home1.jpg", "title": "R Colors Group Of Companies", "subtitle": "Beyond your Imagination", "position": "object-[55%_50%]" },
+    { "image": "/images/home2.jpg", "title": "R Colors Construction and Developers", "subtitle": "Building & Developement", "position": "object-[40%_50%]" },
+    { "image": "/images/home3.jpg", "title": "R Colors", "subtitle": "Finishing Works", "position": "object-[62%_50%]" },
+    { "image": "/images/home4.1.jpg", "title": "R Colors Estate", "subtitle": "Sales | Purchase | Source Selling", "position": "object-[42%_45%]" }
+  ],
+  "stats": [
+    { "value": 10, "suffix": "+", "label": "Years of Experience" },
+    { "value": 100, "suffix": "+", "label": "Projects Completed" },
+    { "value": 50, "suffix": "+", "label": "Happy Clients" },
+    { "value": 3, "suffix": "", "label": "Business Divisions" }
+  ]
+}

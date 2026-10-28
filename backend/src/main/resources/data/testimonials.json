@@ -1,0 +1,23 @@
+[
+  {
+    "quote": "Placeholder: The team delivered our project on schedule and the finishing quality exceeded our expectations.",
+    "name": "Client Name",
+    "role": "Residential Client, Lucknow",
+    "business": "group",
+    "isSample": true
+  },
+  {
+    "quote": "Placeholder: Clear communication and transparent costs from the first meeting to handover.",
+    "name": "Client Name",
+    "role": "Commercial Client",
+    "business": "group",
+    "isSample": true
+  },
+  {
+    "quote": "Placeholder: R Colors Estate helped us find the right property and handled every detail of the paperwork.",
+    "name": "Client Name",
+    "role": "Property Buyer",
+    "business": "estate",
+    "isSample": true
+  }
+]

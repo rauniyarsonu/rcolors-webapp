@@ -2,14 +2,19 @@ package com.rcolorsgroup.estate;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.rcolorsgroup.content.ContentStore;
 import java.util.List;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
-/** Runs against the real data in src/main/resources/data/estate */
+/** Runs against the database seeded from src/main/resources/data/estate */
+@SpringBootTest(properties = "spring.datasource.url=jdbc:h2:mem:test")
+@Transactional
 class EstateServiceTest {
-    private final EstateService estate = new EstateService(new ContentStore(new ObjectMapper(), ""));
+    @Autowired EstateService estate;
+    @Autowired LocationRepository locations;
+    @Autowired PropertyRepository properties;
 
     @Test
     void listsEnabledCitiesWithRecords() {
@@ -31,5 +36,30 @@ class EstateServiceTest {
     void unknownOrNonMarketSlugsHaveNoBundle() {
         assertThat(estate.bundle("nowhere")).isNull();
         assertThat(estate.bundle("uttar-pradesh")).isNull();
+    }
+
+    @Test
+    void disablingALocalityHidesItAndItsListings() {
+        Location gomtiNagar = locations.findAllByOrderByIdAsc().stream().filter(l -> l.getSlug().equals("gomti-nagar")).findFirst().orElseThrow();
+        gomtiNagar.setEnabled(false);
+        locations.flush();
+
+        CityBundle b = estate.bundle("lucknow");
+        assertThat(b.locations()).noneMatch(l -> l.path("slug").asText().equals("gomti-nagar"));
+        assertThat(b.properties()).noneMatch(p -> p.path("locationSlug").asText().equals("gomti-nagar"));
+    }
+
+    @Test
+    void unpublishedListingsAndCitiesAreHidden() {
+        Property first = properties.findByPublishedTrueOrderBySortOrderAscIdAsc().get(0);
+        first.setPublished(false);
+        properties.flush();
+        assertThat(estate.bundle("lucknow").properties()).noneMatch(p -> p.path("id").asText().equals(first.getPublicId()));
+
+        Location lucknow = locations.findAllByOrderByIdAsc().stream().filter(l -> l.getSlug().equals("lucknow")).findFirst().orElseThrow();
+        lucknow.setPublished(false);
+        locations.flush();
+        assertThat(estate.bundle("lucknow")).isNull();
+        assertThat(estate.cities()).isEmpty();
     }
 }

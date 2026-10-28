@@ -1,0 +1,413 @@
+[
+  {
+    "key": "construction",
+    "hero": {
+      "title": "Building Strong Foundations.",
+      "subtitle": "Creating Lasting Value.",
+      "text": "From residential developments to commercial spaces, we bring together thoughtful planning, engineering precision and quality execution to build spaces designed for the future.",
+      "image": "/images/home4.jpg",
+      "imageAlt": "Tower crane above a high-rise under construction at sunset"
+    },
+    "intro": {
+      "title": "Engineering Excellence. Built Around Your Vision.",
+      "paragraphs": [
+        "R Colors Construction & Development delivers high-quality residential, commercial and development projects with precision and reliability. We focus on structural strength, modern design and timely execution to create lasting value for our clients.",
+        "Our expertise covers end-to-end project execution, from planning and structural work to finishing and final handover."
+      ],
+      "image": "/images/mission.jpg",
+      "imageAlt": "High-rise towers under construction with tower cranes at dusk"
+    },
+    "servicesTitle": "Comprehensive Construction Solutions. Engineered for Longevity.",
+    "servicesSubtitle": "We unite engineering rigor, vetted materials, and meticulous project governance to deliver residential, commercial, and turnkey development projects on time and to the highest standards.",
+    "services": [
+      {
+        "title": "Residential Construction",
+        "tagline": "Modern homes & communities engineered for safety, comfort, and longevity",
+        "description": "A home is more than physical structure — it is an investment in lifestyle and safety. We construct multi-unit residential towers, gated communities, and bespoke villas with high-grade structural reinforcement, seismic compliance, and disciplined craftsmanship.",
+        "scopeBadge": "Civil & Structural Residential",
+        "image": "/images/cd01.jpg",
+        "imageAlt": "Modern residential multi-story apartment towers with swimming pool and landscaped grounds",
+        "capabilities": [
+          "Multi-Story Residential Towers",
+          "Gated Communities & Luxury Villas",
+          "Seismic & Structural Safety Compliance",
+          "Turnkey Civil Execution & Handover"
+        ],
+        "ctaText": "Explore Residential Projects",
+        "ctaHref": "/projects?business=construction",
+        "icon": null
+      },
+      {
+        "title": "Commercial Construction",
+        "tagline": "Functional, scalable environments built to accelerate business performance",
+        "description": "From corporate headquarters and IT workspaces to expansive retail spaces, we engineer commercial infrastructure that combines visual stature with functional efficiency, high-volume durability, and modern utility integration.",
+        "scopeBadge": "Commercial & Corporate Infrastructure",
+        "image": "/images/cd02.jpg",
+        "imageAlt": "Contemporary glass-facade corporate commercial building reflecting sky",
+        "capabilities": [
+          "Corporate Headquarters & IT Parks",
+          "Retail Centers & Commercial Plazas",
+          "Advanced MEP & Fire Safety Systems",
+          "Fast-Track Phased Execution"
+        ],
+        "ctaText": "Explore Commercial Projects",
+        "ctaHref": "/projects?business=construction",
+        "icon": null
+      },
+      {
+        "title": "Builder & Development",
+        "tagline": "Comprehensive property creation from raw land planning to turnkey handover",
+        "description": "We lead the entire development lifecycle — identifying land potential, navigating regulatory approvals, coordinating master architecture, and executing structural delivery to maximize long-term real estate value.",
+        "scopeBadge": "Land Acquisition to Key Handover",
+        "image": "/images/cd03.jpg",
+        "imageAlt": "Architectural blueprint and construction development site overview",
+        "capabilities": [
+          "Land Feasibility & Master Planning",
+          "Regulatory Clearances & Approvals",
+          "Joint Venture & Turnkey Development",
+          "Quality-Controlled Phased Delivery"
+        ],
+        "ctaText": "Consult on Development",
+        "ctaHref": "/contact",
+        "icon": null
+      },
+      {
+        "title": "Project Management Consultancy (PMC)",
+        "tagline": "Independent oversight guaranteeing quality standards, cost rigor & timeliness",
+        "description": "Our PMC team protects client investments through disciplined site supervision, rigorous material quality testing, schedule benchmarking, and cost optimization across every contractor and trade.",
+        "scopeBadge": "Independent QA/QC & Audit",
+        "image": "/images/cd04.jpg",
+        "imageAlt": "Civil engineers reviewing blueprints and project execution plans on site",
+        "capabilities": [
+          "Site Supervision & Daily QA/QC Audits",
+          "Milestone Scheduling & CPM Tracking",
+          "BOQ Verification & Cost Optimization",
+          "Contractor & Vendor Coordination"
+        ],
+        "ctaText": "Inquire for PMC Services",
+        "ctaHref": "/contact",
+        "icon": null
+      }
+    ],
+    "blocks": {
+      "highlights": [
+        {
+          "title": "Structural Strength",
+          "desc": "Sound structural work as the base of every building we deliver."
+        },
+        {
+          "title": "Modern Design",
+          "desc": "Contemporary, functional spaces planned around how they will be used."
+        },
+        {
+          "title": "Timely Execution",
+          "desc": "Planned schedules and coordinated teams to keep work on track."
+        },
+        {
+          "title": "End-to-End Delivery",
+          "desc": "One team from planning and structure through finishing and handover."
+        }
+      ]
+    }
+  },
+  {
+    "key": "r-colors",
+    "hero": {
+      "title": "Finishing & Interiors.",
+      "subtitle": "Done with Precision.",
+      "text": "Delivering high-quality finishing and interior solutions designed to enhance durability, functionality, and aesthetic appeal.",
+      "image": "/images/Rcolors-1.jpg",
+      "imageAlt": "Freshly painted interior finished by R Colors"
+    },
+    "intro": {
+      "title": "Quality Finishing That Lasts. Engineered for Modern Living.",
+      "paragraphs": [
+        "R Colors delivers high-quality finishing and interior solutions designed to enhance durability, functionality, and aesthetic appeal. We ensure precision, professional workmanship, and timely execution across all projects. With experienced teams and structured processes, we focus on delivering reliable results that meet client expectations. Our commitment to quality standards and attention to detail ensures every project reflects excellence and long-term value."
+      ],
+      "image": "/images/Rcolors1.jpg",
+      "imageAlt": "Finished interior space completed by the R Colors team"
+    },
+    "servicesTitle": "Comprehensive Interior & Finishing Solutions.",
+    "servicesSubtitle": null,
+    "services": [
+      {
+        "title": "Interior & Exterior Painting",
+        "tagline": null,
+        "description": "We provide high-quality interior and exterior painting services for residential and commercial projects. Our finishes enhance both protection and visual appeal. Using premium materials and modern application techniques, we ensure smooth surfaces and long-lasting durability. Our team focuses on precision, surface preparation, and timely completion for flawless results.",
+        "scopeBadge": "Residential & Commercial",
+        "image": "/images/Rcolors-1.jpg",
+        "imageAlt": "Interior and exterior painting work by R Colors",
+        "capabilities": [
+          "Premium Paints & Materials",
+          "Thorough Surface Preparation",
+          "Smooth, Long-Lasting Finishes"
+        ],
+        "ctaText": "Inquire for Service",
+        "ctaHref": "/contact",
+        "icon": null
+      },
+      {
+        "title": "POP & Gypsum Work",
+        "tagline": null,
+        "description": "We deliver elegant POP and gypsum solutions for ceilings and decorative interiors. Our designs enhance structural appeal while adding a refined and modern finish to every space. From false ceilings to customized patterns, we ensure accurate installation and clean finishing. Our team focuses on detailed craftsmanship, proper alignment, and durable materials to maintain long-term strength and aesthetic consistency.",
+        "scopeBadge": "Ceilings & Decorative Interiors",
+        "image": "/images/Rcolors-2.jpg",
+        "imageAlt": "POP and gypsum false ceiling installation",
+        "capabilities": [
+          "False Ceilings",
+          "Customized Decorative Patterns",
+          "Accurate Alignment & Clean Finishing"
+        ],
+        "ctaText": "Inquire for Service",
+        "ctaHref": "/contact",
+        "icon": null
+      },
+      {
+        "title": "Tiles & Marble Installation",
+        "tagline": null,
+        "description": "We specialize in precise tile and marble installation for floors and walls. Our work combines strength with refined finishing and elegant surface detailing. Our team ensures proper alignment, secure fitting, and smooth surface finishing. We focus on durability, neat execution, and long-lasting performance to achieve premium results.",
+        "scopeBadge": "Floors & Walls",
+        "image": "/images/Rcolors-3.jpg",
+        "imageAlt": "Tile and marble flooring installation",
+        "capabilities": [
+          "Floor & Wall Tiling",
+          "Marble Installation",
+          "Secure Fitting & Proper Alignment"
+        ],
+        "ctaText": "Inquire for Service",
+        "ctaHref": "/contact",
+        "icon": null
+      },
+      {
+        "title": "Waterproofing Solutions",
+        "tagline": null,
+        "description": "We provide reliable waterproofing services to protect buildings from leakage and moisture damage. Our solutions increase structural lifespan. Using advanced materials and proven industry methods, we seal vulnerable areas effectively and precisely. Our approach ensures long-term protection and reduced future maintenance concerns.",
+        "scopeBadge": "Leakage & Moisture Protection",
+        "image": "/images/Rcolors-4.jpg",
+        "imageAlt": "Waterproofing treatment applied to a building surface",
+        "capabilities": [
+          "Leakage & Moisture Prevention",
+          "Advanced Sealing Materials",
+          "Reduced Future Maintenance"
+        ],
+        "ctaText": "Inquire for Service",
+        "ctaHref": "/contact",
+        "icon": null
+      },
+      {
+        "title": "Furniture & Interior Work",
+        "tagline": null,
+        "description": "We offer customized furniture and interior finishing solutions tailored to client requirements. Our work balances functionality and design. From modular units to complete interior setups, we use premium quality materials and skilled workmanship. We ensure long-term durability, smart space optimization, and elegant overall presentation.",
+        "scopeBadge": "Custom & Modular Interiors",
+        "image": "/images/Rcolors-5.jpg",
+        "imageAlt": "Custom furniture and finished interior",
+        "capabilities": [
+          "Customized Furniture",
+          "Modular Units & Full Interior Setups",
+          "Smart Space Optimization"
+        ],
+        "ctaText": "Inquire for Service",
+        "ctaHref": "/contact",
+        "icon": null
+      },
+      {
+        "title": "Electrical Services",
+        "tagline": null,
+        "description": "We handle safe and efficient electrical installations for residential and commercial projects. Our systems ensure reliable performance. Our team follows proper wiring standards and safety protocols with strict quality supervision. We deliver structured planning and smooth execution for long-term operational safety and dependable functionality.",
+        "scopeBadge": "Residential & Commercial",
+        "image": "/images/Rcolors-6.jpg",
+        "imageAlt": "Electrical wiring and installation work",
+        "capabilities": [
+          "Standard-Compliant Wiring",
+          "Safety Protocols & Supervision",
+          "Structured Installation Planning"
+        ],
+        "ctaText": "Inquire for Service",
+        "ctaHref": "/contact",
+        "icon": null
+      },
+      {
+        "title": "Plumbing Services",
+        "tagline": null,
+        "description": "We provide professional plumbing solutions for new construction and renovation projects. Our installations ensure efficient water flow and drainage. With careful planning and quality fittings, we prevent leakage and future maintenance issues effectively. Our work supports durability, safety standards, and seamless system functionality.",
+        "scopeBadge": "New Build & Renovation",
+        "image": "/images/Rcolors-7.jpg",
+        "imageAlt": "Plumbing installation and fittings",
+        "capabilities": [
+          "Water Supply & Drainage",
+          "Quality Fittings",
+          "Leak Prevention"
+        ],
+        "ctaText": "Inquire for Service",
+        "ctaHref": "/contact",
+        "icon": null
+      },
+      {
+        "title": "Renovation & Repair Services",
+        "tagline": null,
+        "description": "We offer renovation and repair solutions to upgrade and restore existing spaces. Our services improve structural strength and overall appearance. From surface corrections to complete refurbishment, we manage projects with precision and care at every stage. Our goal is to deliver enhanced value, improved functionality, and renewed durability.",
+        "scopeBadge": "Upgrade & Restore",
+        "image": "/images/Rcolors-8.jpg",
+        "imageAlt": "Renovated interior space after refurbishment",
+        "capabilities": [
+          "Surface Corrections",
+          "Complete Refurbishment",
+          "Structural & Visual Upgrades"
+        ],
+        "ctaText": "Inquire for Service",
+        "ctaHref": "/contact",
+        "icon": null
+      }
+    ],
+    "blocks": {
+      "highlights": [
+        {
+          "title": "Precision",
+          "desc": "Careful surface preparation and attention to detail on every finish."
+        },
+        {
+          "title": "Professional Workmanship",
+          "desc": "Experienced teams working to defined quality standards."
+        },
+        {
+          "title": "Timely Execution",
+          "desc": "Structured processes that keep each project on schedule."
+        },
+        {
+          "title": "Lasting Value",
+          "desc": "Durable materials and finishes built for long-term performance."
+        }
+      ]
+    }
+  },
+  {
+    "key": "estate",
+    "hero": {
+      "title": null,
+      "subtitle": null,
+      "text": null,
+      "image": "/images/home1.jpg",
+      "imageAlt": "Residential high-rise towers rising above a green neighbourhood"
+    },
+    "intro": {
+      "title": "Connecting You to the Right Property Solutions",
+      "paragraphs": [
+        "R Colors Estate specializes in property sales, plot development, and real estate partnerships. We connect buyers, investors, and developers through transparent and reliable property solutions.",
+        "Whether you are looking for a residential plot, commercial space, or investment opportunity, our experienced team ensures a seamless and professional experience."
+      ],
+      "image": null,
+      "imageAlt": null
+    },
+    "servicesTitle": null,
+    "servicesSubtitle": null,
+    "services": [
+      {
+        "title": "Residential & Commercial Sales",
+        "tagline": null,
+        "description": "We deal in plots, houses, flats, shops, and commercial spaces with proper documentation and verified listings.",
+        "scopeBadge": null,
+        "image": null,
+        "imageAlt": null,
+        "capabilities": [],
+        "ctaText": null,
+        "ctaHref": null,
+        "icon": "Building2"
+      },
+      {
+        "title": "Property Source Selling & Channel Partner Services",
+        "tagline": null,
+        "description": "We work with developers and builders to market and sell residential and commercial projects, connecting genuine buyers for smooth and efficient deals.",
+        "scopeBadge": null,
+        "image": null,
+        "imageAlt": null,
+        "capabilities": [],
+        "ctaText": null,
+        "ctaHref": null,
+        "icon": "Handshake"
+      },
+      {
+        "title": "Investment Guidance",
+        "tagline": null,
+        "description": "We help clients identify high-potential properties for long-term growth and strong returns with strategic planning and expert insights.",
+        "scopeBadge": null,
+        "image": null,
+        "imageAlt": null,
+        "capabilities": [],
+        "ctaText": null,
+        "ctaHref": null,
+        "icon": "TrendingUp"
+      },
+      {
+        "title": "Partnership & Land Development",
+        "tagline": null,
+        "description": "We work with landowners and developers to create profitable development opportunities and joint ventures.",
+        "scopeBadge": null,
+        "image": null,
+        "imageAlt": null,
+        "capabilities": [],
+        "ctaText": null,
+        "ctaHref": null,
+        "icon": "Map"
+      }
+    ],
+    "blocks": {
+      "expertise": [
+        {
+          "title": "Residential Plot Sales"
+        },
+        {
+          "title": "Ready-to-Move Property Sales"
+        },
+        {
+          "title": "Commercial Property Deals"
+        },
+        {
+          "title": "Source Selling & Project Marketing"
+        },
+        {
+          "title": "Investment Consultancy"
+        },
+        {
+          "title": "Joint Development Partnerships"
+        },
+        {
+          "title": "Property Sourcing & Channel Sales"
+        }
+      ],
+      "journey": [
+        {
+          "action": "land",
+          "title": "Browse Plots & Land",
+          "text": "Residential plots, farm land and commercial land across the city and its outskirts.",
+          "cta": "See land & plots",
+          "image": "/images/cd03.jpg",
+          "alt": "Aerial view of a planned township"
+        },
+        {
+          "action": "projects",
+          "title": "Explore Projects",
+          "text": "Upcoming, under-construction and ready projects in one place.",
+          "cta": "View projects",
+          "image": "/images/home2.jpg",
+          "alt": "Cranes over a construction site at dusk"
+        },
+        {
+          "action": "agents",
+          "title": "Talk to an Agent",
+          "text": "Speak to an advisor who knows the localities you're considering.",
+          "cta": "Find an agent",
+          "image": "/images/home4.1.jpg",
+          "alt": "Two people shaking hands over a property agreement"
+        },
+        {
+          "action": "investment",
+          "title": "Get Investment Guidance",
+          "text": "Identify high-potential properties for long-term growth.",
+          "cta": "Ask for guidance",
+          "image": "/images/home4.2.jpg",
+          "alt": "House keys being handed over after a sale"
+        }
+      ]
+    }
+  }
+]
