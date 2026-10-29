@@ -18,7 +18,7 @@ export default function AboutCompanyPage() {
           <div className="max-w-[65ch] space-y-6 text-base leading-relaxed text-gray-700 sm:text-lg">
 
             <p>R Colors Group of Companies is a growing organization engaged in construction,
-              contracting, real estate development, and property solutions. With a strong commitment
+              contracting, real estate development and property solutions. With a strong commitment
               to quality and professionalism, we focus on delivering reliable services that meet modern
               industry standards and client expectations. Our work reflects a blend of innovation,
               practical experience, and strong industry knowledge.

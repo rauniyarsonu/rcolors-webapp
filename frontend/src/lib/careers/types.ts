@@ -1,13 +1,11 @@
 /** Mirrors the backend DTOs in backend/src/main/java/com/rcolorsgroup/careers (PublicJobs, AdminViews) */
 
-export const BUSINESSES = ["GROUP", "CONSTRUCTION", "FINISHING_WORKS", "ESTATE"] as const;
 export const WORK_MODES = ["ON_SITE", "HYBRID", "REMOTE"] as const;
 export const EMPLOYMENT_TYPES = ["FULL_TIME", "PART_TIME", "CONTRACT", "INTERNSHIP"] as const;
 export const JOB_STATUSES = ["DRAFT", "OPEN", "CLOSED", "ARCHIVED"] as const;
 export const NOTICE_PERIODS = ["IMMEDIATE", "DAYS_15", "DAYS_30", "DAYS_60", "DAYS_90"] as const;
 export const APPLICATION_STATUSES = ["NEW", "REVIEWED", "SHORTLISTED", "INTERVIEW", "OFFERED", "HIRED", "REJECTED"] as const;
 
-export type Business = (typeof BUSINESSES)[number];
 export type WorkMode = (typeof WORK_MODES)[number];
 export type EmploymentType = (typeof EMPLOYMENT_TYPES)[number];
 export type JobStatus = (typeof JOB_STATUSES)[number];
@@ -18,7 +16,6 @@ export type ApplicationStatus = (typeof APPLICATION_STATUSES)[number];
 export interface PublicJobSummary {
   slug: string;
   title: string;
-  business: Business;
   department: string | null;
   location: string;
   workMode: WorkMode;
@@ -49,7 +46,6 @@ export interface PublicJobDetail extends PublicJobSummary {
 
 /** GET /api/careers/filters: only values some open job has */
 export interface CareerFilters {
-  businesses: Business[];
   locations: string[];
   employmentTypes: EmploymentType[];
 }
@@ -73,7 +69,6 @@ export interface AdminJob {
   id: number;
   slug: string;
   title: string;
-  business: Business;
   department: string | null;
   location: string;
   workMode: WorkMode;

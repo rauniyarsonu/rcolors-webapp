@@ -1,7 +1,6 @@
 import { CalendarClock } from "lucide-react";
 import Link from "@/components/ui/Link";
 import { hoverShadow } from "@/components/ui/styles";
-import { BUSINESS_LABELS } from "@/config/careers";
 import { deadlineSoonLabel, postedLabel } from "@/lib/careers/format";
 import type { PublicJobSummary } from "@/lib/careers/types";
 import JobFacts from "./JobFacts";
@@ -17,15 +16,14 @@ export default function JobCard({ job, headingLevel = "h3" }: { job: PublicJobSu
       href={`/careers/${job.slug}`}
       className={`group relative flex h-full flex-col rounded-lg border border-gray-100 bg-white p-5 shadow-md after:shadow-xl ${hoverShadow} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-navy sm:p-6`}
     >
-      <div className="mb-3 flex flex-wrap items-center gap-2">
-        <span className={`${chipClass} bg-brand-sky/10 text-es-accent-strong`}>{BUSINESS_LABELS[job.business]}</span>
-        {soon && (
+      {soon && (
+        <div className="mb-3 flex flex-wrap items-center gap-2">
           <span className={`${chipClass} bg-amber-50 text-amber-800`}>
             <CalendarClock size={14} aria-hidden="true" />
             {soon}
           </span>
-        )}
-      </div>
+        </div>
+      )}
       <Heading className="font-heading text-xl font-bold text-brand-navy transition-colors group-hover:text-es-accent-strong">{job.title}</Heading>
       {job.department && <p className="mt-0.5 text-sm font-medium text-gray-500">{job.department}</p>}
       <div className="mt-4">

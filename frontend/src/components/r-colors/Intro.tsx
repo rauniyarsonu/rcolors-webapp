@@ -11,7 +11,7 @@ export default function Intro() {
         <div className="grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-16 xl:gap-20">
           <div className="lg:col-span-6">
             <Reveal>
-              <SectionHeading id="intro-title" eyebrow="Who We Are" title="Quality Finishing That Lasts. Engineered for Modern Living." bar align="left" />
+              <SectionHeading id="intro-title" eyebrow="Who We Are" title="Smart Finishes for Modern Spaces." bar align="left" />
             </Reveal>
             <Reveal delay={100}>
               <div className="mt-8 max-w-[62ch] text-base leading-relaxed text-gray-600 md:text-lg">

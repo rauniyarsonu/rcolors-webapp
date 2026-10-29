@@ -13,7 +13,7 @@ public final class AdminViews {
     private AdminViews() {}
 
     public record Job(
-            Long id, String slug, String title, Business business, String department, String location,
+            Long id, String slug, String title, String department, String location,
             WorkMode workMode, EmploymentType employmentType, Integer experienceMinYears, Integer experienceMaxYears,
             Long salaryMin, Long salaryMax, boolean showSalary, Integer openings, String summary, String description,
             List<String> responsibilities, List<String> requirements, List<String> niceToHave, List<String> benefits,
@@ -22,7 +22,7 @@ public final class AdminViews {
             long applicationCount, long newApplicationCount) {
 
         static Job of(JobPosting j, long applications, long newApplications) {
-            return new Job(j.getId(), j.getSlug(), j.getTitle(), j.getBusiness(), j.getDepartment(), j.getLocation(),
+            return new Job(j.getId(), j.getSlug(), j.getTitle(), j.getDepartment(), j.getLocation(),
                     j.getWorkMode(), j.getEmploymentType(), j.getExperienceMinYears(), j.getExperienceMaxYears(),
                     j.getSalaryMin(), j.getSalaryMax(), j.isShowSalary(), j.getOpenings(), j.getSummary(), j.getDescription(),
                     List.copyOf(j.getResponsibilities()), List.copyOf(j.getRequirements()),

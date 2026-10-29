@@ -13,13 +13,13 @@ public final class PublicJobs {
 
     /** A card on /careers */
     public record Summary(
-            String slug, String title, Business business, String department, String location,
+            String slug, String title, String department, String location,
             WorkMode workMode, EmploymentType employmentType, Integer experienceMinYears, Integer experienceMaxYears,
             Long salaryMin, Long salaryMax, Integer openings, String summary,
             LocalDate applicationDeadline, Instant publishedAt) {
 
         static Summary of(JobPosting j) {
-            return new Summary(j.getSlug(), j.getTitle(), j.getBusiness(), j.getDepartment(), j.getLocation(),
+            return new Summary(j.getSlug(), j.getTitle(), j.getDepartment(), j.getLocation(),
                     j.getWorkMode(), j.getEmploymentType(), j.getExperienceMinYears(), j.getExperienceMaxYears(),
                     j.isShowSalary() ? j.getSalaryMin() : null, j.isShowSalary() ? j.getSalaryMax() : null,
                     j.getOpenings(), j.getSummary(), j.getApplicationDeadline(), j.getPublishedAt());
@@ -28,7 +28,7 @@ public final class PublicJobs {
 
     /** /careers/{slug}; a closed or expired job still renders, with acceptingApplications false */
     public record Detail(
-            String slug, String title, Business business, String department, String location,
+            String slug, String title, String department, String location,
             WorkMode workMode, EmploymentType employmentType, Integer experienceMinYears, Integer experienceMaxYears,
             Long salaryMin, Long salaryMax, Integer openings, String summary,
             LocalDate applicationDeadline, Instant publishedAt, Instant updatedAt,
@@ -36,7 +36,7 @@ public final class PublicJobs {
             List<String> niceToHave, List<String> benefits, boolean acceptingApplications) {
 
         static Detail of(JobPosting j, LocalDate today) {
-            return new Detail(j.getSlug(), j.getTitle(), j.getBusiness(), j.getDepartment(), j.getLocation(),
+            return new Detail(j.getSlug(), j.getTitle(), j.getDepartment(), j.getLocation(),
                     j.getWorkMode(), j.getEmploymentType(), j.getExperienceMinYears(), j.getExperienceMaxYears(),
                     j.isShowSalary() ? j.getSalaryMin() : null, j.isShowSalary() ? j.getSalaryMax() : null,
                     j.getOpenings(), j.getSummary(), j.getApplicationDeadline(), j.getPublishedAt(), j.getUpdatedAt(),
@@ -46,5 +46,5 @@ public final class PublicJobs {
     }
 
     /** Options for the /careers filter dropdowns: only values some open job has */
-    public record Filters(List<Business> businesses, List<String> locations, List<EmploymentType> employmentTypes) {}
+    public record Filters(List<String> locations, List<EmploymentType> employmentTypes) {}
 }

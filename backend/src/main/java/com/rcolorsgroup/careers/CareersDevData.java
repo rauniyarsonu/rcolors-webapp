@@ -22,7 +22,7 @@ public class CareersDevData implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) {
         if (repository.count() > 0) return;
-        jobs.create(new JobForm("[SAMPLE] Site Engineer (Civil)", Business.CONSTRUCTION, "Site Engineering", "Lucknow, UP",
+        jobs.create(new JobForm("[SAMPLE] Site Engineer (Civil)", "Site Engineering", "Lucknow, UP",
                 WorkMode.ON_SITE, EmploymentType.FULL_TIME, 2, 5, 360000L, 540000L, true, 2,
                 "Supervise residential and commercial sites from foundation to handover.",
                 "You will run day-to-day work on one of our Lucknow sites.\n\nThis is a sample job created by the dev profile.",
@@ -31,7 +31,7 @@ public class CareersDevData implements ApplicationRunner {
                 List.of("AutoCAD", "Experience with G+3 or larger buildings"),
                 List.of("Site travel allowance", "Paid leave"),
                 LocalDate.now().plusDays(30), JobStatus.DRAFT));
-        jobs.create(new JobForm("[SAMPLE] Sales Executive — Real Estate", Business.ESTATE, "Sales", "Lucknow, UP",
+        jobs.create(new JobForm("[SAMPLE] Sales Executive — Real Estate", "Sales", "Lucknow, UP",
                 WorkMode.HYBRID, EmploymentType.FULL_TIME, 1, null, null, null, false, 1,
                 "Help buyers find the right plot or home across our Lucknow projects.",
                 "Meet walk-in and referred buyers, run site visits and follow up until booking.\n\nThis is a sample job created by the dev profile.",

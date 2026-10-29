@@ -31,8 +31,7 @@ class CareersControllerTest extends CareersTestSupport {
                 .doesNotContain("adminNotes", "showSalary", "300000");
 
         mvc.perform(get("/api/careers/jobs").param("q", "plumb")).andExpect(jsonPath("$[0].slug").value(open.slug()));
-        mvc.perform(get("/api/careers/filters")).andExpect(jsonPath("$.businesses[0]").value("CONSTRUCTION"))
-                .andExpect(jsonPath("$.locations").value(org.hamcrest.Matchers.hasItem("Lucknow, UP")));
+        mvc.perform(get("/api/careers/filters")).andExpect(jsonPath("$.locations").value(org.hamcrest.Matchers.hasItem("Lucknow, UP")));
     }
 
     @Test

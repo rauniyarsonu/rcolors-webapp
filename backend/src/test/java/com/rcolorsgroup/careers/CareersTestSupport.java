@@ -36,7 +36,7 @@ abstract class CareersTestSupport extends AdminTestSupport {
     }
 
     AdminViews.Job job(String title, JobStatus status, LocalDate deadline) {
-        return jobService.create(new JobForm(title, Business.CONSTRUCTION, "Site Engineering", "Lucknow, UP",
+        return jobService.create(new JobForm(title, "Site Engineering", "Lucknow, UP",
                 WorkMode.ON_SITE, EmploymentType.FULL_TIME, 2, 5, 300000L, 500000L, false, 1,
                 "Run a site", "Line one\nLine two", List.of("Supervise"), List.of("Diploma"), List.of(), List.of("Leave"),
                 deadline, status));

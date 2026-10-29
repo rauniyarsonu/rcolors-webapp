@@ -30,10 +30,6 @@ public class JobPosting {
     @Column(nullable = false, length = 120)
     private String title;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 20)
-    private Business business;
-
     @Column(length = 120)
     private String department;
 
@@ -125,7 +121,6 @@ public class JobPosting {
     public Long getId() { return id; }
     public String getSlug() { return slug; }
     public String getTitle() { return title; }
-    public Business getBusiness() { return business; }
     public String getDepartment() { return department; }
     public String getLocation() { return location; }
     public WorkMode getWorkMode() { return workMode; }
@@ -149,7 +144,6 @@ public class JobPosting {
     public Instant getUpdatedAt() { return updatedAt; }
 
     public void setTitle(String title) { this.title = title; }
-    public void setBusiness(Business business) { this.business = business; }
     public void setDepartment(String department) { this.department = department; }
     public void setLocation(String location) { this.location = location; }
     public void setWorkMode(WorkMode workMode) { this.workMode = workMode; }

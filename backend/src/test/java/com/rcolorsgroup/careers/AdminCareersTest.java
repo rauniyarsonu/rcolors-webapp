@@ -39,7 +39,7 @@ class AdminCareersTest extends CareersTestSupport {
 
     private static Map<String, Object> jobJson(String title, String status) {
         Map<String, Object> job = new HashMap<>(Map.of(
-                "title", title, "business", "FINISHING_WORKS", "department", "Painting",
+                "title", title, "department", "Painting",
                 "location", "Kanpur, UP", "workMode", "ON_SITE", "employmentType", "CONTRACT",
                 "experienceMinYears", 1, "showSalary", false, "openings", 3, "summary", "Paint things"));
         job.put("description", "Painting work");

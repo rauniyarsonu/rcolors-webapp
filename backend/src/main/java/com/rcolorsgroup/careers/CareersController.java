@@ -42,11 +42,10 @@ public class CareersController {
 
     @GetMapping("/jobs")
     public List<PublicJobs.Summary> jobs(
-            @RequestParam(required = false) Business business,
             @RequestParam(required = false) String location,
             @RequestParam(required = false) EmploymentType employmentType,
             @RequestParam(required = false) String q) {
-        return jobs.openJobs(business, location, employmentType, q);
+        return jobs.openJobs(location, employmentType, q);
     }
 
     @GetMapping("/jobs/{slug}")

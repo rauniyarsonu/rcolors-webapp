@@ -15,7 +15,7 @@ import {
   primaryButtonClass,
   smallInputClass,
 } from "@/components/admin/ui";
-import { BUSINESS_LABELS, JOB_STATUS_LABELS } from "@/config/careers";
+import { JOB_STATUS_LABELS } from "@/config/careers";
 import { AdminApiError, adminApi } from "@/lib/admin/adminApi";
 import { useAdminData } from "@/lib/admin/useAdminData";
 import { JOB_STATUSES, type AdminJob, type JobStatus, type Page } from "@/lib/careers/types";
@@ -225,7 +225,7 @@ export default function AdminJobsPage() {
                         {job.title}
                       </Link>
                       <p className="text-gray-500">
-                        {BUSINESS_LABELS[job.business]} · {job.location}
+                        {job.location}
                       </p>
                     </td>
                     <td className="px-4 py-3">
@@ -257,7 +257,7 @@ export default function AdminJobsPage() {
                   <JobStatusBadge status={job.status} expired={isExpired(job)} />
                 </div>
                 <p className="text-sm text-gray-500">
-                  {BUSINESS_LABELS[job.business]} · {job.location}
+                  {job.location}
                 </p>
                 <p className="mt-2 text-sm text-gray-600">
                   {job.applicationCount} {job.applicationCount === 1 ? "application" : "applications"}{job.newApplicationCount > 0 ? ` (${job.newApplicationCount} new)` : ""} · Posted {formatDate(job.publishedAt)}

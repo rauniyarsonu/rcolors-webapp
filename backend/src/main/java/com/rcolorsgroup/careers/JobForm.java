@@ -14,7 +14,6 @@ import org.springframework.validation.FieldError;
 /** A job as the admin editor sends it (POST/PUT /api/admin/jobs, JSON) */
 public record JobForm(
         @NotBlank @Size(max = 120) String title,
-        @NotNull Business business,
         @Size(max = 120) String department,
         @NotBlank @Size(max = 120) String location,
         @NotNull WorkMode workMode,

@@ -40,11 +40,10 @@ public class JobService {
 
     /** OPEN jobs not past their deadline, newest first, optionally filtered */
     @Transactional(readOnly = true)
-    public List<PublicJobs.Summary> openJobs(Business business, String location, EmploymentType employmentType, String q) {
+    public List<PublicJobs.Summary> openJobs(String location, EmploymentType employmentType, String q) {
         String place = trim(location);
         String query = trim(q).toLowerCase(Locale.ROOT);
         return accepting().stream()
-                .filter(j -> business == null || j.getBusiness() == business)
                 .filter(j -> place.isEmpty() || j.getLocation().equalsIgnoreCase(place))
                 .filter(j -> employmentType == null || j.getEmploymentType() == employmentType)
                 .filter(j -> query.isEmpty() || contains(j.getTitle(), query) || contains(j.getDepartment(), query))
@@ -69,7 +68,6 @@ public class JobService {
     public PublicJobs.Filters filters() {
         List<JobPosting> open = accepting();
         return new PublicJobs.Filters(
-                Arrays.stream(Business.values()).filter(b -> open.stream().anyMatch(j -> j.getBusiness() == b)).toList(),
                 open.stream().map(JobPosting::getLocation).distinct().sorted(String.CASE_INSENSITIVE_ORDER).toList(),
                 Arrays.stream(EmploymentType.values()).filter(t -> open.stream().anyMatch(j -> j.getEmploymentType() == t)).toList());
     }
@@ -140,7 +138,6 @@ public class JobService {
         JobPosting source = find(id);
         JobPosting copy = new JobPosting(uniqueSlug(source.getTitle()));
         copy.setTitle(source.getTitle());
-        copy.setBusiness(source.getBusiness());
         copy.setDepartment(source.getDepartment());
         copy.setLocation(source.getLocation());
         copy.setWorkMode(source.getWorkMode());
@@ -196,7 +193,6 @@ public class JobService {
 
     private static void apply(JobForm f, JobPosting j) {
         j.setTitle(trim(f.title()));
-        j.setBusiness(f.business());
         j.setDepartment(blankToNull(f.department()));
         j.setLocation(trim(f.location()));
         j.setWorkMode(f.workMode());

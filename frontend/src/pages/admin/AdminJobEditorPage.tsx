@@ -7,16 +7,14 @@ import ListEditor from "@/components/admin/ListEditor";
 import { useNoIndex } from "@/components/admin/useNoIndex";
 import { useUnsavedChanges } from "@/components/admin/useUnsavedChanges";
 import { AdminPageTitle, ErrorNotice, JobStatusBadge, Loading, cardClass, primaryButtonClass, secondaryButtonClass } from "@/components/admin/ui";
-import { BUSINESS_LABELS, EMPLOYMENT_TYPE_LABELS, WORK_MODE_LABELS } from "@/config/careers";
+import { EMPLOYMENT_TYPE_LABELS, WORK_MODE_LABELS } from "@/config/careers";
 import { AdminApiError, adminApi } from "@/lib/admin/adminApi";
 import { useAdminData } from "@/lib/admin/useAdminData";
 import { parsePrice } from "@/lib/estate/format";
 import {
-  BUSINESSES,
   EMPLOYMENT_TYPES,
   WORK_MODES,
   type AdminJob,
-  type Business,
   type EmploymentType,
   type JobInput,
   type JobStatus,
@@ -27,7 +25,6 @@ import {
 /** The editor's state: numbers as typed, lists as rows */
 interface Draft {
   title: string;
-  business: Business | "";
   department: string;
   location: string;
   workMode: WorkMode | "";
@@ -51,7 +48,6 @@ type Errors = Partial<Record<Field | "form", string>>;
 
 const blank: Draft = {
   title: "",
-  business: "",
   department: "",
   location: "Lucknow, UP",
   workMode: "ON_SITE",
@@ -73,7 +69,6 @@ const blank: Draft = {
 
 const FIELD_ORDER: Field[] = [
   "title",
-  "business",
   "department",
   "location",
   "workMode",
@@ -94,7 +89,6 @@ const FIELD_ORDER: Field[] = [
 
 const fromJob = (j: AdminJob): Draft => ({
   title: j.title,
-  business: j.business,
   department: j.department ?? "",
   location: j.location,
   workMode: j.workMode,
@@ -122,7 +116,6 @@ const rows = (list: string[]) => list.map((s) => s.trim()).filter(Boolean);
 function validate(d: Draft): Errors {
   const e: Errors = {};
   if (!d.title.trim()) e.title = "Enter a job title.";
-  if (!d.business) e.business = "Choose a business.";
   if (!d.location.trim()) e.location = "Enter a location, e.g. Lucknow, UP.";
   if (!d.workMode) e.workMode = "Choose a work mode.";
   if (!d.employmentType) e.employmentType = "Choose a job type.";
@@ -147,7 +140,6 @@ function validate(d: Draft): Errors {
 function toInput(d: Draft, status?: JobStatus): JobInput {
   return {
     title: d.title.trim(),
-    business: d.business as Business,
     department: d.department.trim() || null,
     location: d.location.trim(),
     workMode: d.workMode as WorkMode,
@@ -176,7 +168,6 @@ function toPreview(d: Draft, job: AdminJob | undefined): PublicJobDetail {
   return {
     ...input,
     slug: job?.slug ?? "preview",
-    business: input.business || "GROUP",
     workMode: input.workMode || "ON_SITE",
     employmentType: input.employmentType || "FULL_TIME",
     experienceMinYears: num(input.experienceMinYears),
@@ -380,18 +371,6 @@ function Editor({ job: initialJob }: { job?: AdminJob }) {
               {errorText("title")}
             </div>
             <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-              <div>
-                {label("business", "Business", true)}
-                <select {...text("business")} className={inputClass(!!errors.business)}>
-                  <option value="">Choose a business</option>
-                  {BUSINESSES.map((b) => (
-                    <option key={b} value={b}>
-                      {BUSINESS_LABELS[b]}
-                    </option>
-                  ))}
-                </select>
-                {errorText("business")}
-              </div>
               <div>
                 {label("department", "Department")}
                 <input {...text("department")} maxLength={120} className={inputClass(!!errors.department)} placeholder="e.g. Site Engineering, Sales" />

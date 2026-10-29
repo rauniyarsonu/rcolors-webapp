@@ -6,7 +6,6 @@ import type { PublicJobDetail } from "../types";
 const job: PublicJobDetail = {
   slug: "site-engineer",
   title: "Site Engineer",
-  business: "CONSTRUCTION",
   department: "Site Engineering",
   location: "Lucknow, UP",
   workMode: "ON_SITE",

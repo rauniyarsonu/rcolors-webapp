@@ -16,7 +16,7 @@ export default function Intro() {
             <Reveal delay={100}>
               <div className="mt-8 max-w-[62ch] space-y-5 text-base leading-relaxed text-gray-600 md:text-lg">
                 <p>
-                  R Colors Construction &amp; Development delivers high-quality residential, commercial and
+                  R Colors Construction &amp; Developers delivers high-quality residential, commercial and
                   development projects with precision and reliability. We focus on structural strength, modern
                   design and timely execution to create lasting value for our clients.
                 </p>

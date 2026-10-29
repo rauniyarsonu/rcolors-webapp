@@ -1,9 +1,9 @@
 import { useEffect, useId, useState } from "react";
 import { Search, X } from "lucide-react";
 import { useDebounced } from "@/components/estate/useQueryState";
-import { BUSINESS_LABELS, EMPLOYMENT_TYPE_LABELS } from "@/config/careers";
+import { EMPLOYMENT_TYPE_LABELS } from "@/config/careers";
 import { hasFilters, type CareersQuery } from "@/lib/careers/query";
-import type { Business, CareerFilters, EmploymentType } from "@/lib/careers/types";
+import type { CareerFilters, EmploymentType } from "@/lib/careers/types";
 
 const selectClass =
   "w-full min-h-12 rounded-lg border border-gray-300 bg-white px-4 py-3 text-base text-gray-900 outline-none transition-colors hover:border-gray-400 focus:border-brand-sky focus:ring-2 focus:ring-brand-sky";
@@ -15,7 +15,7 @@ interface JobFiltersProps {
   onChange: (next: CareersQuery, opts?: { replace?: boolean }) => void;
 }
 
-/** Search box + business / location / type dropdowns for /careers */
+/** Search box + location / type dropdowns for /careers */
 export default function JobFilters({ query, options, onChange }: JobFiltersProps) {
   const uid = useId();
   const [text, setText] = useState(query.q ?? "");
@@ -27,14 +27,12 @@ export default function JobFilters({ query, options, onChange }: JobFiltersProps
   // Keep a value from a shared link selectable even if no open job has it any more
   const locations = options ? [...options.locations] : [];
   if (query.location && !locations.includes(query.location)) locations.push(query.location);
-  const businesses = [...(options?.businesses ?? [])];
   const types = [...(options?.employmentTypes ?? [])];
-  if (query.business && !businesses.includes(query.business)) businesses.push(query.business);
   if (query.employmentType && !types.includes(query.employmentType)) types.push(query.employmentType);
 
   return (
     <form role="search" aria-label="Filter open positions" onSubmit={(e) => e.preventDefault()} className="mb-8 md:mb-10">
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-[minmax(0,2fr)_repeat(3,minmax(0,1fr))]">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-[minmax(0,2fr)_repeat(2,minmax(0,1fr))]">
         <div className="relative sm:col-span-2 lg:col-span-1">
           <label htmlFor={`${uid}-q`} className="sr-only">
             Search by job title or department
@@ -51,24 +49,6 @@ export default function JobFilters({ query, options, onChange }: JobFiltersProps
             placeholder="Search job title or department"
             className={`${selectClass} pl-11`}
           />
-        </div>
-        <div>
-          <label htmlFor={`${uid}-business`} className="sr-only">
-            Business
-          </label>
-          <select
-            id={`${uid}-business`}
-            value={query.business ?? ""}
-            onChange={(e) => onChange({ ...query, business: (e.target.value || undefined) as Business | undefined })}
-            className={selectClass}
-          >
-            <option value="">All businesses</option>
-            {businesses.map((b) => (
-              <option key={b} value={b}>
-                {BUSINESS_LABELS[b]}
-              </option>
-            ))}
-          </select>
         </div>
         <div>
           <label htmlFor={`${uid}-loc`} className="sr-only">

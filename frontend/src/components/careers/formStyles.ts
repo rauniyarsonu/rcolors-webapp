@@ -12,5 +12,5 @@ export const errorTextClass = "mt-1.5 flex items-center gap-1.5 text-sm text-red
 
 export const hintClass = "mt-1.5 text-sm text-gray-500";
 
-/** Small pill for job metadata (business, type) */
+/** Small pill for job metadata (job type, deadline) */
 export const chipClass = "inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wide";

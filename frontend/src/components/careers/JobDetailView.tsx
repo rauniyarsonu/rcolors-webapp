@@ -1,6 +1,6 @@
 import { ArrowLeft, CalendarClock, CheckCircle2 } from "lucide-react";
 import Link from "@/components/ui/Link";
-import { BUSINESS_LABELS, EMPLOYMENT_TYPE_LABELS } from "@/config/careers";
+import { EMPLOYMENT_TYPE_LABELS } from "@/config/careers";
 import { daysUntil, deadlineSoonLabel, formatDay, postedLabel } from "@/lib/careers/format";
 import type { PublicJobDetail } from "@/lib/careers/types";
 import JobFacts, { jobFacts } from "./JobFacts";
@@ -38,7 +38,6 @@ export default function JobDetailView({ job, preview = false, children }: JobDet
             </Link>
           )}
           <div className="mb-4 flex flex-wrap items-center gap-2">
-            <span className={`${chipClass} bg-brand-sky text-brand-navy`}>{BUSINESS_LABELS[job.business]}</span>
             <span className={`${chipClass} border border-white/30 bg-white/10 text-white`}>{EMPLOYMENT_TYPE_LABELS[job.employmentType]}</span>
             {!job.acceptingApplications && <span className={`${chipClass} bg-amber-100 text-amber-900`}>Closed</span>}
             {soon && (

@@ -1,5 +1,5 @@
 import { Award, HardHat, TrendingUp, Users } from "lucide-react";
-import type { ApplicationStatus, Business, EmploymentType, JobStatus, NoticePeriod, WorkMode } from "../lib/careers/types";
+import type { ApplicationStatus, EmploymentType, JobStatus, NoticePeriod, WorkMode } from "../lib/careers/types";
 
 /**
  * Careers page copy and labels. Edit the text here; the pages read it.
@@ -14,7 +14,7 @@ export const CAREERS_PAGE = {
   },
   intro: {
     eyebrow: "Careers at R Colors Group",
-    title: "Build What Lasts, With People Who Care",
+    title: "Quality You Can See, Service You Can Trust",
     text: "Every project we deliver is the work of engineers, supervisors, craftspeople and advisors who take pride in doing it right. Join a growing group where your work is visible, your ideas are heard, and quality is never negotiable.",
   },
   perks: [
@@ -69,13 +69,6 @@ export const RESUME_RULES = {
   accept: ".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document",
   hint: "PDF, DOC or DOCX, up to 5 MB",
 } as const;
-
-export const BUSINESS_LABELS: Record<Business, string> = {
-  GROUP: "R Colors Group",
-  CONSTRUCTION: "Construction & Developers",
-  FINISHING_WORKS: "R Colors Finishing Works",
-  ESTATE: "R Colors Estate",
-};
 
 export const WORK_MODE_LABELS: Record<WorkMode, string> = {
   ON_SITE: "On-site",
