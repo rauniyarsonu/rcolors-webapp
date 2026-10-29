@@ -9,7 +9,7 @@ export interface PageMeta {
   siteName: string;
 }
 
-const SITE_URL = (import.meta.env.VITE_SITE_URL || "https://rcolorgroup.netlify.app").replace(/\/$/, "");
+const SITE_URL = (import.meta.env.VITE_SITE_URL || "https://rcolorsgroup.com").replace(/\/$/, "");
 const TITLE_TEMPLATE = (title: string) => `${title} | R Colors Group`;
 const absolute = (path: string) => new URL(path, SITE_URL).toString();
 

@@ -86,13 +86,33 @@ Admin API (`Authorization: Bearer <token>`, otherwise `401 {"errors": {"auth": .
 | `PORT` | `8080` | |
 | `SPRING_PROFILES_ACTIVE=prod` + `DATABASE_URL`, `DATABASE_USERNAME`, `DATABASE_PASSWORD` | H2 file | PostgreSQL in production |
 | `CORS_ALLOWED_ORIGINS` | `http://localhost:3000` | comma-separated; only needed when the frontend is on another domain |
-| `NOTIFY_EMAIL`, `MAIL_HOST`, `MAIL_PORT`, `MAIL_USERNAME`, `MAIL_PASSWORD` | off | email each form submission and job application |
+| `MAIL_HOST`, `MAIL_PORT`, `MAIL_USERNAME`, `MAIL_PASSWORD` | off | email each form submission and job application to `NOTIFY_EMAIL`, see below |
+| `NOTIFY_EMAIL` | `rcolorsgroup@gmail.com` | comma-separated recipients of those emails |
+| `NOTIFY_FROM` | `MAIL_USERNAME` | sender address; Gmail only sends from the signed-in account |
+| `NOTIFY_WHATSAPP` | off | also send them on WhatsApp, as `phone:apikey` pairs, see below |
 | `ADMIN_USERNAME` | empty (admin off) | the one admin's username |
 | `ADMIN_PASSWORD_HASH` | empty (admin off) | BCrypt hash of the admin password, see below |
 | `ADMIN_JWT_SECRET` | empty (admin off) | at least 32 bytes, e.g. `openssl rand -base64 48`; changing it signs the admin out |
-| `ADMIN_PANEL_URL` | empty | admin panel URL for links in application emails, e.g. `https://rcolorgroup.netlify.app/admin` |
+| `ADMIN_PANEL_URL` | empty | admin panel URL for links in application emails, e.g. `https://rcolorsgroup.com/admin` |
 | `CAREERS_ACK_EMAIL` | `false` | `true` also emails applicants a "we received your application" note |
 | `SERVER_FORWARD_HEADERS_STRATEGY=framework` | off | set when the API runs behind a proxy, so rate limits see the real client IP |
+
+### Form notifications
+
+Every submission is saved in the database (see the admin panel) whether or not alerts are set up.
+
+**Email (Gmail):** turn on 2-Step Verification for rcolorsgroup@gmail.com, create an
+[App Password](https://myaccount.google.com/apppasswords), then set
+`MAIL_HOST=smtp.gmail.com`, `MAIL_PORT=587`, `MAIL_USERNAME=rcolorsgroup@gmail.com` and
+`MAIL_PASSWORD=<the 16-character app password>`.
+
+**WhatsApp (CallMeBot, free):** from each phone that should get alerts, save +34 644 66 32 62
+as a contact and send it the WhatsApp message `I allow callmebot to send me messages`. The
+reply contains that phone's API key. Then set, for example,
+`NOTIFY_WHATSAPP=916389144470:<key1>,919579662353:<key2>` (country code, no `+`).
+
+If an alert fails, the backend logs a warning (`Could not email ...` / `Could not WhatsApp ...`)
+and the form still succeeds.
 
 ### Admin login
 

@@ -10,8 +10,9 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
 /**
- * Emails each submission to app.notify.to when mail is configured. A failed
- * email never fails the request: the submission is already saved.
+ * Emails each submission to app.notify.to when mail is configured, and sends it to
+ * WhatsApp when app.notify.whatsapp is set. A failed alert never fails the request:
+ * the submission is already saved.
  */
 @Component
 public class Notifier {
@@ -21,9 +22,11 @@ public class Notifier {
     private final String to;
     private final String from;
     private final String mailHost;
+    private final WhatsAppNotifier whatsApp;
 
     public Notifier(
             ObjectProvider<JavaMailSender> mail,
+            WhatsAppNotifier whatsApp,
             @Value("${app.notify.to:}") String to,
             @Value("${app.notify.from:}") String from,
             @Value("${spring.mail.host:}") String mailHost) {
@@ -31,10 +34,12 @@ public class Notifier {
         this.to = to;
         this.from = from;
         this.mailHost = mailHost;
+        this.whatsApp = whatsApp;
     }
 
     public void send(String subject, String body) {
         deliver(to.isBlank() ? null : to.split("\\s*,\\s*"), subject, body);
+        whatsApp.send(subject, body);
     }
 
     /** Email someone other than the team, e.g. an applicant's acknowledgement */

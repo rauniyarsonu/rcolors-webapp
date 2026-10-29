@@ -12,7 +12,7 @@ import { jobPostingJsonLd } from "@/lib/careers/jsonLd";
 import type { PublicJobDetail, PublicJobSummary } from "@/lib/careers/types";
 import { useApi } from "@/lib/useApi";
 
-const SITE_URL = (import.meta.env.VITE_SITE_URL || "https://rcolorgroup.netlify.app").replace(/\/$/, "");
+const SITE_URL = (import.meta.env.VITE_SITE_URL || "https://rcolorsgroup.com").replace(/\/$/, "");
 
 export default function JobDetailPage() {
   const { slug = "" } = useParams();

@@ -264,8 +264,8 @@ Every search is a shareable link. Defaults are omitted:
 The enquiry form posts to the backend (`POST /api/estate/enquiries`), which saves
 it in the `estate_enquiry` table. The contact page form works the same way
 (`POST /api/contact`, table `contact_message`). To also receive each submission
-by email, set `NOTIFY_EMAIL` and the `MAIL_*` settings described in
-`backend/src/main/resources/application.properties`.
+by email (to rcolorsgroup@gmail.com by default) or WhatsApp, see README >
+Configuration > Form notifications.
 
 ## 13. Managing careers
 
