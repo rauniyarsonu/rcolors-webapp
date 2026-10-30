@@ -111,8 +111,10 @@ as a contact and send it the WhatsApp message `I allow callmebot to send me mess
 reply contains that phone's API key. Then set, for example,
 `NOTIFY_WHATSAPP=916389144470:<key1>,919579662353:<key2>` (country code, no `+`).
 
-If an alert fails, the backend logs a warning (`Could not email ...` / `Could not WhatsApp ...`)
-and the form still succeeds.
+Alerts go out in the background, so the form answers at once even when the mail server is
+slow. If an alert fails, the backend logs a warning (`Could not email ...` / `Could not WhatsApp ...`,
+including a wrong or expired CallMeBot key) and the form still succeeds. To keep bots from
+flooding the inbox and phones, one IP can send 10 contact/estate submissions an hour.
 
 ### Admin login
 

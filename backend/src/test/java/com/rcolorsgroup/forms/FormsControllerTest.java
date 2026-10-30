@@ -12,6 +12,8 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
+import org.springframework.test.web.servlet.request.RequestPostProcessor;
 
 @SpringBootTest(properties = "spring.datasource.url=jdbc:h2:mem:test")
 @AutoConfigureMockMvc
@@ -111,5 +113,55 @@ class FormsControllerTest {
         mvc.perform(get("/api/clients")).andExpect(jsonPath("$.length()").value(18));
         mvc.perform(get("/api/estate/cities/lucknow")).andExpect(jsonPath("$.city.name").value("Lucknow"));
         mvc.perform(get("/api/estate/cities/nowhere")).andExpect(status().isNotFound());
+    }
+
+    @Test
+    void aFilledHoneypotLooksSavedButKeepsNothing() throws Exception {
+        mvc.perform(contact("Honey Bot", "10.1.0.1").param("bot-field", "http://spam.example"))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.id").value(0));
+        mvc.perform(post("/api/estate/enquiries").contentType(MediaType.APPLICATION_FORM_URLENCODED).with(from("10.1.0.1"))
+                        .param("name", "Honey Bot").param("phone", "9123456789").param("interest", "plot")
+                        .param("bot-field", "x"))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.id").value(0));
+        assertThat(contacts.findAll()).noneMatch(m -> m.getName().equals("Honey Bot"));
+        assertThat(enquiries.findAll()).noneMatch(e -> e.getName().equals("Honey Bot"));
+    }
+
+    @Test
+    void eleventhSubmissionFromOneIpInAnHourIsRateLimitedAcrossForms() throws Exception {
+        for (int i = 0; i < 9; i++) mvc.perform(contact("Flood " + i, "10.2.0.1")).andExpect(status().isCreated());
+        mvc.perform(post("/api/estate/sell-requests").contentType(MediaType.APPLICATION_FORM_URLENCODED).with(from("10.2.0.1"))
+                        .param("name", "Flood Seller").param("phone", "9988776655")
+                        .param("propertyType", "shop").param("location", "Hazratganj"))
+                .andExpect(status().isCreated());
+        mvc.perform(contact("Flood 11", "10.2.0.1"))
+                .andExpect(status().isTooManyRequests())
+                .andExpect(jsonPath("$.errors.form").exists());
+        assertThat(contacts.findAll()).noneMatch(m -> m.getName().equals("Flood 11"));
+        // Someone else is unaffected
+        mvc.perform(contact("Other Visitor", "10.2.0.2")).andExpect(status().isCreated());
+    }
+
+    @Test
+    void invalidSubmissionsDontUseUpTheLimit() throws Exception {
+        for (int i = 0; i < 12; i++) {
+            mvc.perform(contact("Typo " + i, "10.3.0.1").param("phone", "123")).andExpect(status().isBadRequest());
+        }
+        mvc.perform(contact("Finally Right", "10.3.0.1")).andExpect(status().isCreated());
+    }
+
+    private static MockHttpServletRequestBuilder contact(String name, String ip) {
+        return post("/api/contact").contentType(MediaType.APPLICATION_FORM_URLENCODED).with(from(ip))
+                .param("name", name).param("phone", "9876543210").param("email", "visitor@example.com")
+                .param("business", "general").param("message", "Please call me back");
+    }
+
+    private static RequestPostProcessor from(String ip) {
+        return request -> {
+            request.setRemoteAddr(ip);
+            return request;
+        };
     }
 }
