@@ -1,12 +1,11 @@
 import { MapPin } from "lucide-react";
 import PageHeader from "@/components/PageHeader";
-import ClientLogoMarquee from "@/components/ui/ClientLogoMarquee";
+import ClientLogoMarquee, { CLIENT_LOGO_ROWS } from "@/components/ui/ClientLogoMarquee";
 import Marquee from "@/components/ui/Marquee";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { aboutNav } from "@/config/aboutNav";
 
 export default function ClientsPage() {
-  const clientImages = Array.from({ length: 22 }, (_, i) => i + 1);
 
   const testimonials = [
     {
@@ -126,7 +125,7 @@ export default function ClientsPage() {
             We are proud to collaborate with respected clients and development partners. Their trust reflects our commitment to quality, transparency, and long-term relationships.
           </p>
 
-          <ClientLogoMarquee rows={[clientImages, clientImages]} />
+          <ClientLogoMarquee rows={CLIENT_LOGO_ROWS} />
 
           {/* Testimonials Section */}
           <div className="mt-16 md:mt-24" data-aos="fade-up" data-aos-duration="1000">

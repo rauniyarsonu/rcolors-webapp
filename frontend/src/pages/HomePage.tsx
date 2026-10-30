@@ -6,7 +6,7 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import BusinessCard from "@/components/home/BusinessCard";
 import FeatureCard from "@/components/home/FeatureCard";
 import ProjectCard from "@/components/ui/ProjectCard";
-import ClientLogoMarquee from "@/components/ui/ClientLogoMarquee";
+import ClientLogoMarquee, { CLIENT_LOGO_ROWS } from "@/components/ui/ClientLogoMarquee";
 import CtaBanner from "@/components/ui/CtaBanner";
 import Reveal from "@/components/construction/Reveal";
 import StatsStrip from "@/components/home/StatsStrip";
@@ -82,11 +82,6 @@ const features = [
 ];
 
 export default function Home() {
-  const clientImages = Array.from({ length: 22 }, (_, i) => i + 1);
-
-  // Randomize the images for the two sliding rows
-  const shuffledRow1 = [...clientImages].sort(() => Math.random() - 0.5);
-  const shuffledRow2 = [...clientImages].sort(() => Math.random() - 0.5);
 
   const projects = useApi<PortfolioProject[]>("/api/projects");
   const featuredProjects = (projects.data ?? []).slice(0, 6);
@@ -238,7 +233,7 @@ export default function Home() {
               We are proud to collaborate with respected clients and development partners. Their trust reflects our commitment to quality, transparency, and long-term relationships.
             </p>
           </SectionHeading>
-          <ClientLogoMarquee rows={[shuffledRow1, shuffledRow2]} />
+          <ClientLogoMarquee rows={CLIENT_LOGO_ROWS} />
         </div>
       </section>
 

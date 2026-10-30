@@ -2,6 +2,12 @@ import { useEffect, useState } from "react";
 import Image from "@/components/ui/Image";
 import Marquee from "./Marquee";
 
+/** Logos 1–16 on the top row, 17–31 on the bottom, so no logo appears in both rows */
+export const CLIENT_LOGO_ROWS: [number[], number[]] = [
+  Array.from({ length: 16 }, (_, i) => i + 1),
+  Array.from({ length: 15 }, (_, i) => i + 17),
+];
+
 /** Two rows of client logos (public/images/{n}.jpg), one sliding each way */
 const shuffle = (list: number[]) => {
   const out = [...list];
