@@ -1,7 +1,6 @@
+import { Building2, MapPin } from "lucide-react";
 import Image from "@/components/ui/Image";
 import { hoverShadow } from "./styles";
-
-const FALLBACK_IMAGE = "/images/R Colors Company Profile Final (2)_page-0012.jpg";
 
 const businessNames: Record<string, string> = {
   construction: "R Colors Construction & Developers",
@@ -9,19 +8,18 @@ const businessNames: Record<string, string> = {
   estate: "R Colors Estate",
 };
 
-const metaItemClass = "before:inline-block before:w-5 before:text-center before:content-['•']";
-
 interface ProjectCardProps {
   project: {
     id: string;
     name: string;
     business: string;
-    category: string;
     location?: string | null;
-    description: string;
-    coverImage?: string | null;
+    company?: string;
+    logo?: string | null;
+    workDone?: string;
+    period?: string;
   };
-  /** Portfolio-page variant: border and a 3-line description */
+  /** Portfolio-page variant: adds a border */
   detailed?: boolean;
   /** Use h2 when the card grid sits directly under the page h1 */
   headingLevel?: "h2" | "h3";
@@ -29,39 +27,70 @@ interface ProjectCardProps {
 
 export const businessName = (business: string) => businessNames[business] ?? business;
 
+/** First letters of the first two capitalised words: "Paras Group" → "PG" */
+const initials = (name: string) =>
+  name
+    .split(/\s+/)
+    .filter((w) => /^[A-Z0-9]/.test(w))
+    .slice(0, 2)
+    .map((w) => w[0])
+    .join("");
+
 export default function ProjectCard({ project, detailed = false, headingLevel = "h3" }: ProjectCardProps) {
   const Heading = headingLevel;
+  const company = project.company || businessName(project.business);
+
   return (
     <article
-      className={`group relative flex h-full flex-col rounded-lg bg-white shadow-md after:shadow-xl ${hoverShadow} ${
+      className={`group relative flex h-full flex-col rounded-lg bg-white p-5 shadow-md after:shadow-xl sm:p-6 ${hoverShadow} ${
         detailed ? "border border-gray-100" : ""
       }`}
     >
-      <div className="relative aspect-[16/10] overflow-hidden rounded-t-lg bg-gray-200">
-        <Image
-          src={project.coverImage || FALLBACK_IMAGE}
-          alt={project.name}
-          fill
-          sizes="(min-width: 1280px) 400px, (min-width: 1024px) 31vw, (min-width: 768px) 46vw, 92vw"
-          className="object-cover transition-transform duration-700 group-hover:scale-110 motion-reduce:transition-none"
-        />
-        <div aria-hidden="true" className="absolute inset-0 z-10 bg-brand-navy/10 transition-opacity group-hover:opacity-0" />
-        <span className="absolute right-4 top-4 z-20 max-w-[calc(100%-2rem)] truncate rounded-full bg-brand-sky px-3 py-1 text-xs font-bold uppercase tracking-wide text-white shadow-sm">
-          {project.category}
-        </span>
+      <div className="mb-5 flex items-center justify-between gap-2">
+        {project.period && <span className="rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-600">{project.period}</span>}
+        <span className="ml-auto rounded-full bg-green-50 px-3 py-1 text-xs font-semibold text-green-800">Completed</span>
       </div>
-      <div className="flex flex-grow flex-col p-5 sm:p-6">
-        <Heading className="mb-1 font-heading text-xl font-bold text-brand-navy">{project.name}</Heading>
-        {/* Every item starts with a "•"; the row is shifted left and clipped, so a bullet
-            that lands at the start of a line (first item or after wrapping) is hidden */}
-        <div className="mb-3 overflow-hidden text-sm text-gray-500">
-          <p className="-ml-5 flex flex-wrap gap-y-0.5">
-            <span className={metaItemClass}>{businessName(project.business)}</span>
-            {project.location && <span className={`${metaItemClass} whitespace-nowrap`}>{project.location}</span>}
-          </p>
+
+      {/* Logo box is wider than tall: most client logos are wordmarks */}
+      <div className="mb-5 flex items-center gap-4">
+        {project.logo ? (
+          <div className="relative h-[72px] w-28 shrink-0 overflow-hidden rounded-xl border border-gray-200 bg-white">
+            <Image src={project.logo} alt={`${company} logo`} fill sizes="112px" className="object-contain px-2 py-1.5" />
+          </div>
+        ) : (
+          <div
+            aria-hidden="true"
+            className="flex h-[72px] w-[72px] shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-brand-navy to-brand-sky font-heading text-2xl font-extrabold tracking-wide text-white"
+          >
+            {initials(company)}
+          </div>
+        )}
+        <div className="min-w-0">
+          <Heading className="font-heading text-lg font-bold leading-snug text-brand-navy sm:text-xl">{project.name}</Heading>
+          <p className="mt-0.5 text-sm text-gray-500">{company}</p>
         </div>
-        <p className={`text-base text-gray-600 md:text-sm ${detailed ? "line-clamp-3" : "line-clamp-2"}`}>{project.description}</p>
       </div>
+
+      <dl className="mt-auto flex flex-col gap-2.5 border-t border-dashed border-gray-300 pt-4 text-sm sm:text-base">
+        {project.location && (
+          <div className="flex items-center gap-2.5 text-gray-600">
+            <dt className="shrink-0">
+              <MapPin size={18} className="text-es-accent-strong" />
+              <span className="sr-only">Location</span>
+            </dt>
+            <dd>{project.location}</dd>
+          </div>
+        )}
+        {project.workDone && (
+          <div className="flex items-center gap-2.5 font-bold text-gray-800">
+            <dt className="shrink-0">
+              <Building2 size={18} className="text-es-accent-strong" />
+              <span className="sr-only">Work done</span>
+            </dt>
+            <dd>{project.workDone}</dd>
+          </div>
+        )}
+      </dl>
     </article>
   );
 }
